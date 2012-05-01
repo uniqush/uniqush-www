@@ -36,3 +36,4 @@ default_processing_pipeline:
 #
 
 tag.link.attr: {title: Uniqush}
+tag.breadcrumbtrail.omit_index_path: false
