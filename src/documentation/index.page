@@ -1,0 +1,13 @@
+---
+title: Uniqush | Documentation
+in_menu: false
+author: Nan Deng
+author_url: http://monnand.me
+priority: 1
+sort_info: 2
+fragments_in_menu: false
+---
+## Documentation
+
+- [Install](install.html): This document explains how to install Uniqush and its dependencies.
+
