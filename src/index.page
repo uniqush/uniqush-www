@@ -7,13 +7,27 @@ priority: 1
 routed_title: Home
 sort_info: 1
 ---
-## Welcome to *Uniqush*!
 
-This is just a place holder for the start page for your new website!
+## Description
 
-You can start by adjusting the meta information for this page file and adding some real content and
-then adding some more page files!
+**Uniqush** is a _free_ and _open source_ software which provides a unified
+push service for server-side notification to apps on mobile devices. By running
+**uniqush** on server side, you can push notification to any supported mobile
+platform. [This story](documentation/intro.html) may help you to understand the
+basic idea of uniqush.
 
-For more information about webgen have a look at the [documentation]!
+The latest news about Uniqush will be posted to our
+[blog](http://blog.uniqush.org). Or you can follow us on twitter:
+[@uniqush](http://twitter.com/uniqush). 
 
-[documentation]: http://webgen.rubyforge.org/documentation/index.html
+## Features
+
+- Stand alone server program dedicated to push service, which means you can run
+  it on your server.
+- Multiple push service supported for popular smart phone platforms including
+  android, iOS, etc. And we will support more in the future.
+- Simple and unified interface for Apps' server developers. You don't need to
+  care about receiver's system, simply send an HTTP request to uniqush server
+  and it will do all things for you. 
+
+
