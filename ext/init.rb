@@ -8,3 +8,6 @@
 # The +config+ variable below can be used to access the Webgen::Configuration object for the current
 # website.
 config = Webgen::WebsiteAccess.website.config
+config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/uniqush*.deb'
+config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/uniqush*.rpm'
+config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/uniqush*.tar.gz'

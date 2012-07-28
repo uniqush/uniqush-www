@@ -32,7 +32,7 @@ default_processing_pipeline:
 ## Adding some extensions to the copy source handler.
 # patterns:
 #   Copy:
-#     add: [**/*.pdf, **/*.djvu]
+#     add: [**/*.tar.gz, **/*.deb, **/*.rpm]
 #
 
 tag.link.attr: {title: Uniqush}
