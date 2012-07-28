@@ -7,10 +7,10 @@ author_url: http://monnand.me
 
 ##Downloads
 
-### Binary packages
+###uniqush-push
 
-- [.deb amd64](http://uniqush.org/uniqush-push.deb)
-- [.rpm amd64](http://uniqush.org/uniqush-push.rpm)
+####amd64
 
-
-
+- [rpm](downloads/uniqush-push-1.3.0-1.x86_64.rpm)
+- [deb](downloads/uniqush-push_1.3.0_amd64.deb)
+- [tar.gz](downloads/uniqush-push_1.3.0_x86_64.tar.gz)
