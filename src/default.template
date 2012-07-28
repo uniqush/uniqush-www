@@ -37,8 +37,27 @@
       </div>
 
       <div id="extras">
-        <h2>Table of Content</h2>
-		{menu: {used_nodes: fragments, start_level: 1, max_levels: 3}} 
+
+		<% if context.node.children.length > 1 %>
+			<h2>Table of Content</h2>
+			{menu: {used_nodes: fragments, start_level: 1, max_levels: 3}} 
+		<% else %>
+			<% if context.node.children.length == 1 %>
+				<% if context.node.children[0].children.length > 1 %>
+					<h2>Table of Content</h2>
+					<ul>
+					<% context.node.children[0].children.each do |ch| %>
+						<li>
+							<a href="<%= ch.path %>">
+								<%= ch.meta_info["title"] %>
+							</a>
+						</li>
+					<% end %>
+					</ul>
+				<% end %>
+			<% end %>
+		<% end %>
+		
 
         <h2>Links:</h2>
         <ul>
