@@ -28,17 +28,16 @@ The only dependency of uniqush-push is [redis], which is a key-value database.
 
 ### Install uniqush-push
 
-- Install .deb package:
-    sudo dpkg -i uniqush-push_*version*_*arch*.deb
-- Install .rpm package:
-    sudo rpm -ivh uniqush-push-*version*-*arch*.rpm
-- Install uniqush-push with .tar.gz package:
-    -- unpack the file:
-        tar zxvf uniqush-push-*version*-*arch*.tar.gz
-    -- enter that directory and execute *install.sh* under that directory:
-        cd uniqush-*version*-*arch*/ && sudo ./install.sh
-
-Download uniqush-push from [download page].
+- According to your system, download the corresponding uniqush-push binary package from [download page].
+- If you are using debian-based system, you can install .deb package: 
+    > sudo dpkg -i uniqush-push\_VERSION\_ARCH.deb
+- Or, if you are using yum/rpm-based system, you can install .rpm package:
+    > sudo rpm -ivh uniqush-push-VERSION-ARCH.rpm
+- Otherwise, you can always install uniqush-push with .tar.gz package:
+    * unpack the file:
+        > tar zxvf uniqush-push-VERSION-ARCH.tar.gz
+    * enter that directory and execute *install.sh* under that directory:
+        > cd uniqush-VERSION-ARCH/ && sudo ./install.sh
 
 [redis]: http://redis.io
 [debian]: http://debian.org
