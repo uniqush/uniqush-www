@@ -30,4 +30,30 @@ The latest news about Uniqush will be posted to our
   care about receiver's system, simply send an HTTP request to uniqush server
   and it will do all things for you. 
 
+## Supported Platform
+
+**NOTICE**: We will support more in the future.
+
+- [GCM] for Android
+- [APNS] for iOS
+- [C2DM] for Android (Deprecated by google. Should use GCM instead)
+
+## Source Code & Download
+
+Please check our source code on [our github repositories].
+
+To install the uniqush system, check our [install] instruction.
+
+## License
+
+- The source code of uniqush is distributed under [Apache License 2.0].
+- Documents on this website are under a [Creative Commons Attribution 3.0 Unported License]. 
+
+[GCM]: http://developer.android.com/guide/google/gcm/index.html
+[APNS]: http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[C2DM]: http://code.google.com/android/c2dm/
+[our github repositories]: http://github.com/uniqush
+[install]: /documentation/install.html
+[Apache License 2.0]: http://www.apache.org/licenses/LICENSE-2.0
+[Creative Commons Attribution 3.0 Unported License]: http://creativecommons.org/licenses/by/3.0/
 
