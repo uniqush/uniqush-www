@@ -21,7 +21,10 @@ author: Nan Deng
 author_url: http://monnand.me
 ---
 
-##Downloads
+#Downloads
+
+Please follow the instruction from [Install Uniqush](/documentation/install.html) to install.
+
 
 eos
 
@@ -31,7 +34,7 @@ downloadf.write(download_prefix)
 programs = []
 versions = []
 archs = []
-package_types = ["rpm", "deb", "tar.gz"]
+package_types = ["deb", "rpm", "tar.gz"]
 
 archconv = {}
 package_types.each do | pkg |
@@ -63,15 +66,15 @@ Dir.foreach("src/downloads") do |package|
 end
 
 programs.each do | prog |
-    downloadf.write("###" + prog + "\n\n")
+    downloadf.write("##" + prog + "\n\n")
     archs.each do | arch |
-        downloadf.write("####" + arch + "\n\n")
         versions.each do | ver |
             package_types.each do | pkg |
                 arch_name = archconv[pkg][arch]
                 filename = prog + prog_ver_sep[pkg] + ver + ver_arch_sep[pkg] + arch_name + "." + pkg
-                downloadf.write("- [" + pkg + "](downloads/" + filename + ")\n")
+                downloadf.write("- [" + arch + " " + ver + " " + pkg + "](downloads/" + filename + ")\n")
             end
         end
     end
 end
+
