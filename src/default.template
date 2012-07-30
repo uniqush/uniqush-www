@@ -3,6 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{lang:}">
   <head>
     <title>{title: }</title>
+
+    <% if context.node.meta_info["redir"] != nil %>
+    <meta http-equiv="REFRESH" content="0; url={redir: }">
+    </head>
+    <body>
+        <% if context.node.meta_info["message"] != nil %>
+        {message: }
+        <% else %>
+        You will be redirected to our most recent update.
+        <% end %>
+    </body>
+    </html>
+    <% else %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Your description goes here..." />
     <meta name="keywords" content="your,keywords,goes,here" />
@@ -35,3 +48,4 @@
     </div>
   </body>
 </html>
+<% end %>
