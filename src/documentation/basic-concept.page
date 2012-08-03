@@ -1,0 +1,120 @@
+---
+title: Basic Concept
+in_menu: true
+author: Nan Deng
+author_url: http://monnand.me
+sort_info: 3
+---
+
+# Basic Concept
+
+This document explain some basic concept in uniqush's terminology. Understanding these terms is critical to use uniqush. Fortunately, it won't be too hard to capture these ideas.
+
+## Sending Notifications Through Clouds
+
+- There are clouds everywhere to push data from a server side program to mobile devices 
+
+![manyclouds]
+
+- Each cloud is dedicated to one single mobile platform. e.g. There is a cloud named [GCM] for android; a cloud named [APNS] for iOS, etc. 
+
+![clouds2platforms]
+
+- If an app server want to send data to its end user, it first send the data to the corresponding cloud. 
+
+![server2cloud]
+
+- Then the cloud will delivery the data to the app running on the device. 
+![cloud2device]
+
+- If a server wants to support multiple mobile platforms, it has to communicate with different clouds through different protocols 
+
+![serverandseveralclouds]
+
+******
+
+## Uniqush Gets Involved
+
+- By running uniqush, the server could send data to multiple could through uniqush using **one and only one** protocol. The server program first sends the data to uniqush process through HTTP, then uniqush will send the data to each cloud using cloud-specific protocols. We call each cloud is a **Push Service Provider**. Supporting more platforms is easy for server side, because uniqush did all dirty works.
+- **Definition** *Push Service Provider*: An entity which can push data to a device. Uniqush handles protocol to different Push Service Providers, hiding all communication details from the server. 
+
+![uniqushinvolved]
+
+- The serve only need to care about **who** subscribes **which** service. For example, the server may provide weather report service, called *Local Weather*. Then John installed the Local Weather app on his device and **subscribes** the service.
+- **Definition** *Service*: An entity which can generate data ready to be sent to remote device. A service is the source of information.
+- **Definition** *Subscriber*: An entity which consumes the information generated from the service. A subscriber is the sink of information. 
+
+![johnsubweather]
+
+- When server wants to send weather report to John, it only need to tell three things: the **Service** (Local Weather), the **Subscriber** (John), and the **Data** (rain, cloudy, etc.) 
+
+![john-weather-data]
+
+- Moreover, John has several cell phones. All of them subscribe the Local Weather service. He wants all devices could receive messages from the server. We call each device is a **Delivery Point**. Each subscriber may have several delivery points.
+- **Definition** *Delivery Point*: An entity which receives data from one or more Services. It must have an subscriber as its Owner. One subscriber may have more than one delivery points. 
+- The server side program could simply telling 3 things to uniqush: **who** --- the subscriber; **where** --- the service, i.e. where is the subscriber; and **what** --- the data. Uniqush will send data to all delivery points of that subscriber. 
+
+![john-received-msgs]
+
+******
+
+## Review
+
+Here are important concepts that we mentioned in this document. Understanding these concepts is critical and we listed them here for your convenience.
+
+### Push Service Provider
+
+A push service provider can push data to a device. Uniqush handles protocol to different Push Service Providers, hiding all communication details from the server.
+
+Examples:  [GCM] which can send data to android devices;  [APNS] which sends notification to iOS.
+
+### Service
+
+A service can generate data ready to be sent to apps running on remote device. A service is the source of information. One server may provide more than one service.
+
+Examples: Local Weather service; Local News service.
+
+### Subscriber
+
+A subscriber consumes the information generated from the service. A subscriber is the sink of information. In most cases a subscriber usually refers to a real person.
+
+Example: A person who installed Local News app on his / her cell phone.
+
+### Delivery Point
+
+A Delivery Point receives data from one or more Services. It must have an subscriber as its Owner. One subscriber may have more than one delivery points.
+
+Examples: an android device; an iOS device; a Black Berry, etc. 
+
+******
+
+## Related Topics
+
+[Introduction](intro.html)
+[Install Uniqush System](install.html)
+
+[Google]: http://google.com
+[Google Cloud Message]: http://developer.android.com/guide/google/gcm/index.html
+[GCM]: http://developer.android.com/guide/google/gcm/index.html
+[Apple Push Notification Service]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[APNS]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+
+[apns-gcm]: img/intro/apns-gcm.png
+[noclouds]: img/intro/noclouds.png
+[single-u]: img/intro/single-u.png
+[gcm-demo]: img/intro/gcm-demo.png
+[android-and-android-rain]: img/intro/android-and-android-rain.png
+[apple-and-iphone]: img/intro/apple-and-iphone.png
+[blackberry]: img/intro/blackberry.png
+[uniqush-demo]: img/intro/uniqush-demo.png
+[apns-demo]: img/intro/apns-demo.png
+[serverandseveralclouds]: img/basic-concept/serverandseveralclouds.png
+[cloud2device]: img/basic-concept/cloud2device.png
+[uniqushinvolved]: img/basic-concept/uniqushinvolved.png
+[clouds2platforms]: img/basic-concept/clouds2platforms.png
+[server2cloud]: img/basic-concept/server2cloud.png
+[johnsubweather]: img/basic-concept/johnsubweather.png
+[john-received-msgs]: img/basic-concept/john-received-msgs.png
+[manyclouds]: img/basic-concept/manyclouds.png
+[john-weather-data]: img/basic-concept/john-weather-data.png
+
