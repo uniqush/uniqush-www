@@ -1,0 +1,17 @@
+---
+title: Downloads
+in_menu: true
+author: Nan Deng
+author_url: http://monnand.me
+---
+
+#Downloads
+
+Please follow the instruction from [Install Uniqush](/documentation/install.html) to install.
+
+
+##uniqush-push
+
+- [amd64 1.3.0 deb](downloads/uniqush-push_1.3.0_amd64.deb)
+- [amd64 1.3.0 rpm](downloads/uniqush-push-1.3.0-1.x86_64.rpm)
+- [amd64 1.3.0 tar.gz](downloads/uniqush-push_1.3.0_x86_64.tar.gz)

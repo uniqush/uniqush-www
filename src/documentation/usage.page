@@ -1,0 +1,219 @@
+---
+title: Using Uniqush
+in_menu: true
+author: Nan Deng
+author_url: http://monnand.me
+sort_info: 5
+toc: true
+---
+
+# Using Uniqush
+
+This document describes how to use uniqush by sending HTTP POST request to `uniqush-push`. Please make sure you understand [Basic Operations Provided by Uniqush](basic-opts.html). Parameters of a request should be properly [URL encoded](http://en.wikipedia.org/wiki/URL_encoding). We will use [curl](http://curl.haxx.se/) to show some examples.
+
+******
+
+## Get the Version of `uniqush-push` 
+
+- URL: `/version`
+- Alternatively, you can run **`uniqush-push -version`** to get the version of `uniqush-push`
+
+******
+
+## Stop `uniqush-push` 
+
+- URL: `/stop`
+
+**NOTE:** You need to stop the program or it may not synchronize the cache with the database.
+
+
+******
+
+## Adding Push Service Provider
+- URL: `/addpsp`
+
+### Parameters for GCM Push Service Provider
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  pushservicetype  |  For GCM Push Service Provider, this is always *gcm*  | 
+ |  projectid  |  Project ID.  | 
+ |  apikey  |  API Key  | 
+
+Read [this](http://developer.android.com/guide/google/gcm/gs.html) article on how to get Project ID and API key.
+
+Example: `curl http://127.0.0.1:9898/addpsp -d service#myservice -d pushservicetype#gcm -d projectid#123 -d apikey#somekey`
+
+### Parameters for C2DM Push Service Provider (Deprecated) 
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  pushservicetype  |  For C2DM Push Service Provider, this is always *c2dm*  | 
+ |  senderid  |  Sender ID. An email account associated with the application's developer  | 
+ |  authtoken  |  Sender Auth Token  | 
+
+Example: `curl http://127.0.0.1:9898/addpsp -d service#myservice -d pushservicetype#c2dm -d senderid#uniqush.go@gmail.com -d authtoken#faketoken`
+
+### Parameters for APNS Push Service Provider 
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  pushservicetype  |  For APNS Push Service Provider, this is always *apns*  | 
+ |  cert  |  The absolute path to the certificate file in .pem format  | 
+ |  key  |  The absolute path to the private key file in .pem format  | 
+ |  sandbox  |  Optional. *true* for sandbox; otherwise for production environment  | 
+
+Example: `curl http://127.0.0.1:9898/addpsp -d service#myservice -d pushservicetype#apns -d cert#/path/to/certificate.pem -d key#/path/to/privatekey.pem -d sandbox#true`
+
+See [this blog](http://blog.boxedice.com/2010/06/05/how-to-renew-your-apple-push-notification-push-ssl-certificate/) for details how to acquire the PEM files (certificate and private key).
+
+******
+
+## Removing Push Service Provider 
+
+- URL: `/rmpsp`
+
+### Parameters for GCM Push Service Provider 
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  pushservicetype  |  For GCM Push Service Provider, this is always *gcm*  | 
+ |  projectid  |  Project ID.  | 
+
+Read [this](http://developer.android.com/guide/google/gcm/gs.html) article on how to get Project ID and API key.
+
+Example: `curl http://127.0.0.1:9898/rmpsp -d service#myservice -d pushservicetype#gcm -d projectid#123`
+
+### Parameters for C2DM Push Service Provider (Deprecated)  
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  pushservicetype  |  For C2DM Push Service Provider, this is always *c2dm*  | 
+ |  senderid  |  Sender ID. An email account associated with the application's developer  | 
+
+Example: `curl http://127.0.0.1:9898/rmpsp -d service#myservice -d pushservicetype#c2dm -d senderid#uniqush.go@gmail.com`
+
+### Parameters for APNS Push Service Provider 
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  pushservicetype  |  For APNS Push Service Provider, this is always *apns*  | 
+ |  cert  |  The absolute path to the certificate file in .pem format  | 
+ |  key  |  The absolute path to the private key file in .pem format  | 
+
+Example: `curl http://127.0.0.1:9898/rmpsp -d service#myservice -d pushservicetype#apns -d cert#/path/to/certificate.pem -d key#/path/to/privatekey.pem`
+
+******
+
+## Subscribe 
+
+- URL: `/subscribe`
+
+### Parameters for Android Devices Using GCM  
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  subscriber  |  Subscriber Name  | 
+ |  pushservicetype  |  For Android Device using GCM, this is always *gcm*  |  
+ |  account  |  The google account of the subscriber. NOTE: this MUST NOT be same as senderid. | 
+ |  regid  |  Registration ID  | 
+
+Example: `curl http://127.0.0.1:9898/subscribe -d service#myservice -d subscriber#uniqush.client -d pushservicetype#gcm -d account#uniqush.client@gmail.com -d regid#fakeregid`
+
+### Parameters for Android Devices Using C2DM (Deprecated) 
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  subscriber  |  Subscriber Name  | 
+ |  pushservicetype  |  For Android Device using C2DM, this is always *c2dm*  |  
+ |  account  |  The google account of the subscriber. NOTE: this MUST NOT be same as senderid. This is a bug/feature of C2DM  | 
+ |  regid  |  Registration ID  | 
+
+Example: `curl http://127.0.0.1:9898/subscribe -d service#myservice -d subscriber#uniqush.client -d pushservicetype#c2dm -d account#uniqush.client@gmail.com -d regid#fakeregid`
+
+### Parameters for iOS Devices Using APNS 
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  subscriber  |  Subscriber Name  | 
+ |  pushservicetype  |  For iOS device using APNS, this is always *apns*  | 
+ |  devtoken  |  Device token  | 
+
+Example: `curl http://127.0.0.1:9898/subscribe -d service#myservice -d subscriber#uniqush.client -d os#ios -d devtoken#devtoken`
+
+******
+
+## Unsubscribe 
+
+- URL: `/unsubscribe`
+
+### Parameters for Android Devices Using GCM  
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  subscriber  |  Subscriber Name  | 
+ |  pushservicetype  |  For Android Device using GCM, this is always *gcm*  |  
+ |  account  |  The google account of the subscriber. NOTE: this MUST NOT be same as senderid. | 
+ |  regid  |  Registration ID  | 
+
+Example: `curl http://127.0.0.1:9898/unsubscribe -d service#myservice -d subscriber#uniqush.client -d pushservicetype#gcm -d account#uniqush.client@gmail.com -d regid#fakeregid`
+
+### Parameters for Android Devices using C2DM (Deprecated)  
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  subscriber  |  Subscriber Name  | 
+ |  pushservicetype  |  For Android Device using C2DM, this is always *c2dm*  |  
+ |  account  |  The google account of the subscriber  | 
+ |  regid  |  Registration ID  | 
+
+Example: `curl http://127.0.0.1:9898/unsubscribe -d service#myservice -d subscriber#uniqush.client -d os#android -d account#uniqush.client@gmail.com -d regid#fakeregid`
+
+### Parameters for iOS Devices Using APNS 
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  subscriber  |  Subscriber Name  | 
+ |  pushservicetype  |  For iOS device using APNS, this is always *apns*  | 
+ |  devtoken  |  Device token  | 
+
+Example: `curl http://127.0.0.1:9898/unsubscribe -d service#myservice -d subscriber#uniqush.client -d os#ios -d devtoken#devtoken`
+
+******
+
+## Push Message 
+
+- URL: `/push`
+
+
+### Parameters 
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  subscriber  |  Subscriber Name. Could be more than one subscriber. Comma separated.  | 
+ |  msg  |  Optional. Message Body  | 
+ |  badge  |  Optional. Badge  | 
+ |  img  |  Optional. Image  | 
+ |  sound  |  Optional. Sound  | 
+ |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  | 
+At least one of the optional parameter should be provided, or it will be an empty message and won't be sent.
+
+Examples:
+- `curl http://127.0.0.1:9898/push -d service#myservice -d subscriber#uniqush.client -d msg#"Hello World"`
+- `curl http://127.0.0.1:9898/push -d service#myservice -d subscriber#uniqush.client -d msg#"Hello World" -d userdefinedparam#somearbitraryvalue`
+
+
+
+
+******
+
+## Related Topics 
+
+- [Basic Concepts](basic-concept.html): This document explains the basic concepts inside Uniqush. They are critical to using Uniqush. 
+- [Basic Operations](basic-opts.html): This document covers the basic operations provided by Uniqush. 
+- [Install](install.html): This document explains how to install Uniqush and its dependencies.
+- [Configuration](config.html): This document explains the detail of configuration of Uniqush. 
+
+
+
+

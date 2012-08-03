@@ -1,0 +1,64 @@
+---
+title: Basic Operations 
+in_menu: true
+author: Nan Deng
+author_url: http://monnand.me
+sort_info: 3
+---
+
+# Basic Operations Provided by Uniqush
+
+This document covers the basic operations provided by Uniqush. It won't cover the implementation details or usage details. For configuration and usage details, please see Configuration and Using Uniqush. Before reading this document, please make sure you have understood basic concepts in uniqush.
+
+## How to Communicate with Uniqush
+
+Uniqush runs as a stand along program, which means you don't need to write any code to link against uniqush. Uniqush listens a port when it is running. You can change the port in its configuration file. To send request to uniqush, you simply need to connect to that port, send an HTTP Post request with parameters inside the body.
+
+## Adding Push Service Providers to a Service
+
+Without telling uniqush infomation about push service provider, a server can never send data through uniqush. Usually, to use a push service provider, uniqush need to know the type of that push service provider (e.g. [GCM], [APNS], Black Berry Push Service or Microsoft Push Notification Service for Windows Phone) and authentication information -- for example, authentication token for [GCM]; private/public keys for [APNS], etc.
+
+You can add more than one push service provider information to a service, so that you can support multiple platforms.
+
+## Subscribe a Service
+
+When a subscriber subscribes a service, uniqush need to know at least three things: the subscriber's name; the service name; and the delivery point information. The delivery point information including the identity of the device, its OS type and other push service provider specific information. For example, for android delivery points, they need to provide a registration id to uniqush, which will be used to send data through [GCM] later.
+
+Sending such information to uniqush could be done by a mobile app, which connect to uniqush server through HTTP and provide the information. NOTE: you can always use a web-server in front of uniqush as a proxy. So that the app can first connect to your web-server and the information will be forwarded to uniqush through HTTP. This is a recommended way, because for security consideration, you may want to set an HTTPS connection instead of HTTP connection between the web-server and the app.
+
+Another possible way of sending this information to uniqush: the app send the information to some program on server side; this program processes the information, extract the data that uniqush want, and then forward the data to uniqush through HTTP. There are several pros for this approach: 1) The server side has more flexibility of choosing authentication method. 2) the server side may require more information than uniqush want. This way could help server side grab information at first and then send the left piece of information to uniqush.
+
+As mentioned in [basic concepts], a subscriber may have more than one delivery point subscribes a service. So several delivery points could subscribe same service under same subscriber. This requires the server side have some mechanism to authenticate the subscriber's identity.
+
+## Push Data to Subscriber
+
+Once a service has more than one push service provider and more than one subscriber, uniqush can push data on behalf of that service to the apps running on subscribers' devices. Server side only need to provide service name, subscriber name and data. Uniqush will push the data to all active delivery points under that subscriber.
+
+## Removing Push Service Provider and Unsubscribe
+
+What I didn't mention is removing a push service provider from a service; and unsubscribing a service. It won't be hard once you understand adding push service provider and subscribing a service. They are just reverse operations.
+
+## Summery
+
+In general, uniqush provide the following five operations:
+
+    Add / Remove a push service provider into/from a service
+    Subscribe / Unsubscribe a service
+    Push data 
+
+******
+
+## Related Topics
+
+- [Introduction](intro.html)
+- [Install Uniqush System](install.html)
+- [Basic Concept](basic-concept.html)
+
+[Google]: http://google.com
+[Google Cloud Message]: http://developer.android.com/guide/google/gcm/index.html
+[GCM]: http://developer.android.com/guide/google/gcm/index.html
+[Apple Push Notification Service]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[APNS]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[basic concepts]: basic-concept.html
+
+
