@@ -8,11 +8,67 @@ sort_info: 1
 ---
 # A Story of an App Development
 
-This is just a place holder for the start page for your new website!
+This document helps you to understand the basic idea of **uniqush-push** by telling a imaginary story of a group of app developers. 
 
-You can start by adjusting the meta information for this page file and adding some real content and
-then adding some more page files!
+- Once upon a time, there was a group of developers developing weather report app for mobile devices. They were from open source community and hence preferred open platforms. Android was their choice.
+- The idea of their app was naive and simple: sending weather report from their server to their app every day. 
 
-For more information about webgen have a look at the [documentation]!
+![android-and-android-rain]
 
-[documentation]: http://webgen.rubyforge.org/documentation/index.html
+- On android platform, sending a notification to an app is easy: [Google] provides a cloud service, [Google Cloud Message], or GCM, to help developers to send data from servers to apps. 
+- Developers could push any data to their apps by sending an HTTP request to [GCM] cloud.  
+- Empowered by [GCM], the developers were quite happy to write server side programs. They didn't need to consider the systems on which the app run. [GCM] did all works. Everything they need to do was grabbing weather information, establishing HTTP connection to [GCM] cloud and sending data through this connection. Clean, easy, and less coding work. 
+
+![gcm-demo]
+
+- After several months, quite a few android users were using their weather report app. Our lucky developers were encouraged by this success and they decided to expand their business to other platforms.
+- They noticed that a lot of users were willing to use cell phones developed by a fruit company making this platform so popular that they could not refuse to support.
+- (To apple fans: Please forgive for not using their logo, I do not know if I can legally use their logo here. So I have to draw by myself and you can get the idea. Also, Forrest Gump told me it is OK to call it a fruit company.) 
+
+![apple-and-iphone]
+
+- The server side developers found documents from this fruit company knowing that they provide a similar cloud service called [Apple Push Notification Service], or APNS. Again, developers need to establish a connection to APNS cloud and push data to that cloud. Then the cloud would send the data to end users. 
+
+![apns-demo]
+
+- However, it's a simple TCP connection this time instead of HTTP connection as in [GCM]. Moreover, our developers needed to use another authentication protocol in order to communicate with [APNS].
+- The server side program needed to be changed in order to support both [APNS] and [GCM]. 
+
+![apns-gcm]
+
+- After adding support to APNS, the project manager wanted to support more platforms, like Black Berry. Again, it uses a similar cloud and specific to Black Berry devices.
+
+![blackberry]
+
+- The server side developers became impatient because they were spending too much time to add support to another fancy cloud.
+- They needed to focus on what to push to their customers, not how to push messages.
+- No more clouds, please! 
+
+![noclouds]
+
+- Finally, our clever developers found **uniqush-push** which solved their problem perfectly.
+- Developers do not need to know which cloud will be use. They just push messages.
+- **uniqush-push** will communicate with different clouds through the cloud-specific protocol.
+- After running uniqush on their server, server side developers could again simply use an HTTP connection to **uniqush-push** process and send messages to apps on any platform that uniqush supports. 
+
+![uniqush-demo]
+
+******
+
+## Related Topics
+
+[Install Uniqush System](install.html)
+
+[Google]: http://google.com
+[Google Cloud Message]: http://developer.android.com/guide/google/gcm/index.html
+[GCM]: http://developer.android.com/guide/google/gcm/index.html
+[android-and-android-rain]: img/intro/android-and-android-rain.png
+[gcm-demo]: img/intro/gcm-demo.png
+[apple-and-iphone]: img/intro/apple-and-iphone.png
+[Apple Push Notification Service]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[APNS]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[apns-demo]: img/intro/apns-demo.png
+[apns-gcm]: img/intro/apns-gcm.png
+[blackberry]: img/intro/blackberry.png
+[noclouds]: img/intro/noclouds.png
+[uniqush-demo]: img/intro/uniqush-demo.png 
