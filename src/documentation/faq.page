@@ -1,0 +1,65 @@
+---
+title: FAQ
+in_menu: true
+author: Nan Deng
+author_url: http://monnand.me
+sort_info: 6
+---
+
+# FAQ 
+
+## Usage 
+
+### I do not know how to use uniqush. Can you explain it a little bit? 
+
+Sure. 
+
+The core part (and the only part right now) of uniqush is `uniqush-push`. It is a stand alone program. You can communicate with this program through HTTP connection. Asking uniqush to do some work can be done by sending an HTTP Post request to `uniqush-push`. In short, once you start `uniqush-push`, you can use it as a common web service according to its [APIs](usage.html). You may want to know which port it will use for the HTTP connection. Actually, you can [configure it and
+other parameters](config.html) by youself.
+
+If you have any other questions, please feel free to send it on [mailing list].
+
+******
+
+## Development 
+
+### Where should I submit the bug report 
+
+You found a bug? Great! I really appreciate!
+
+You can send a mail to [uniqush.go at gmail dot com]. Of course, it is also welcome to post a thread in our [mailing list].
+
+If you which which part is wrong, you can submit an issue on [github.com](http://github.com/uniqush).
+
+### I have some suggestions 
+
+Thank you very much! You can send your idea to [mailing list] or to [uniqush.go at gmail dot com].
+
+### Why not provide an HTTPS connection inside `uniqush-push`? It's safe! 
+
+Yes. It is safe. However, it is not `uniqush-push`'s responsibility to keep a safe connection to outside world. Why? Because there are too many web-servers which provide proxy function. If you have an SSL certificate, you won't want to configure it on two programs. You can always keep an HTTPS function on web-server and forward the request to `uniqush-push`.
+
+We recommend the `uniqush-push` only accept connections from localhost and other programs do authentication/encryption jobs. We may provide another program which communicate with outside world used for subscribing/unsubscribing service. However, it is still a stand along program outside the `uniqush-push`.
+
+### Why not provide function to activate/deactivate the delivery point inside `uniqush-push` 
+
+Again, this function should be implemented outside `uniqush-push`.
+
+We want the `uniqush-push` to be fast, simple and providing the only essential functions. Imaging you have a subscriber who has several delivery points. Some of them are activated and some of them are not. Then `uniqush-push` has to fetch these delivery points from either database or cache, iterate over all of them. In each iteration, `uniqush-push` '''has to''' detect if a delivery point is activated --- a branching statement here which increases the CPU cache miss rate.
+Moreover, we have to branch in ''every'' iteration. What's worse, such branches has to be executed in ''every'' push operation which is the most frequently used operation of `uniqush-push`. This is unacceptable when we have a more elegant way to solve this problem.
+
+Here is a solution: suppose you have a program outside `uniqush-push` (we may provide such program in the future), when you want to deactivate some delivery point, this program could simply tell the `uniqush-push` to unsubscribe this delivery point from specified subscriber. The outside program will record the information of that delivery point and re-subscribe it when user re-activate that delivery point. This is better because we don't need to introduce more branches inside the
+push operation. Moreover, because this activation/deactivation operation won't be executed too frequently, the communication cost could be neglected.
+
+### Why use Go programming language? 
+
+It's really cool, seriously. You should try it.
+
+I love the desgin of Go. Easy, simple, fast. No fancy patterns, no rigid awkward grammars. Especially its emphasis on concurrency which must be a critical point for future multi-core CPUs. It won't provide a huge fancy library like spaghetti. Also it won't give you nothing but malloc / free leaving you do everything by yourself.
+
+### I am new to Go. Do you think I can use your code to learn Go? 
+
+If you have some programming background, then yes. Actually, I think there are several `.go` files inside my source code which may be useful for other projects. Please feel free to learn the code and it is more than welcome to make your own contribution.
+
+[uniqush.go at gmail dot com]: mailto:uniqush.go@gmail.com
+[mailing list]: http://groups.google.com/group/uniqush

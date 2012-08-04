@@ -13,6 +13,8 @@
         <% else %>
         You will be redirected to our most recent update.
         <% end %>
+
+        If you are not redirected <a href="{redir: }">click here</a>
     </body>
     </html>
     <% else %>
