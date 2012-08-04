@@ -26,7 +26,6 @@ Example: `uniqush-push -config#/path/to/configfile`.
 
 The configuration file consists of several **sections**. Each section contains several **options**. An option is a key-value pair. Here is an example:
 
-```
     globaloption=globalvalue
 
     [Section1]
@@ -35,7 +34,6 @@ The configuration file consists of several **sections**. Each section contains s
 
     [Section2]
     option=value
-```
 
 In this example, there are two sections: *Section1* and *Section2*. A section starts from line containing the section name within a pair of brackets, ends to the start of next section (except the starting line of next section) or end of file. In the example above, `[Section1]` is the starting point of *Section1*. There is an outer-most section, we call it *default* section. The options in *default* section lays outside of all other section. In this example,
 *globaloption#globalvalue* lays in *default* section.
@@ -58,9 +56,9 @@ missed, `uniqush-push` will use its default value instead. In other word, you ca
 
  |  **Section**  |  **Description**  | 
  |  default  |  Default section is the outer-most section which does not need a section name. It lays outside of all sections and some global settings are sitting there.  | 
- |  !WebFrontend  |  Controls the web service interface of `uniqush-push`. Because a user of `uniqush-push` communicates with it through HTTP Post request, it has to specify some basic information, like the port number, logging level, etc., to work with uniqush  | 
- |  !AddPushServiceProvider  |  Contains the options used when adding a push service provider request is being processed  | 
- |  !RemovePushServiceProvider  |  Contains the options used when removing a push service provider request is being processed  | 
+ |  WebFrontend  |  Controls the web service interface of `uniqush-push`. Because a user of `uniqush-push` communicates with it through HTTP Post request, it has to specify some basic information, like the port number, logging level, etc., to work with uniqush  | 
+ |  AddPushServiceProvider  |  Contains the options used when adding a push service provider request is being processed  | 
+ |  RemovePushServiceProvider  |  Contains the options used when removing a push service provider request is being processed  | 
  |  Subscribe  |  Contains the options used when a subscribe request is being processed  | 
  |  Unsubscribe  |  Contains the options used when when an unsubscribe request is being processed  | 
  |  Push  |  Contains the options used when a push request is being processed  | 
