@@ -3,7 +3,7 @@
 #header {
   border-bottom: 1px solid black;
   padding: 1ex;
-  background-color: #888888;
+  background-color: #FFFFFF;
 }
 
 #header h1 {
@@ -33,7 +33,7 @@
   padding: 3px;
   text-align: center;
   font-size: 90%;
-  background-color: #AAAAAA;
+  background-color: #FFFFFF;
 }
 
 .left, .right {

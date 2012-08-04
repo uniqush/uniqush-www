@@ -2,7 +2,7 @@
 title: Documentation
 in_menu: false
 author: Nan Deng
-author_url: http://monnand.me
+author_url: /authors/monnand.html
 priority: 1
 sort_info: 3
 ---
@@ -18,4 +18,8 @@ sort_info: 3
 
 - [Configuration](config.html): This document explains the detail of configuration of Uniqush. 
 - [Using Uniqush](usage.html): This document shows how to use uniqushd, the core part of Uniqush, through HTTP requests. 
+
+### Appendix
+
+- [FAQ](faq.html)
 
