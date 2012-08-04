@@ -13,7 +13,8 @@ author: Nan Deng
 author_url: /authors/monnand.html
 routed_title: dir
 redir: $link
----";
+---
+";
 
     print INDEX $content;
     close INDEX;
