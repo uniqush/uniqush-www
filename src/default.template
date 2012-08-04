@@ -5,7 +5,7 @@
     <title>{title: }</title>
 
     <% if context.node.meta_info["redir"] != nil %>
-    <meta http-equiv="REFRESH" content="0; url={redir: }">
+    <meta http-equiv="REFRESH" content="0; url={redir:}">
     </head>
     <body>
         <% if context.node.meta_info["message"] != nil %>
@@ -14,7 +14,7 @@
         You will be redirected to our most recent update.
         <% end %>
 
-        If you are not redirected <a href="{redir: }">click here</a>
+        If you are not redirected <a href="{redir:}">click here</a>
     </body>
     </html>
     <% else %>

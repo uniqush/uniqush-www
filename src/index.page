@@ -59,7 +59,7 @@ You can either send a mail to [uniqush.go at gmail dot com] privately, or post y
 [APNS]: http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
 [C2DM]: http://code.google.com/android/c2dm/
 [our github repositories]: http://github.com/uniqush
-[install]: /documentation/install.html
+[install]: documentation/install.html
 [Apache License 2.0]: http://www.apache.org/licenses/LICENSE-2.0
 [Creative Commons Attribution 3.0 Unported License]: http://creativecommons.org/licenses/by/3.0/
 

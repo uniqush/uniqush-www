@@ -1,0 +1,8 @@
+UniqushStory /documentation/intro.html
+UniqushInstall /documentation/install.html
+UniqushBasicConcepts /documentation/basic-concepts.html
+UniqushOperations /documentation/basic-opts.html
+UniqushUpdate /documentation/install.html
+UniqushConfig /documentation/config.html
+UniqushAPIs /documentation/usage.html
+UniqushFAQ /documentation/faq.html

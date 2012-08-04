@@ -23,7 +23,7 @@ author_url: http://monnand.me
 
 #Downloads
 
-Please follow the instruction from [Install Uniqush](/documentation/install.html) to install.
+Please follow the instruction from [Install Uniqush](documentation/install.html) to install.
 
 
 eos
