@@ -189,8 +189,8 @@ Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscri
 ### Parameters 
 
  |  **Parameter**  |  **Description**  | 
- |  service  |  Service Name  | 
- |  subscriber  |  Subscriber Name. Could be more than one subscriber. Comma separated.  | 
+ |  service  |  Service Name. | 
+ |  subscriber  |  Subscriber Name. Could be more than one subscriber. Comma separated. \* could be used as a wildcard to match any string | 
  |  msg  |  Optional. Message Body  | 
  |  badge  |  Optional. Badge  | 
  |  img  |  Optional. Image  | 
@@ -200,11 +200,25 @@ At least one of the optional parameter should be provided, or it will be an empt
 
 Examples:
 
-- `curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client -d msg="Hello World"`
-- `curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client -d msg="Hello World" -d userdefinedparam=somearbitraryvalue`
+- Push to one subscriber:
 
+    curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client -d msg="Hello World"
 
+- Push to multiple subscribers:
 
+    curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client1,uniqush.client2 -d msg="Hello World"
+
+- Push with user defined parameter
+
+    curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client -d msg="Hello World" -d userdefinedparam=somearbitraryvalue
+
+- Push to multiple subscribers with pattern:
+
+    curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.* -d msg="Hello World"
+
+- Push to all subscribers under some service (you probably do not want to do that):
+
+    curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=* -d msg="Hello World"
 
 ******
 

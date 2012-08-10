@@ -7,6 +7,37 @@
 #
 # The +config+ variable below can be used to access the Webgen::Configuration object for the current
 # website.
+
+
+# class Version
+#   include Comparable
+# 
+#   attr_reader :major, :feature_group, :feature, :bugfix
+# 
+#   def initialize(version="")
+#     v = version.split(".")
+#     @major = v[0].to_i
+#     @feature_group = v[1].to_i
+#     @feature = v[2].to_i
+#     @bugfix = v[3].to_i
+#   end
+#   
+#   def <=>(other)
+#     return @major <=> other.major if ((@major <=> other.major) != 0)
+#     return @feature_group <=> other.feature_group if ((@feature_group <=> other.feature_group) != 0)
+#     return @feature <=> other.feature if ((@feature <=> other.feature) != 0)
+#     return @bugfix <=> other.bugfix
+#   end
+# 
+#   def self.sort
+#     self.sort!{|a,b| a <=> b}
+#   end
+# 
+#   def to_s
+#     @major.to_s + "." + @feature_group.to_s + "." + @feature.to_s + "." + @bugfix.to_s
+#   end
+# end
+
 config = Webgen::WebsiteAccess.website.config
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/uniqush*.deb'
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/uniqush*.rpm'
@@ -32,8 +63,8 @@ downloadf = File.open("src/downloads.page", "w+")
 downloadf.write(download_prefix)
 
 programs = []
-versions = []
-archs = []
+versions = {}
+archs = {}
 package_types = ["deb", "rpm", "tar.gz"]
 
 archconv = {}
@@ -59,16 +90,32 @@ Dir.foreach("src/downloads") do |package|
     if (package =~ /uniqush-.+\.deb/)
         deb_pattern = /(.+)_(.+)_(.+)\.deb/
         m = deb_pattern.match(package)
-        programs << m[1]
-        versions << m[2]
-        archs << m[3]
+        prog = m[1]
+        ver = m[2]
+        arch = m[3]
+
+        if not versions.has_key?(prog)
+            versions[prog] = []
+        end
+        if not archs.has_key?(prog)
+            archs[prog] = []
+        end
+        versions[prog] << ver
+        archs[prog] << arch
+        programs << prog
     end
 end
 
-programs.each do | prog |
+
+programs.uniq.each do | prog |
     downloadf.write("##" + prog + "\n\n")
-    archs.each do | arch |
-        versions.each do | ver |
+    puts prog
+    archs[prog].uniq.each do | arch |
+        versions[prog] = versions[prog].uniq.sort { |x, y| y <=> x}
+        latest = versions[prog][0]
+        downloadf.write("latest version: **" + latest + "**\n\n")
+        versions[prog].each do | ver |
+            puts ver
             package_types.each do | pkg |
                 arch_name = archconv[pkg][arch]
                 filename = prog + prog_ver_sep[pkg] + ver + ver_arch_sep[pkg] + arch_name + "." + pkg
