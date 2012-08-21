@@ -73,14 +73,14 @@ missed, `uniqush-push` will use its default value instead. In other word, you ca
 ### Common Options in All Sections (Except Database and default)
 
 
-All sections, except *!Database* and *default*, could contains the following options. If there is no such option in that section, it will use the default value.
+All sections, except *Database* and *default*, could contains the following options. If there is no such option in that section, it will use the default value.
 
  |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  | 
  |  log  |  on/off  |  on  |  Turn on/off the logging facility of a specific part. If the log is turned off, then the logging-related options will be ignored.  | 
  |  loglevel  |  standard, verbose  |  standard  |  The verbosility of the log  | 
 
 
-### Options for *!WebFrontend* Section
+### Options for *WebFrontend* Section
 
  |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  | 
  |  addr  |  `[ip address]:[port number]`  |  localhost:9898  |  Accepted host address and the port number of the web service. If you want to accept all connections (you probably do not want to do that), you can specify the *ip address* as `0.0.0.0`. We recommend `uniqush-push` only accept localhost connections or connections from a known server.  | 
