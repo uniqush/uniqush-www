@@ -39,6 +39,14 @@ The only dependency of uniqush-push is [redis], which is a key-value database.
     * enter that directory and execute *install.sh* under that directory:
         > cd uniqush-VERSION-ARCH/ && sudo ./install.sh
 
+### Running uniqush-push
+
+- If the uniqush-push is installed from binary packages from the [download page], then there will be two files copied to your system:
+    * *uniqush-push*, which is an executable file, will be copied to `/usr/bin`.
+    * *uniqush-push.conf*, which is a configure file, will be copied to `/etc/uniqush`.
+- To run uniqush, type `uniqush-push` under console.
+- Please read [Configuration](config.html) and [Using Uniqush](usage.html) for more details
+
 [redis]: http://redis.io
 [debian]: http://debian.org
 [ubuntu]: http://ubuntu.com

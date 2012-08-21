@@ -11,6 +11,8 @@ toc: true
 
 This document describes how to use uniqush by sending HTTP POST request to `uniqush-push`. Please make sure you understand [Basic Operations Provided by Uniqush](basic-opts.html). Parameters of a request should be properly [URL encoded](http://en.wikipedia.org/wiki/URL_encoding). We will use [curl](http://curl.haxx.se/) to show some examples.
 
+Before executing any command below, make sure you have already started *uniqush-push*. It will be under `/usr/bin` directory if you installed uniqush from official binary files.
+
 ******
 
 ## Get the Version of `uniqush-push` 

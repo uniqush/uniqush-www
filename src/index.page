@@ -22,13 +22,16 @@ The latest news about Uniqush will be posted to our
 
 ## Features
 
-- Stand alone server program dedicated to push service, which means you can run
-  it on your server.
-- Multiple push service supported for popular smart phone platforms including
+- Stand alone server program **dedicated** to push service, which means you can run
+  it on your own server.
+- Multiple platforms supported for popular smart phone systems including
   android, iOS, etc. And we will support more in the future.
 - Simple and unified interface for Apps' server developers. You don't need to
   care about receiver's system, simply send an HTTP request to uniqush server
   and it will do all things for you. 
+- Wildcard multicast, so that you can group your users and multicast notifications
+  to specific group.
+- Native multicast support.
 
 ## Supported Platform
 
