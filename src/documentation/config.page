@@ -111,7 +111,7 @@ All sections, except *Database* and *default*, could contains the following opti
     [WebFrontend]
     log=on
     loglevel=standard
-    address=localhost:9898
+    addr=localhost:9898
 
     [AddPushServiceProvider]
     log=on
