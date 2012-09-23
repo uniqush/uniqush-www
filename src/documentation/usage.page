@@ -198,29 +198,30 @@ Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscri
  |  img  |  Optional. Image  | 
  |  sound  |  Optional. Sound  | 
  |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  | 
+
 At least one of the optional parameter should be provided, or it will be an empty message and won't be sent.
 
 Examples:
 
 - Push to one subscriber:
 
-    curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client -d msg="Hello World"
+    `curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client -d msg="Hello World"`
 
 - Push to multiple subscribers:
 
-    curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client1,uniqush.client2 -d msg="Hello World"
+    `curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client1,uniqush.client2 -d msg="Hello World"`
 
 - Push with user defined parameter
 
-    curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client -d msg="Hello World" -d userdefinedparam=somearbitraryvalue
+    `curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client -d msg="Hello World" -d userdefinedparam=somearbitraryvalue`
 
 - Push to multiple subscribers with pattern:
 
-    curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.* -d msg="Hello World"
+    `curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.* -d msg="Hello World"`
 
 - Push to all subscribers under some service (you probably do not want to do that):
 
-    curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=* -d msg="Hello World"
+    `curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=* -d msg="Hello World"`
 
 ******
 
