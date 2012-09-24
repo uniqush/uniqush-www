@@ -19,6 +19,9 @@ sort_info: 3
 - [Configuration](config.html): This document explains the detail of configuration of Uniqush. 
 - [Using Uniqush](usage.html): This document shows how to use uniqushd, the core part of Uniqush, through HTTP requests. 
 
+### Developers Guide
+- [Contribution Guidelines](contribute.html): This document explains how to contribute changes to uniqush project.
+
 ### Appendix
 
 - [FAQ](faq.html)
