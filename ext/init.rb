@@ -116,7 +116,11 @@ programs.uniq.each do | prog |
         downloadf.write("latest version: **" + latest + "**\n")
         versions[prog].each do | ver |
             puts ver
-	    rnfile = "release-notes/rn-" + prog + "-" + ver + ".page"
+            v = String.new(ver)
+	    v["."]="-"
+	    v["."]="-"
+	    puts v
+	    rnfile = "release-notes/rn-" + prog + "-" + v + ".html"
             downloadf.write("\n[" + prog + " " + ver + " release note](" + rnfile + ")\n\n")
             package_types.each do | pkg |
                 arch_name = archconv[pkg][arch]

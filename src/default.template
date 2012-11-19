@@ -19,9 +19,13 @@
     </html>
     <% else %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Your description goes here..." />
-    <meta name="keywords" content="your,keywords,goes,here" />
-    <meta name="author" content="Your Name" />
+    <meta name="description" content="Uniqush" />
+    <meta name="keywords" content="push,ios,android,APNs,GCM,C2DM,uniqush" />
+    <% if context.node.meta_info["author"] != nil %>
+    <meta name="author" content="{author:}" />
+    <% else %>
+    <meta name="author" content="Nan Deng" />
+    <% end %>
     <meta name="generator" content="webgen - http://webgen.rubyforge.com/" />
     <link href="{relocatable: default.css}" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="{relocatable: images/favicon.ico}" />
