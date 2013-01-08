@@ -20,8 +20,9 @@ Download:
 ChangeLog:
 
 - *bugfix* Fixed the bug on re-connecting APNS server. Thanks to Ivan Yu for his [detailed bug report and analysis](https://groups.google.com/forum/?fromgroups=#!topic/uniqush/CLs7BEdDDoM)
-- *feature* Added *loc-key* and *loc-args* support for APNS. You can send your localized message through uniqush-pus now. Here is an example: `curl http://127.0.0.1:9898/push -d service=fake -d subscriber=client -d msg="hello" -d loc-key="lockey" -d loc-args="hello,world"` Then the `loc-args` sent to the APNS will be `["hello", "world"]`. Yes. it is comma separated. If one of your loc-key contains comma(,), then add a backslash (\\) in front of the comma. (Similar to escape symbol in C)
+- *feature* Added *loc-key*, *loc-args* and *action-loc-key* support for APNS. You can send your localized message through uniqush-pus now. Here is an example: `curl http://127.0.0.1:9898/push -d service=fake -d subscriber=client -d msg="hello" -d loc-key="lockey" -d loc-args="hello,world"` Then the `loc-args` sent to the APNS will be `["hello", "world"]`. Yes. it is comma separated. If one of your loc-key contains comma(,), then add a backslash (\\) in front of the comma. (Similar to escape symbol in C)
 - *feature* Added support to true multicast for GCM.
-- *change* When subscribe to a GCM service, the user don't need to provide the *account* parameter. When unsubscribe a service, the user need to provide the same *regid* as the one he used to subscribe.
+- *feature* Added time-to-live support for both GCM and APNS. It defines how long (in seconds) the message should be kept on push service provider's server if the device is offline.
+- *change* When subscribe to a GCM service, the user don't need to provide the *account* parameter. When unsubscribe a service, the user need to provide the same *regid* as the one he used to subscribe. For existing subscribers (i.e. the subscriber is added using previous releases), the *account* parameter is **required** when unsubscribe the service.
 - *change* This change only affects developers. The interface of *PushServiceType* is changed making it possible to support true multicast on GCM. Corresponding components are changed.
 

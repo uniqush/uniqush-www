@@ -117,10 +117,9 @@ Example: `curl http://127.0.0.1:9898/rmpsp -d service=myservice -d pushservicety
  |  service  |  Service Name  | 
  |  subscriber  |  Subscriber Name  | 
  |  pushservicetype  |  For Android Device using GCM, this is always *gcm*  |  
- |  account  |  The google account of the subscriber. NOTE: this MUST NOT be same as senderid. | 
  |  regid  |  Registration ID  | 
 
-Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=gcm -d account=uniqush.client@gmail.com -d regid=fakeregid`
+Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=gcm -d regid=fakeregid`
 
 ### Parameters for Android Devices Using C2DM (Deprecated) 
 
@@ -155,10 +154,11 @@ Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscribe
  |  service  |  Service Name  | 
  |  subscriber  |  Subscriber Name  | 
  |  pushservicetype  |  For Android Device using GCM, this is always *gcm*  |  
- |  account  |  The google account of the subscriber. NOTE: this MUST NOT be same as senderid. | 
- |  regid  |  Registration ID  | 
+ |  regid  |  Registration ID. NOTE: This registration ID must be exactly the same one used to subscribe. | 
 
-Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=gcm -d account=uniqush.client@gmail.com -d regid=fakeregid`
+Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=gcm -d regid=fakeregid`
+
+The registration ID should be same one used to subscribe the service. That is: you don't need to consider if the GCM will update the registration ID for the device. Uniqush can handle it.
 
 ### Parameters for Android Devices using C2DM (Deprecated)  
 
@@ -187,19 +187,37 @@ Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscri
 
 - URL: `/push`
 
-
 ### Parameters 
 
  |  **Parameter**  |  **Description**  | 
  |  service  |  Service Name. | 
  |  subscriber  |  Subscriber Name. Could be more than one subscriber. Comma separated. \* could be used as a wildcard to match any string | 
  |  msg  |  Optional. Message Body  | 
+ | ttl | Optional. Time to live. How long (in seconds) the message should be kept on push service provider's server if the device is offline |
  |  badge  |  Optional. Badge  | 
  |  img  |  Optional. Image  | 
  |  sound  |  Optional. Sound  | 
+ | loc-key | Optional. loc-key for APNS |
+ | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
+ | action-loc-key | Option. action-loc-key for APNS. |
  |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  | 
 
 At least one of the optional parameter should be provided, or it will be an empty message and won't be sent.
+
+For android client, the message will be received as *Intent* containing key-value pairs. *msg, badge, img, sound, loc-key, loc-args* and *User Defined Parameters* will be put as key-value pairs in the *Intent*. You can use *getExtras()* method of the *Intent* to get all key-value pairs.
+
+For iOS client, the notification is sent as JSON encoded message to APNS. All parameters are mapped to their corresponding place as follows:
+
+| **Parameter** | **Mapped To** |
+| msg	| "aps" > "alert" > "body" |
+| badge | "aps" > "badge" |
+| img | "aps" > "alert" > "launch-image" |
+| sound | "aps" > "sound" |
+| loc-key | "aps" > "alert" > "loc-key" |
+| loc-args | "aps" > "alert" > "loc-args" |
+| action-loc-key | "aps" > "alert" > "action-loc-key" |
+
+For user defined parameters, they are key-value pairs in the same hash table with "aps".
 
 Examples:
 
