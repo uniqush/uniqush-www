@@ -191,7 +191,7 @@ Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscri
 
  |  **Parameter**  |  **Description**  | 
  |  service  |  Service Name. | 
- |  subscriber  |  Subscriber Name. Could be more than one subscriber. Comma separated. \* could be used as a wildcard to match any string | 
+ |  subscriber  |  Subscriber Name. Could be more than one subscriber. Comma separated. Asterisk (\*) could be used as a wildcard to match any string | 
  |  msg  |  Optional. Message Body  | 
  | ttl | Optional. Time to live. How long (in seconds) the message should be kept on push service provider's server if the device is offline |
  |  badge  |  Optional. Badge  | 
