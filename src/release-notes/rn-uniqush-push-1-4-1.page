@@ -1,0 +1,31 @@
+---
+title: Release Note 1.4.1
+in_menu: false
+author: Nan Deng
+author_url: http://monnand.me
+---
+
+# Release Note 1.4.1
+
+24-Feb-2013
+
+This version contains several bug fixes and a refactory of the *main* package.
+
+Download:
+
+- [amd64 1.4.1 deb](http://uniqush.org/downloads/uniqush-push_1.4.1_amd64.deb)
+- [amd64 1.4.1 rpm](http://uniqush.org/downloads/uniqush-push-1.4.1-1.x86_64.rpm)
+- [amd64 1.4.1 tar.gz](http://uniqush.org/downloads/uniqush-push_1.4.1_x86_64.tar.gz)
+
+ChangeLog:
+
+- *improvement* On (un)subscription, the log message now contains service and subscriber information. Fixed [issue 2]. 
+- *improvement* On adding an APNS push service provider, uniqush-push will report error immediately if the given certificate or key files do not exist. Fixed [issue 6].
+- *bugfix* Removed all code related memory pool. There is no dependency on memory pool any more. Fixed [issue 7].
+- *improvement* Rewrote the code in *main* package. It is more clean, simple and less redundant. Fixed [issue 5].
+
+[issue 2]: https://github.com/uniqush/uniqush-push/issues/2
+[issue 6]: https://github.com/uniqush/uniqush-push/issues/6
+[issue 7]: https://github.com/uniqush/uniqush-push/issues/7
+[issue 5]: https://github.com/uniqush/uniqush-push/issues/5
+
