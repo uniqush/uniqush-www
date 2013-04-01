@@ -1,0 +1,32 @@
+---
+title: Release Note 1.4.2
+in_menu: false
+author: Nan Deng
+author_url: http://monnand.me
+---
+
+# Release Note 1.4.2
+
+1-Apr-2013 (**This is not a joke!**)
+
+This version contains several bug fixes and a refactory of the *main* package.
+
+Download:
+
+- [amd64 1.4.2 deb](http://uniqush.org/downloads/uniqush-push_1.4.2_amd64.deb)
+- [amd64 1.4.2 rpm](http://uniqush.org/downloads/uniqush-push-1.4.2-1.x86_64.rpm)
+- [amd64 1.4.2 tar.gz](http://uniqush.org/downloads/uniqush-push_1.4.2_x86_64.tar.gz)
+
+ChangeLog:
+
+- *bugfix* Stop on */stop*. Sorry, I forgot to implement the feature after refactoring the main package. Fixed [issue 9].
+- *bugfix* Stop on *SIGTERM*. Similar with [issue 9]. User can now stop the program by sending *SIGTERM* to the process. Fixed [issue 8]. 
+- *bugfix* Fixed a nil-pointer crash bug. The program will experience a nil-pointer crash (samething as NULL pointer) under some conditions. For example, if user provides an invalid APIKEY for a GCM provider, then uniqush-push will crash when the user tries to push through this malformed provider. Fixed [issue 10].
+- *feature* Support [Feedback Service] in APNS. Fixed [issue 3].
+
+[Feedback Service]: http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CommunicatingWIthAPS/CommunicatingWIthAPS.html#//apple_ref/doc/uid/TP40008194-CH101-SW3
+[issue 3]: https://github.com/uniqush/uniqush-push/issues/3
+[issue 8]: https://github.com/uniqush/uniqush-push/issues/8
+[issue 9]: https://github.com/uniqush/uniqush-push/issues/9
+[issue 10]: https://github.com/uniqush/uniqush-push/issues/10
+
