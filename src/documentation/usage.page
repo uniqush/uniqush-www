@@ -140,7 +140,7 @@ Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscribe
  |  pushservicetype  |  For iOS device using APNS, this is always *apns*  | 
  |  devtoken  |  Device token  | 
 
-Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d os=ios -d devtoken=devtoken`
+Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=apns -d devtoken=some-device-token`
 
 ******
 
