@@ -1,0 +1,38 @@
+---
+title: Release Note 1.4.3
+in_menu: false
+author: Nan Deng
+author_url: http://monnand.me
+---
+
+# Release Note 1.4.3
+
+14-May-2013
+
+This version contains some minor bug fixes and added some hidden feature making it works with [uniqush-conn].
+
+Download:
+
+- [amd64 1.4.3 deb](http://uniqush.org/downloads/uniqush-push_1.4.3_amd64.deb)
+- [amd64 1.4.3 rpm](http://uniqush.org/downloads/uniqush-push-1.4.3-1.x86_64.rpm)
+- [amd64 1.4.3 tar.gz](http://uniqush.org/downloads/uniqush-push_1.4.3_x86_64.tar.gz)
+
+ChangeLog:
+
+- *bugfix* Close response body on HTTP response in GCM and C2DM code. This is a
+  very common error when using [Go](http://golang.org)'s http client package. I
+  thought I have fixed this someday in the past, but it turns out I was wrong.
+  Anyway, this fixed [issue 13].
+- *bugfix* Fixed a bug introduced by feedback support in APNS. It is a
+  missing-return-statement error. Fixed by
+  [infiniteloop5](https://github.com/infiniteloop5) through [pull request #17](https://github.com/uniqush/uniqush-push/pull/17)
+- *bugfix* Fixed some error in document. Fixed [issue 16] reported by [user974256](https://github.com/user974256).
+- *feature* Added a new URL path: */nrdp*. Users can check how many delivery points are there under certain subscriber. This feature will be used by [uniqush-conn] and is considered as a hidden feature. i.e. not intended to be used by users. Fixed [issue 14].
+- *feature* Added the so-called *perdp.\** feature. This feature is also used by [uniqush-conn] and is a hidden feature as well. Fixed [issue 15].
+
+[uniqush-conn](http://github.com/uniqush/uniqush-conn)
+[issue 13]: https://github.com/uniqush/uniqush-push/issues/13
+[issue 14]: https://github.com/uniqush/uniqush-push/issues/14
+[issue 15]: https://github.com/uniqush/uniqush-push/issues/15
+[issue 16]: https://github.com/uniqush/uniqush-push/issues/16
+
