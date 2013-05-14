@@ -30,7 +30,7 @@ ChangeLog:
 - *feature* Added a new URL path: */nrdp*. Users can check how many delivery points are there under certain subscriber. This feature will be used by [uniqush-conn] and is considered as a hidden feature. i.e. not intended to be used by users. Fixed [issue 14].
 - *feature* Added the so-called *perdp.\** feature. This feature is also used by [uniqush-conn] and is a hidden feature as well. Fixed [issue 15].
 
-[uniqush-conn](http://github.com/uniqush/uniqush-conn)
+[uniqush-conn]: http://github.com/uniqush/uniqush-conn
 [issue 13]: https://github.com/uniqush/uniqush-push/issues/13
 [issue 14]: https://github.com/uniqush/uniqush-push/issues/14
 [issue 15]: https://github.com/uniqush/uniqush-push/issues/15
