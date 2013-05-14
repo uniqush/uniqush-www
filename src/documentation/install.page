@@ -21,7 +21,7 @@ It is higly recommanded to install from **binary** package on **64-bit** system.
 The only dependency of uniqush-push is [redis], which is a key-value database.
 
 - On debian-based system (including [debian], [ubuntu], [mint], etc.), run:
-    sudo apt-get install redis
+    sudo apt-get install redis-server
 - On yum-based system (including [Redhat Enterprise Linux], [fedora], [centos], etc.), run:
     sudo yum install redis-server
 - For other systems, please visit [redis] website for more information
