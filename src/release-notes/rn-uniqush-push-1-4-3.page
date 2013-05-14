@@ -27,6 +27,7 @@ ChangeLog:
   missing-return-statement error. Fixed by
   [infiniteloop5](https://github.com/infiniteloop5) through [pull request #17](https://github.com/uniqush/uniqush-push/pull/17)
 - *bugfix* Fixed some error in document. Fixed [issue 16] reported by [user974256](https://github.com/user974256).
+- *improvement* We do not depends on [redis](http://redis.io) now. Well, not exactly. You just don't need to install redis on the same machine with *uniqush-push*. Fixed [issue 18].
 - *feature* Added a new URL path: */nrdp*. Users can check how many delivery points are there under certain subscriber. This feature will be used by [uniqush-conn] and is considered as a hidden feature. i.e. not intended to be used by users. Fixed [issue 14].
 - *feature* Added the so-called *perdp.\** feature. This feature is also used by [uniqush-conn] and is a hidden feature as well. Fixed [issue 15].
 
@@ -35,4 +36,5 @@ ChangeLog:
 [issue 14]: https://github.com/uniqush/uniqush-push/issues/14
 [issue 15]: https://github.com/uniqush/uniqush-push/issues/15
 [issue 16]: https://github.com/uniqush/uniqush-push/issues/16
+[issue 18]: https://github.com/uniqush/uniqush-push/issues/18
 
