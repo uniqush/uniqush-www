@@ -200,6 +200,7 @@ Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscri
  | loc-key | Optional. loc-key for APNS |
  | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
  | action-loc-key | Option. action-loc-key for APNS. |
+ |  *Reserved Parameter*  |  Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. | 
  |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  | 
 
 At least one of the optional parameter should be provided, or it will be an empty message and won't be sent.
