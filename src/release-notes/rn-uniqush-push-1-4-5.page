@@ -20,7 +20,7 @@ Download:
 
 ChangeLog:
 
-- *bugfix* Fixed a nil pointer error described in [issue #28].
+- *bugfix* Fixed a nil pointer error described in [issue 28].
 
 [cmabastar-gumi]: https://github.com/cmabastar-gumi
 [issue 28]: https://github.com/uniqush/uniqush-push/issues/28
