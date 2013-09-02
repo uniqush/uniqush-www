@@ -1,0 +1,25 @@
+---
+title: Release Note 1.5.0
+in_menu: false
+author: Nan Deng
+author_url: http://monnand.me
+---
+
+# Release Note 1.5.0
+
+1-Sep-2013
+
+We support [ADM] for Kindle tablets in this version.
+
+Download:
+
+- [amd64 1.5.0 deb](http://uniqush.org/downloads/uniqush-push_1.5.0_amd64.deb)
+- [amd64 1.5.0 rpm](http://uniqush.org/downloads/uniqush-push-1.5.0-1.x86_64.rpm)
+- [amd64 1.5.0 tar.gz](http://uniqush.org/downloads/uniqush-push_1.5.0_x86_64.tar.gz)
+
+ChangeLog:
+
+- *improvement* Add [ADM] support. Fixed [issue 29]
+
+[issue 29]: https://github.com/uniqush/uniqush-push/issues/29
+[ADM]: https://developer.amazon.com/sdk/adm.html

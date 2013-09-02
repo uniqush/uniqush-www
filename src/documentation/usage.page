@@ -13,6 +13,14 @@ This document describes how to use uniqush by sending HTTP POST request to `uniq
 
 Before executing any command below, make sure you have already started *uniqush-push*. It will be under `/usr/bin` directory if you installed uniqush from official binary files.
 
+**NOTE:** ``uniqush-push`` is only a server side program. You need to use the native client code for each platform. For more information on how to support push notification on client side, please look at the corresponding documents for each platform:
+
+- [GCM] for Android
+- [APNS] for iOS
+- [ADM] for Kindle tablets
+- [C2DM] for Android (Deprecated by google. Should use GCM instead)
+
+
 ******
 
 ## Get the Version of `uniqush-push` 
@@ -69,6 +77,29 @@ Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicet
 
 See [this blog](http://blog.boxedice.com/2010/06/05/how-to-renew-your-apple-push-notification-push-ssl-certificate/) for details how to acquire the PEM files (certificate and private key).
 
+### Parameters for ADM Push Service Provider
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  pushservicetype  |  For ADM Push Service Provider, this is always *adm*  | 
+ |  clientid  | The Client ID. |
+ |  clientsecret | The Client Secret. |
+
+To obtain the Client ID and Client Scret:
+
+- Create an account on the [Amazon Mobile App Distribution Portal](https://developer.amazon.com/welcome.html) and add your app, if you have not already done so.
+- In "Apps & Services > My Apps", select the app with which you want to use ADM.
+- Select the "Security Profile" link for the app.
+- Click "View Security Profile" button and the Client ID and Secret will be shown on the page.
+
+Here is an example of a Client ID: ``amzn1.iba-client.b2b360f8a77d457981625636121d6edf``
+
+Here is an example of a Client Secret: ``c559965801308f2bb79ca787b1dfc8deece8a2fd7d7618946cec1635d26dcbfb``
+
+**NOTE**: The method mentioned above may be changed. Please refer to the [Document from Amazon](https://developer.amazon.com/sdk/adm/credentials.html) for more details.
+
+Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d clientid=someClientId -d clientsecret=ClientSecret -d pushservicetype=adm`
+
 ******
 
 ## Removing Push Service Provider 
@@ -104,6 +135,30 @@ Example: `curl http://127.0.0.1:9898/rmpsp -d service=myservice -d pushservicety
  |  key  |  The absolute path to the private key file in .pem format  | 
 
 Example: `curl http://127.0.0.1:9898/rmpsp -d service=myservice -d pushservicetype=apns -d cert=/path/to/certificate.pem -d key=/path/to/privatekey.pem`
+
+### Parameters for ADM Push Service Provider
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  pushservicetype  |  For ADM Push Service Provider, this is always *adm*  | 
+ |  clientid  | The Client ID. |
+ |  clientsecret | The Client Secret. |
+
+To obtain the Client ID and Client Scret:
+
+- Create an account on the [Amazon Mobile App Distribution Portal](https://developer.amazon.com/welcome.html) and add your app, if you have not already done so.
+- In "Apps & Services > My Apps", select the app with which you want to use ADM.
+- Select the "Security Profile" link for the app.
+- Click "View Security Profile" button and the Client ID and Secret will be shown on the page.
+
+Here is an example of a Client ID: ``amzn1.iba-client.b2b360f8a77d457981625636121d6edf``
+
+Here is an example of a Client Secret: ``c559965801308f2bb79ca787b1dfc8deece8a2fd7d7618946cec1635d26dcbfb``
+
+**NOTE**: The method mentioned above may be changed. Please refer to the [Document from Amazon](https://developer.amazon.com/sdk/adm/credentials.html) for more details.
+
+Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d clientid=someClientId -d clientsecret=ClientSecret -d pushservicetype=adm`
+
 
 ******
 
@@ -141,6 +196,16 @@ Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscribe
  |  devtoken  |  Device token  | 
 
 Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=apns -d devtoken=some-device-token`
+
+### Parameters for Kindle Devices Using ADM
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  subscriber  |  Subscriber Name  | 
+ |  pushservicetype  |  For Kindle Device using ADM, this is always *adm*  |  
+ |  regid  |  Registration ID  | 
+
+Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservicetype=adm -d subscriber=firehd -d regid=RegistrationId`
 
 ******
 
@@ -181,6 +246,17 @@ Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscri
 
 Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=apns -d devtoken=devtoken`
 
+### Parameters for Kindle Devices Using ADM
+
+ |  **Parameter**  |  **Description**  | 
+ |  service  |  Service Name  | 
+ |  subscriber  |  Subscriber Name  | 
+ |  pushservicetype  |  For Kindle Device using ADM, this is always *adm*  |  
+ |  regid  |  Registration ID  | 
+
+Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservicetype=adm -d subscriber=firehd -d regid=RegistrationId`
+
+
 ******
 
 ## Push Message 
@@ -205,7 +281,7 @@ Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscri
 
 At least one of the optional parameter should be provided, or it will be an empty message and won't be sent.
 
-For android client, the message will be received as *Intent* containing key-value pairs. *msg, badge, img, sound, loc-key, loc-args* and *User Defined Parameters* will be put as key-value pairs in the *Intent*. You can use *getExtras()* method of the *Intent* to get all key-value pairs.
+For android and kindle client, the message will be received as *Intent* containing key-value pairs. *msg, badge, img, sound, loc-key, loc-args* and *User Defined Parameters* will be put as key-value pairs in the *Intent*. You can use *getExtras()* method of the *Intent* to get all key-value pairs.
 
 For iOS client, the notification is sent as JSON encoded message to APNS. All parameters are mapped to their corresponding place as follows:
 
@@ -251,6 +327,7 @@ Examples:
 - [Install](install.html): This document explains how to install Uniqush and its dependencies.
 - [Configuration](config.html): This document explains the detail of configuration of Uniqush. 
 
-
-
-
+[GCM]: http://developer.android.com/guide/google/gcm/index.html
+[APNS]: http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[C2DM]: http://code.google.com/android/c2dm/
+[ADM]: https://developer.amazon.com/sdk/adm.html

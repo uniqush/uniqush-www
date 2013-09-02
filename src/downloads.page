@@ -12,7 +12,19 @@ Please follow the instruction from [Install Uniqush](documentation/install.html)
 
 ##uniqush-push
 
-latest version: **1.4.4**
+latest version: **1.5.0**
+
+[uniqush-push 1.5.0 release note](release-notes/rn-uniqush-push-1-5-0.html)
+
+- [amd64 1.5.0 deb](downloads/uniqush-push_1.5.0_amd64.deb)
+- [amd64 1.5.0 rpm](downloads/uniqush-push-1.5.0-1.x86_64.rpm)
+- [amd64 1.5.0 tar.gz](downloads/uniqush-push_1.5.0_x86_64.tar.gz)
+
+[uniqush-push 1.4.5 release note](release-notes/rn-uniqush-push-1-4-5.html)
+
+- [amd64 1.4.5 deb](downloads/uniqush-push_1.4.5_amd64.deb)
+- [amd64 1.4.5 rpm](downloads/uniqush-push-1.4.5-1.x86_64.rpm)
+- [amd64 1.4.5 tar.gz](downloads/uniqush-push_1.4.5_x86_64.tar.gz)
 
 [uniqush-push 1.4.4 release note](release-notes/rn-uniqush-push-1-4-4.html)
 

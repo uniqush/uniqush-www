@@ -20,7 +20,7 @@ The latest news about Uniqush will be posted to our
 [blog](http://blog.uniqush.org). Or you can follow us on twitter:
 [@uniqush](http://twitter.com/uniqush). 
 
-The latest release version is [1.4.5](release-notes/rn-uniqush-push-1-4-5.html).
+The latest release version is [1.5.0](release-notes/rn-uniqush-push-1-5-0.html).
 
 ## Features
 
@@ -43,6 +43,7 @@ The latest release version is [1.4.5](release-notes/rn-uniqush-push-1-4-5.html).
 
 - [GCM] for Android
 - [APNS] for iOS
+- [ADM] for Kindle tablets
 - [C2DM] for Android (Deprecated by google. Should use GCM instead)
 
 ## Source Code & Download
@@ -65,6 +66,7 @@ You can either send a mail to [uniqush.go at gmail dot com] privately, or post y
 [GCM]: http://developer.android.com/guide/google/gcm/index.html
 [APNS]: http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
 [C2DM]: http://code.google.com/android/c2dm/
+[ADM]: https://developer.amazon.com/sdk/adm.html
 [our github repositories]: http://github.com/uniqush
 [install]: documentation/install.html
 [Apache License 2.0]: http://www.apache.org/licenses/LICENSE-2.0
