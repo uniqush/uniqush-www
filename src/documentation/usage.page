@@ -293,6 +293,7 @@ For iOS client, the notification is sent as JSON encoded message to APNS. All pa
 | loc-key | "aps" > "alert" > "loc-key" |
 | loc-args | "aps" > "alert" > "loc-args" |
 | action-loc-key | "aps" > "alert" > "action-loc-key" |
+| content-available | "aps" > "content-available" |
 
 For user defined parameters, they are key-value pairs in the same hash table with "aps".
 
