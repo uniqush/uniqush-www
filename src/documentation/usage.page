@@ -50,7 +50,9 @@ Before executing any command below, make sure you have already started *uniqush-
  |  projectid  |  Project ID.  | 
  |  apikey  |  API Key  | 
 
-Read [this](http://developer.android.com/guide/google/gcm/gs.html) article on how to get Project ID and API key.
+Read [this](http://developer.android.com/guide/google/gcm/gs.html) article on
+how to get Project ID and API key. Note: you need to make a **Server key** not
+an Android key.
 
 Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicetype=gcm -d projectid=123 -d apikey=somekey`
 
