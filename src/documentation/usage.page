@@ -323,6 +323,20 @@ Examples:
 
 ******
 
+## Getting The Number of Delivery Points for a Subscriber to a Service
+
+- URL: `/nrdp`
+
+### Parameters for getting the number of delivery points
+
+ |  **Parameter**  |  **Description**  |
+ |  service  |  Service Name  |
+ |  subscriber  |  Subscriber Name  |
+
+Example: `curl http://127.0.0.1:9898/nrdp -d service=myservice -d subscriber=uniqush.client
+
+******
+
 ## Related Topics 
 
 - [Basic Concepts](basic-concept.html): This document explains the basic concepts inside Uniqush. They are critical to using Uniqush. 
