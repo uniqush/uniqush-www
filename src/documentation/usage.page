@@ -333,7 +333,7 @@ Examples:
  |  service  |  Service Name  |
  |  subscriber  |  Subscriber Name  |
 
-Example: `curl http://127.0.0.1:9898/nrdp -d service=myservice -d subscriber=uniqush.client
+Example: `curl http://127.0.0.1:9898/nrdp -d service=myservice -d subscriber=uniqush.client`
 
 ******
 
