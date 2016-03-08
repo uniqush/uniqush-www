@@ -216,6 +216,38 @@ Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscri
 
 Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservicetype=adm -d subscriber=firehd -d regid=RegistrationId`
 
+## Get Subscriptions
+
+- URL: `/subscriptions`
+
+### Parameters for getting subscriptions for a set of service names
+
+ |  **Parameter**  |  **Description**  |
+ |  services  |  Service Name(s)  |
+ |  subscriber  |  Subscriber Name  |
+
+Example: `curl http://127.0.0.1:9898/subscriptions -d services=myservice,myotherservice -d subscriber=uniqush.client`
+
+### Parameters for getting subscriptions across each service
+
+ |  **Parameter**  |  **Description**  |
+ |  subscriber  |  Subscriber Name  |
+
+Example: `curl http://127.0.0.1:9898/subscriptions -d subscriber=uniqush.client`
+
+If this fails to return results for some valid services, then use the `/rebuildserviceset` API.
+
+## Get PSPs
+
+- URL: `/psps`
+
+Returns JSON representing the PSPs stored in Uniqush, along with their configs (API keys, paths to certificates, service type, etc.).
+
+## Migrating from 1.0 to 2.0
+
+- URL: `/rebuildserviceset`
+
+Initializes the set of all service names.  This API is needed for the /subscriptions and the /psps APIs to work(and be efficient).
 
 ******
 

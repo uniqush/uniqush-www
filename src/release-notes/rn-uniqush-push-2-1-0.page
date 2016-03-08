@@ -1,0 +1,27 @@
+---
+title: Release Note 2.1.0
+in_menu: false
+author: Nan Deng
+author_url: http://monnand.me
+---
+
+# Release Note 2.1.0
+
+01-Mar-2016
+
+This release contains bugfixes, new APIs and improvements.
+
+Download:
+
+- [amd64 2.1.0 deb](http://uniqush.org/downloads/uniqush-push_2.1.0_amd64.deb)
+- [amd64 2.1.0 rpm](http://uniqush.org/downloads/uniqush-push-2.1.0-1.x86_64.rpm)
+- [amd64 2.1.0 tar.gz](http://uniqush.org/downloads/uniqush-push_2.1.0_x86_64.tar.gz)
+
+ChangeLog:
+
+- *improvement* Add new APIs for listing the subscriptions of a subscriber and for listing the services exist.
+- *bugfix* Fix concurrency issues in ADM, APNS.  Change the APNS implementation from a buggy connection pool to a reliable worker pool.
+- *bugfix* Fix a bug which would lead to an infinite loop in rare circumstances.
+- *improvement* Remove Go's default HTML escaping of JSON payloads, for APNS.  The APNS servers now render payloads with characters such as '"' properly.
+- *improvement* Add more details to error messages.
+- *improvement* Add enough buffer space for potential 100-byte APNS device tokens.
