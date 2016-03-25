@@ -9,9 +9,9 @@ toc: true
 
 # Using Uniqush
 
-This document describes how to use uniqush by sending HTTP POST request to `uniqush-push`. Please make sure you understand [Basic Operations Provided by Uniqush](basic-opts.html). Parameters of a request should be properly [URL encoded](http://en.wikipedia.org/wiki/URL_encoding). We will use [curl](http://curl.haxx.se/) to show some examples.
+This document describes how to use Uniqush by sending HTTP POST request to `uniqush-push`. Please make sure you understand [Basic Operations Provided by Uniqush](basic-opts.html). Parameters of a request should be properly [URL encoded](http://en.wikipedia.org/wiki/URL_encoding). We will use [curl](http://curl.haxx.se/) to show some examples.
 
-Before executing any command below, make sure you have already started *uniqush-push*. It will be under `/usr/bin` directory if you installed uniqush from official binary files.
+Before executing any command below, make sure you have already started *uniqush-push*. It will be under `/usr/bin` directory if you installed Uniqush from official binary files.
 
 **NOTE:** ``uniqush-push`` is only a server side program. You need to use the native client code for each platform. For more information on how to support push notification on client side, please look at the corresponding documents for each platform:
 
@@ -152,7 +152,7 @@ Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d clientid=som
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name  |
- |  subscriber  |  Subscriber Name  |
+ |  subscriber  |  Subscriber ID  |
  |  pushservicetype  |  For Android Device using GCM, this is always *gcm*  |
  |  regid  |  Registration ID  |
 
@@ -162,7 +162,7 @@ Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscribe
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name  |
- |  subscriber  |  Subscriber Name  |
+ |  subscriber  |  Subscriber ID  |
  |  pushservicetype  |  For iOS device using APNS, this is always *apns*  |
  |  devtoken  |  Device token  |
 
@@ -172,7 +172,7 @@ Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscribe
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name  |
- |  subscriber  |  Subscriber Name  |
+ |  subscriber  |  Subscriber ID  |
  |  pushservicetype  |  For Kindle Device using ADM, this is always *adm*  |
  |  regid  |  Registration ID  |
 
@@ -188,7 +188,7 @@ Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservi
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name  |
- |  subscriber  |  Subscriber Name  |
+ |  subscriber  |  Subscriber ID  |
  |  pushservicetype  |  For Android Device using GCM, this is always *gcm*  |
  |  regid  |  Registration ID. NOTE: This registration ID must be exactly the same one used to subscribe. |
 
@@ -200,7 +200,7 @@ The registration ID should be same one used to subscribe the service. That is: y
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name  |
- |  subscriber  |  Subscriber Name  |
+ |  subscriber  |  Subscriber ID  |
  |  pushservicetype  |  For iOS device using APNS, this is always *apns*  |
  |  devtoken  |  Device token  |
 
@@ -210,7 +210,7 @@ Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscri
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name  |
- |  subscriber  |  Subscriber Name  |
+ |  subscriber  |  Subscriber ID  |
  |  pushservicetype  |  For Kindle Device using ADM, this is always *adm*  |
  |  regid  |  Registration ID  |
 
@@ -224,14 +224,14 @@ Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservi
 
  |  **Parameter**  |  **Description**  |
  |  services  |  Service Name(s)  |
- |  subscriber  |  Subscriber Name  |
+ |  subscriber  |  Subscriber ID  |
 
 Example: `curl http://127.0.0.1:9898/subscriptions -d services=myservice,myotherservice -d subscriber=uniqush.client`
 
 ### Parameters for getting subscriptions across each service
 
  |  **Parameter**  |  **Description**  |
- |  subscriber  |  Subscriber Name  |
+ |  subscriber  |  Subscriber ID  |
 
 Example: `curl http://127.0.0.1:9898/subscriptions -d subscriber=uniqush.client`
 
@@ -259,7 +259,7 @@ Initializes the set of all service names.  This API is needed for the /subscript
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name. |
- |  subscriber  |  Subscriber Name. Could be more than one subscriber. Comma separated. Asterisk (\*) could be used as a wildcard to match any string |
+ |  subscriber  |  Subscriber ID. Could be more than one subscriber. Comma separated. Asterisk (\*) could be used as a wildcard to match any string |
  |  msg  |  Optional. Message Body  |
  | ttl | Optional. Time to live. How long (in seconds) the message should be kept on push service provider's server if the device is offline |
  |  badge  |  Optional. Badge  |
@@ -268,7 +268,7 @@ Initializes the set of all service names.  This API is needed for the /subscript
  | loc-key | Optional. loc-key for APNS |
  | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
  | action-loc-key | Option. action-loc-key for APNS. |
- |  *Reserved Parameter*  |  Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
+ |  *Reserved Parameter*  |  Any parameter whose name starts with "uniqush." is reserved by Uniqush. Users should avoid using those parameter names. |
  |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
 
 At least one of the optional parameter should be provided, or it will be an empty message and won't be sent.
@@ -321,7 +321,7 @@ Examples:
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name  |
- |  subscriber  |  Subscriber Name  |
+ |  subscriber  |  Subscriber ID  |
 
 Example: `curl http://127.0.0.1:9898/nrdp -d service=myservice -d subscriber=uniqush.client`
 

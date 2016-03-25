@@ -63,7 +63,7 @@ The only dependency of uniqush-push is [redis], which is a key-value database.
 - [Basic Concepts](basic-concept.html): This document explains the basic concepts inside Uniqush. They are critical to using Uniqush. 
 - [Basic Operations](basic-opts.html): This document covers the basic operations provided by Uniqush. 
 - [Configuration](config.html): This document explains the detail of configuration of Uniqush. 
-- [Using Uniqush](usage.html): This document shows how to use uniqushd, the core part of Uniqush, through HTTP requests. 
+- [Using Uniqush](usage.html): This document shows how to use uniqush-push through HTTP requests.
 
 
 

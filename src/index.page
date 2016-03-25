@@ -10,11 +10,8 @@ sort_info: 1
 
 ## Description
 
-**Uniqush** is a _free_ and _open source_ software which provides a unified
-push service for server-side notification to apps on mobile devices. By running
-**uniqush** on server side, you can push notification to any supported mobile
-platform. [This story](documentation/intro.html) may help you to understand the
-basic idea of uniqush.
+**Uniqush** is _free_ and _open source_ software which provides a unified push service for server-side notification to apps on mobile devices. By running **Uniqush** on the server side, you can push notification to any supported mobile platform. [This story](documentation/intro.html) may help you to understand the
+basic idea of Uniqush.
 
 The latest news about Uniqush will be posted to our
 [blog](http://blog.uniqush.org). Or you can follow us on twitter:
@@ -29,9 +26,9 @@ The latest release version is [2.1.0](release-notes/rn-uniqush-push-2-1-0.html).
 - Multiple platforms supported for popular smart phone systems including
   android, iOS, etc. And we will support more in the future.
 - Simple and unified interface for Apps' server developers. You don't need to
-  care about receiver's system, simply send an HTTP request to uniqush server
+  care about receiver's system, simply send an HTTP request to Uniqush server
   and it will do all things for you.
-- No need to implement re-send on failure mechanisms, uniqush will re-send the
+- No need to implement re-send on failure mechanisms, Uniqush will re-send the
   notification on a recoverable error whenever possible.
 - Wildcard multicast, so that you can group your users and multicast notifications
   to specific group.
@@ -49,7 +46,7 @@ The latest release version is [2.1.0](release-notes/rn-uniqush-push-2-1-0.html).
 
 Please check our source code on [our github repositories].
 
-To install the uniqush system, check our [install] instruction.
+To install Uniqush and its dependencies, check out our [Installation](install.html) instructions.
 
 ## Contact Us
 
@@ -57,7 +54,7 @@ You can either send a mail to [uniqush.go at gmail dot com] privately, or post y
 
 ## License
 
-- The source code of uniqush is distributed under [Apache License 2.0].
+- The source code of Uniqush is distributed under [Apache License 2.0].
 - Documents on this website are under a [Creative Commons Attribution 3.0 Unported License].
 
 [uniqush.go at gmail dot com]: mailto:uniqush.go@gmail.com

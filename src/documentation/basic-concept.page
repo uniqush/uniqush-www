@@ -91,7 +91,7 @@ Examples: an android device; an iOS device; a Black Berry, etc.
 ## Related Topics
 
 - [Introduction](intro.html)
-- [Install Uniqush System](install.html)
+- [Installing Uniqush and its Dependencies](install.html)
 
 [Google]: http://google.com
 [Google Cloud Message]: http://developer.android.com/guide/google/gcm/index.html
