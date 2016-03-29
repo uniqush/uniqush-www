@@ -8,52 +8,72 @@ sort_info: 2
 lang: en
 ---
 
-# Install Uniqush System
+# Installing Uniqush and its Dependencies
 
-## Install uniqush-push
+## Installing uniqush-push
 
-uniqush-push now is the only component in the Uniqush System.
+`uniqush-push` is now the only component of Uniqush.
 
-It is higly recommanded to install from **binary** package on **64-bit** system.
+It is highly recommanded to install the **binary** package on a **64-bit** system.
 
 ### Install Redis
 
-The only dependency of uniqush-push is [redis], which is a key-value database.
+The only dependency of `uniqush-push` is [Redis], which is a key-value database.
 
-- On debian-based system (including [debian], [ubuntu], [mint], etc.), run:
-    sudo apt-get install redis-server
-- On yum-based system (including [Redhat Enterprise Linux], [fedora], [centos], etc.), run:
-    sudo yum install redis-server
-- For other systems, please visit [redis] website for more information
+Redis should be installed on a server which has low latency to the server
+`uniqush-push` is installed on (e.g. the same datacenter). One solution is to
+install both programs on the same server.
+
+- On Debian-based systems (including [Debian], [Ubuntu], [Mint], etc.), run:
+
+    `sudo apt-get install redis-server`
+
+- On yum-based systems (including [Red Hat Enterprise Linux], [Fedora], [CentOS], etc.), run:
+
+    `sudo yum install redis-server`
+
+- For other systems, please visit the [Redis] website for more information.
 
 ### Install uniqush-push
 
-- According to your system, download the corresponding uniqush-push binary package from [download page].
-- If you are using debian-based system, you can install .deb package: 
-    > sudo dpkg -i uniqush-push\_VERSION\_ARCH.deb
-- Or, if you are using yum/rpm-based system, you can install .rpm package:
-    > sudo rpm -ivh uniqush-push-VERSION-ARCH.rpm
-- Otherwise, you can always install uniqush-push with .tar.gz package:
+- Download the latest `uniqush-push` binary package appropriate for your system from the [download page] or you can build it from source. Go 1.6+ is recommended.
+- If you are using a Debian-based system, you can install the DEB:
+
+    `sudo dpkg -i uniqush-push\_VERSION\_ARCH.deb`
+
+- If you are using yum/rpm-based system, you can install the RPM:
+
+    `sudo rpm -ivh uniqush-push-VERSION-ARCH.rpm`
+
+- Otherwise, you can always install uniqush-push using the tarball:
+
     * unpack the file:
-        > tar zxvf uniqush-push-VERSION-ARCH.tar.gz
+
+        `tar zxvf uniqush-push-VERSION-ARCH.tar.gz`
+
     * enter that directory and execute *install.sh* under that directory:
-        > cd uniqush-VERSION-ARCH/ && sudo ./install.sh
+
+        `cd uniqush-VERSION-ARCH/ && sudo ./install.sh`
 
 ### Running uniqush-push
 
-- If the uniqush-push is installed from binary packages from the [download page], then there will be two files copied to your system:
-    * *uniqush-push*, which is an executable file, will be copied to `/usr/bin`.
-    * *uniqush-push.conf*, which is a configure file, will be copied to `/etc/uniqush`.
-- To run uniqush, type `uniqush-push` under console.
+- If `uniqush-push` is installed via the binary packages from the [download page], then there will be two files copied to your system:
+
+    * `/usr/bin/uniqush-push`, which is an executable file.
+    * `/etc/uniqush/uniqush-push.conf`, which is a configuration file.
+
+
+- To run `uniqush-push`, type `uniqush-push` in a console.
+
 - Please read [Configuration](config.html) and [Using Uniqush](usage.html) for more details
 
-[redis]: http://redis.io
-[debian]: http://debian.org
-[ubuntu]: http://ubuntu.com
-[mint]: http://linuxmint.com
-[Redhat Enterprise Linux]: http://www.redhat.com/products/enterprise-linux/
-[fedora]: http://fedoraproject.org
-[centos]: http://centos.org
+[Redis]: http://redis.io
+[Debian]: http://debian.org
+[Ubuntu]: http://ubuntu.com
+[Mint]: http://linuxmint.com
+[Red Hat Enterprise Linux]: http://www.redhat.com/products/enterprise-linux/
+[Fedora]: http://fedoraproject.org
+[CentOS]: http://centos.org
 [download page]: /downloads.html
 
 ******
@@ -62,8 +82,5 @@ The only dependency of uniqush-push is [redis], which is a key-value database.
 
 - [Basic Concepts](basic-concept.html): This document explains the basic concepts inside Uniqush. They are critical to using Uniqush. 
 - [Basic Operations](basic-opts.html): This document covers the basic operations provided by Uniqush. 
-- [Configuration](config.html): This document explains the detail of configuration of Uniqush. 
-- [Using Uniqush](usage.html): This document shows how to use uniqush-push through HTTP requests.
-
-
-
+- [Configuration](config.html): This document explains how to configure Uniqush.
+- [Using Uniqush](usage.html): This document shows how to use `uniqush-push`'s REST API.
