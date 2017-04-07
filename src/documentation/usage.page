@@ -103,6 +103,7 @@ Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d clientid=som
  |  service  |  Service Name  |
  |  pushservicetype  |  For GCM Push Service Provider, this is always *gcm*  |
  |  projectid  |  Project ID.  |
+ |  apikey  |  API Key  |
 
 Read [this](http://developer.android.com/guide/google/gcm/gs.html) article on how to get Project ID and API key.
 
