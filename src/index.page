@@ -61,7 +61,7 @@ You can either send a mail to [uniqush.go at gmail dot com] privately, or post y
 [mailing list]: http://groups.google.com/group/uniqush
 [GCM]: https://developers.google.com/cloud-messaging/gcm
 [APNs]: https://developer.apple.com/go/?id=push-notifications
-[ADM]: https://developer.amazon.com/sdk/adm.html
+[ADM]: https://developer.amazon.com/device-messaging
 [our github repositories]: http://github.com/uniqush
 [install]: documentation/install.html
 [Apache License 2.0]: http://www.apache.org/licenses/LICENSE-2.0

@@ -336,4 +336,4 @@ Example: `curl http://127.0.0.1:9898/nrdp -d service=myservice -d subscriber=uni
 
 [GCM]: https://developers.google.com/cloud-messaging/gcm
 [APNs]: https://developer.apple.com/go/?id=push-notifications
-[ADM]: https://developer.amazon.com/sdk/adm.html
+[ADM]: https://developer.amazon.com/device-messaging

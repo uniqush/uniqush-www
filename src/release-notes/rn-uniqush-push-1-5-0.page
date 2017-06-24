@@ -22,4 +22,4 @@ ChangeLog:
 - *improvement* Add [ADM] support. Fixed [issue 29]
 
 [issue 29]: https://github.com/uniqush/uniqush-push/issues/29
-[ADM]: https://developer.amazon.com/sdk/adm.html
+[ADM]: https://developer.amazon.com/device-messaging

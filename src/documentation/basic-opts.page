@@ -69,5 +69,5 @@ In general, Uniqush provides the following seven operations:
 
 [GCM]: https://developers.google.com/cloud-messaging/gcm
 [APNs]: https://developer.apple.com/go/?id=push-notifications
-[ADM]: https://developer.amazon.com/sdk/adm.html
+[ADM]: https://developer.amazon.com/device-messaging
 [basic concepts]: basic-concept.html
