@@ -16,7 +16,7 @@ Before executing any command below, make sure you have already started *uniqush-
 **NOTE:** ``uniqush-push`` is only a server side program. You need to use the native client code for each platform. For more information on how to support push notification on client side, please look at the corresponding documents for each platform:
 
 - [GCM] for Android
-- [APNS] for iOS
+- [APNs] for iOS
 - [ADM] for Kindle tablets
 
 
@@ -49,17 +49,17 @@ Before executing any command below, make sure you have already started *uniqush-
  |  projectid  |  Project ID.  |
  |  apikey  |  API Key  |
 
-Read [this](http://developer.android.com/guide/google/gcm/gs.html) article on
+Read [this](https://developers.google.com/cloud-messaging/gcm#senderid) link on
 how to get Project ID and API key. Note: you need to make a **Server key** not
 an Android key.
 
 Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicetype=gcm -d projectid=123 -d apikey=somekey`
 
-### Parameters for APNS Push Service Provider
+### Parameters for APNs Push Service Provider
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name  |
- |  pushservicetype  |  For APNS Push Service Provider, this is always *apns*  |
+ |  pushservicetype  |  For APNs Push Service Provider, this is always *apns*  |
  |  cert  |  The absolute path to the certificate file in .pem format  |
  |  key  |  The absolute path to the private key file in .pem format  |
  |  sandbox  |  Optional. *true* for sandbox; otherwise for production environment  |
@@ -104,15 +104,15 @@ Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d clientid=som
  |  pushservicetype  |  For GCM Push Service Provider, this is always *gcm*  |
  |  projectid  |  Project ID.  |
 
-Read [this](http://developer.android.com/guide/google/gcm/gs.html) article on how to get Project ID and API key.
+Read [this](https://developers.google.com/cloud-messaging/gcm#senderid) link for how to get Project ID and API key.
 
 Example: `curl http://127.0.0.1:9898/rmpsp -d service=myservice -d pushservicetype=gcm -d projectid=123`
 
-### Parameters for APNS Push Service Provider
+### Parameters for APNs Push Service Provider
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name  |
- |  pushservicetype  |  For APNS Push Service Provider, this is always *apns*  |
+ |  pushservicetype  |  For APNs Push Service Provider, this is always *apns*  |
  |  cert  |  The absolute path to the certificate file in .pem format  |
  |  key  |  The absolute path to the private key file in .pem format  |
 
@@ -158,12 +158,12 @@ Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d clientid=som
 
 Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=gcm -d regid=fakeregid`
 
-### Parameters for iOS Devices Using APNS
+### Parameters for iOS Devices Using APNs
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name  |
  |  subscriber  |  Subscriber ID  |
- |  pushservicetype  |  For iOS device using APNS, this is always *apns*  |
+ |  pushservicetype  |  For iOS device using APNs, this is always *apns*  |
  |  devtoken  |  Device token  |
 
 Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=apns -d devtoken=some-device-token`
@@ -196,12 +196,12 @@ Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscri
 
 The registration ID should be same one used to subscribe the service. That is: you don't need to consider if the GCM will update the registration ID for the device. Uniqush can handle it.
 
-### Parameters for iOS Devices Using APNS
+### Parameters for iOS Devices Using APNs
 
  |  **Parameter**  |  **Description**  |
  |  service  |  Service Name  |
  |  subscriber  |  Subscriber ID  |
- |  pushservicetype  |  For iOS device using APNS, this is always *apns*  |
+ |  pushservicetype  |  For iOS device using APNs, this is always *apns*  |
  |  devtoken  |  Device token  |
 
 Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=apns -d devtoken=devtoken`
@@ -265,9 +265,9 @@ Initializes the set of all service names.  This API is needed for the /subscript
  |  badge  |  Optional. Badge  |
  |  img  |  Optional. Image  |
  |  sound  |  Optional. Sound  |
- | loc-key | Optional. loc-key for APNS |
- | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
- | action-loc-key | Option. action-loc-key for APNS. |
+ | loc-key | Optional. loc-key for APNs |
+ | loc-args | Optional. loc-args for APNs. It is a comma-separated string. |
+ | action-loc-key | Option. action-loc-key for APNs. |
  |  *Reserved Parameter*  |  Any parameter whose name starts with "uniqush." is reserved by Uniqush. Users should avoid using those parameter names. |
  |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
 
@@ -275,7 +275,7 @@ At least one of the optional parameter should be provided, or it will be an empt
 
 For android and kindle client, the message will be received as *Intent* containing key-value pairs. *msg, badge, img, sound, loc-key, loc-args* and *User Defined Parameters* will be put as key-value pairs in the *Intent*. You can use *getExtras()* method of the *Intent* to get all key-value pairs.
 
-For iOS client, the notification is sent as JSON encoded message to APNS. All parameters are mapped to their corresponding place as follows:
+For iOS client, the notification is sent as JSON encoded message to APNs. All parameters are mapped to their corresponding place as follows:
 
 | **Parameter** | **Mapped To** |
 | msg	| "aps" > "alert" > "body" |
@@ -334,6 +334,6 @@ Example: `curl http://127.0.0.1:9898/nrdp -d service=myservice -d subscriber=uni
 - [Install](install.html): This document explains how to install Uniqush and its dependencies.
 - [Configuration](config.html): This document explains the detail of configuration of Uniqush.
 
-[GCM]: http://developer.android.com/guide/google/gcm/index.html
-[APNS]: http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[GCM]: https://developers.google.com/cloud-messaging/gcm
+[APNs]: https://developer.apple.com/go/?id=push-notifications
 [ADM]: https://developer.amazon.com/sdk/adm.html

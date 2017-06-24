@@ -27,16 +27,16 @@ This document helps you to understand the basic idea of **uniqush-push** by tell
 
 ![apple-and-iphone]
 
-- The server side developers found documents from this fruit company knowing that they provide a similar cloud service called [Apple Push Notification Service], or APNS. Again, developers need to establish a connection to APNS cloud and push data to that cloud. Then the cloud would send the data to end users. 
+- The server side developers found documents from this fruit company knowing that they provide a similar cloud service called [Apple Push Notification Service], or APNs. Again, developers need to establish a connection to APNs cloud and push data to that cloud. Then the cloud would send the data to end users. 
 
 ![apns-demo]
 
-- However, it's a simple TCP connection this time instead of HTTP connection as in [GCM]. Moreover, our developers needed to use another authentication protocol in order to communicate with [APNS].
-- The server side program needed to be changed in order to support both [APNS] and [GCM]. 
+- However, it's a simple TCP connection this time instead of HTTP connection as in [GCM]. Moreover, our developers needed to use another authentication protocol in order to communicate with [APNs].
+- The server side program needed to be changed in order to support both [APNs] and [GCM]. 
 
 ![apns-gcm]
 
-- After adding support to APNS, the project manager wanted to support more platforms, like Black Berry. Again, it uses a similar cloud and specific to Black Berry devices.
+- After adding support to APNs, the project manager wanted to support more platforms, like Black Berry. Again, it uses a similar cloud and specific to Black Berry devices.
 
 ![blackberry]
 
@@ -61,13 +61,13 @@ This document helps you to understand the basic idea of **uniqush-push** by tell
 - [Basic Concept](basic-concept.html)
 
 [Google]: http://google.com
-[Google Cloud Message]: http://developer.android.com/guide/google/gcm/index.html
-[GCM]: http://developer.android.com/guide/google/gcm/index.html
+[Google Cloud Message]: https://developers.google.com/cloud-messaging/gcm
+[GCM]: https://developers.google.com/cloud-messaging/gcm
 [android-and-android-rain]: img/intro/android-and-android-rain.png
 [gcm-demo]: img/intro/gcm-demo.png
 [apple-and-iphone]: img/intro/apple-and-iphone.png
-[Apple Push Notification Service]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
-[APNS]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[Apple Push Notification Service]: https://developer.apple.com/go/?id=push-notifications
+[APNs]: https://developer.apple.com/go/?id=push-notifications
 [apns-demo]: img/intro/apns-demo.png
 [apns-gcm]: img/intro/apns-gcm.png
 [blackberry]: img/intro/blackberry.png

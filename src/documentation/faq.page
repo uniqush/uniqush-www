@@ -25,9 +25,9 @@ Yes and no.
 
 If you just want to use [GCM] on Google App Engine, then there are some code in uniqush-push which you can directly use.
 
-However, because Google App Engine does not support socket connection, there is no way to use [APNS]. In another work, if you want to setup a server on Google App Engine, you **cannot** push any notification to iOS devices no matter what software/library you are using.
+However, because Google App Engine does not support socket connection, there is no way to use [APNs]. In another work, if you want to setup a server on Google App Engine, you **cannot** push any notification to iOS devices no matter what software/library you are using.
 
-I did considered to port uniqush to Google App Engine. But because of this fact, I think it may be better to port it until Google let us use client-side socket connections, or provide some way to connect to [APNS] server.
+I did considered to port uniqush to Google App Engine. But because of this fact, I think it may be better to port it until Google let us use client-side socket connections, or provide some way to connect to [APNs] server.
 
 Again, if you are considering to use Google App Engine as a server for your App, please be aware that you will not be able to push notification to any iOS device right now. If this fact does not bother you, then do it.
 
@@ -77,5 +77,5 @@ If you have some programming background, then yes. Actually, I think there are s
 
 [uniqush.go at gmail dot com]: mailto:uniqush.go@gmail.com
 [mailing list]: http://groups.google.com/group/uniqush
-[GCM]: http://developer.android.com/guide/google/gcm/index.html
-[APNS]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[GCM]: https://developers.google.com/cloud-messaging/gcm
+[APNs]: https://developer.apple.com/go/?id=push-notifications

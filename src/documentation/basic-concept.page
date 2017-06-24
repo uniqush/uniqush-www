@@ -16,7 +16,7 @@ This document explain some basic concept in uniqush's terminology. Understanding
 
 ![manyclouds]
 
-- Each cloud is dedicated to one single mobile platform. e.g. There is a cloud named [GCM] for android; a cloud named [APNS] for iOS, etc. 
+- Each cloud is dedicated to one single mobile platform. e.g. There is a cloud named [GCM] for android; a cloud named [APNs] for iOS, etc. 
 
 ![clouds2platforms]
 
@@ -66,7 +66,7 @@ Here are important concepts that we mentioned in this document. Understanding th
 
 A push service provider can push data to a device. Uniqush handles protocol to different Push Service Providers, hiding all communication details from the server.
 
-Examples:  [GCM] which can send data to android devices;  [APNS] which sends notification to iOS.
+Examples:  [GCM] which can send data to android devices;  [APNs] which sends notification to iOS.
 
 ### Service
 
@@ -93,11 +93,8 @@ Examples: an android device; an iOS device; a Black Berry, etc.
 - [Introduction](intro.html)
 - [Installing Uniqush and its Dependencies](install.html)
 
-[Google]: http://google.com
-[Google Cloud Message]: http://developer.android.com/guide/google/gcm/index.html
-[GCM]: http://developer.android.com/guide/google/gcm/index.html
-[Apple Push Notification Service]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
-[APNS]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[GCM]: https://developers.google.com/cloud-messaging/gcm
+[APNs]: https://developer.apple.com/go/?id=push-notifications
 
 [apns-gcm]: img/intro/apns-gcm.png
 [noclouds]: img/intro/noclouds.png
