@@ -6,13 +6,13 @@ author_url: /authors/monnand.html
 sort_info: 7
 ---
 
-# FAQ 
+# FAQ
 
-## Usage 
+## Usage
 
-### I do not know how to use uniqush. Can you explain it a little bit? 
+### I do not know how to use uniqush. Can you explain it a little bit?
 
-Sure. 
+Sure.
 
 The core part (and the only part right now) of uniqush is `uniqush-push`. It is a stand alone program. You can communicate with this program through HTTP connection. Asking uniqush to do some work can be done by sending an HTTP Post request to `uniqush-push`. In short, once you start `uniqush-push`, you can use it as a common web service according to its [APIs](usage.html). You may want to know which port it will use for the HTTP connection. Actually, you can [configure it and
 other parameters](config.html) by yourself.
@@ -23,39 +23,40 @@ If you have any other questions, please feel free to send it on [mailing list].
 
 Yes and no.
 
-If you just want to use [GCM] on Google App Engine, then there are some code in uniqush-push which you can directly use.
+If you just want to use [GCM] on Google App Engine, then `uniqush-push` has some code which you can directly use.
 
-However, because Google App Engine does not support socket connection, there is no way to use [APNs]. In another work, if you want to setup a server on Google App Engine, you **cannot** push any notification to iOS devices no matter what software/library you are using.
+However, because Google App Engine does not support socket connection, there is no way to use [APNs].
+In other words, if you want to setup a server on Google App Engine, you **cannot** push any notification to iOS devices no matter what software/library you are using.
 
-I did considered to port uniqush to Google App Engine. But because of this fact, I think it may be better to port it until Google let us use client-side socket connections, or provide some way to connect to [APNs] server.
+I did consider porting uniqush to Google App Engine. But because of the lack of socket connection support, I think it may be better to port it until Google let us use client-side socket connections, or provide some way to connect to [APNs] server.
 
 Again, if you are considering to use Google App Engine as a server for your App, please be aware that you will not be able to push notification to any iOS device right now. If this fact does not bother you, then do it.
 
-Personally, I recommend you to run a server with full control. It is not expensive nowadays. Amazon EC2 or similar cloud products may be a good choice to run uniqush. 
+Personally, I recommend that you run a server with full control. It is not expensive nowadays. Amazon EC2 or similar cloud products may be a good choice to run uniqush.
 
 ******
 
-## Development 
+## Development
 
-### Where should I submit the bug report 
+### Where should I submit the bug report
 
 You found a bug? Great! I really appreciate!
 
 You can send a mail to our [mailing list] or to [uniqush.go at gmail dot com].
 
-If you which part is wrong, you can submit an issue on [github.com](http://github.com/uniqush).
+If you know which part is wrong, you can submit an issue on [github.com](http://github.com/uniqush).
 
-### I have some suggestions 
+### I have some suggestions
 
 Thank you very much! You can send your idea to [mailing list] or to [uniqush.go at gmail dot com].
 
-### Why not provide an HTTPS connection inside `uniqush-push`? It's safe! 
+### Why not provide an HTTPS connection inside `uniqush-push`? It's safe!
 
-Yes. It is safe. However, it is not `uniqush-push`'s responsibility to keep a safe connection to outside world. Why? Because there are too many web-servers which provide proxy function. If you have an SSL certificate, you won't want to configure it on two programs. You can always keep an HTTPS function on web-server and forward the request to `uniqush-push`.
+Yes. It is safe. However, it is not `uniqush-push`'s responsibility to keep a safe connection to outside world. Why? Because many web-servers already provide proxy function. If you have an SSL certificate, you won't want to configure it on two programs. You can always keep an HTTPS function on web-server and forward the request to `uniqush-push`.
 
-We recommend the `uniqush-push` only accept connections from localhost and other programs do authentication/encryption jobs. We may provide another program which communicate with outside world used for subscribing/unsubscribing service. However, it is still a stand along program outside the `uniqush-push`.
+We recommend the `uniqush-push` accept connections only from localhost and other programs do authentication/encryption jobs. We may provide another program which communicate with outside world used for subscribing/unsubscribing service. However, it is still a stand along program outside the `uniqush-push`.
 
-### Why not provide function to activate/deactivate the delivery point inside `uniqush-push` 
+### Why not provide function to activate/deactivate the delivery point inside `uniqush-push`
 
 Again, this function should be implemented outside `uniqush-push`.
 
@@ -65,13 +66,13 @@ Moreover, we have to branch in ''every'' iteration. What's worse, such branches 
 Here is a solution: suppose you have a program outside `uniqush-push` (we may provide such program in the future), when you want to deactivate some delivery point, this program could simply tell the `uniqush-push` to unsubscribe this delivery point from specified subscriber. The outside program will record the information of that delivery point and re-subscribe it when user re-activate that delivery point. This is better because we don't need to introduce more branches inside the
 push operation. Moreover, because this activation/deactivation operation won't be executed too frequently, the communication cost could be neglected.
 
-### Why use Go programming language? 
+### Why use Go programming language?
 
 It's really cool, seriously. You should try it.
 
-I love the design of Go. Easy, simple, fast. No fancy patterns, no rigid awkward grammars. Especially its emphasis on concurrency which must be a critical point for future multi-core CPUs. It won't provide a huge fancy library like spaghetti. Also it won't give you nothing but malloc / free leaving you do everything by yourself.
+I love the design of Go. Easy, simple, fast. No fancy patterns, no rigid awkward grammars. Especially its emphasis on concurrency which must be a critical point for future multi-core CPUs. It won't provide a huge fancy library like spaghetti. Also, it doesn't make you do everything yourself (It gives you much more than malloc / free).
 
-### I am new to Go. Do you think I can use your code to learn Go? 
+### I am new to Go. Do you think I can use your code to learn Go?
 
 If you have some programming background, then yes. Actually, I think there are several `.go` files inside my source code which may be useful for other projects. Please feel free to learn the code and it is more than welcome to make your own contribution.
 

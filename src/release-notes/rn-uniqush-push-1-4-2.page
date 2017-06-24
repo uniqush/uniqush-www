@@ -20,7 +20,7 @@ Download:
 ChangeLog:
 
 - *bugfix* Stop on */stop*. Sorry, I forgot to implement the feature after refactoring the main package. Fixed [issue 9].
-- *bugfix* Stop on *SIGTERM*. Similar with [issue 9]. User can now stop the program by sending *SIGTERM* to the process. Fixed [issue 8]. 
+- *bugfix* Stop on *SIGTERM*. Similar with [issue 9]. User can now stop the program by sending *SIGTERM* to the process. Fixed [issue 8].
 - *bugfix* Fixed a nil-pointer crash bug. The program will experience a nil-pointer crash (samething as NULL pointer) under some conditions. For example, if user provides an invalid APIKEY for a GCM provider, then uniqush-push will crash when the user tries to push through this malformed provider. Fixed [issue 10].
 - *feature* Support [Feedback Service] in APNS. Fixed [issue 3].
 

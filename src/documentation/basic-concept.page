@@ -8,26 +8,26 @@ sort_info: 3
 
 # Basic Concept
 
-This document explain some basic concept in uniqush's terminology. Understanding these terms is critical to use uniqush. Fortunately, it won't be too hard to capture these ideas.
+This document explain some basic concept in Uniqush's terminology. Understanding these terms is critical to use Uniqush. Fortunately, it won't be too hard to capture these ideas.
 
 ## Sending Notifications Through Clouds
 
-- There are clouds everywhere to push data from a server side program to mobile devices 
+- Many clouds are available to push data from a server side program to mobile devices.
 
 ![manyclouds]
 
-- Each cloud is dedicated to one single mobile platform. e.g. There is a cloud named [GCM] for android; a cloud named [APNs] for iOS, etc. 
+- Each cloud is dedicated to its own mobile platform. e.g. a cloud named [GCM] for android; a cloud named [APNs] for iOS, etc.
 
 ![clouds2platforms]
 
-- If an app server want to send data to its end user, it first send the data to the corresponding cloud. 
+- If an app server want to send data to its end user, it first sends the data to the corresponding cloud.
 
 ![server2cloud]
 
-- Then the cloud will delivery the data to the app running on the device. 
+- Then the cloud will delivery the data to the app running on the device.
 ![cloud2device]
 
-- If a server wants to support multiple mobile platforms, it has to communicate with different clouds through different protocols 
+- If a server wants to support multiple mobile platforms, it has to communicate with different clouds through different protocols.
 
 ![serverandseveralclouds]
 
@@ -35,31 +35,33 @@ This document explain some basic concept in uniqush's terminology. Understanding
 
 ## Uniqush Gets Involved
 
-- By running uniqush, the server could send data to multiple clouds through uniqush using **one and only one** protocol.
-The server program first sends the data to uniqush process through HTTP,
-then uniqush will send the data to each cloud using cloud-specific protocols.
+- By running Uniqush, the server can send data to multiple clouds through Uniqush using **one and only one** protocol.
+The server program first sends the data to the Uniqush process through HTTP,
+then Uniqush will send the data to each cloud using cloud-specific protocols.
 We call each cloud a **Push Service Provider**.
-Supporting more platforms is easy for the server side, because uniqush did all of the dirty work.
-- **Definition** *Push Service Provider*: An entity which can push data to a device. Uniqush handles protocol to different Push Service Providers, hiding all communication details from the server. 
+Supporting more platforms is easy for the server side, because Uniqush did all of the dirty work.
+- **Definition** *Push Service Provider*: An entity which can push data to a device. Uniqush handles protocol to different Push Service Providers, hiding all communication details from the server.
 
 ![uniqushinvolved]
 
-- The serve only need to care about **who** subscribes **which** service. For example, the server may provide weather report service, called *Local Weather*. Then John installed the Local Weather app on his device and **subscribes** the service.
+- The serve only need to care about **who** subscribes to **which** service. For example, the server may provide weather report service, called *Local Weather*. Then John installed the Local Weather app on his device and **subscribes** the service.
 - **Definition** *Service*: An entity which can generate data ready to be sent to remote device. A service is the source of information.
-- **Definition** *Subscriber*: An entity which consumes the information generated from the service. A subscriber is the sink of information. 
+- **Definition** *Subscriber*: An entity which consumes the information generated from the service. A subscriber is the sink of information.
 
 ![johnsubweather]
 
-- When server wants to send weather report to John, it only need to tell three things: the **Service** (Local Weather), the **Subscriber** (John), and the **Data** (rain, cloudy, etc.) 
+- When server wants to send weather report to John, it needs only to tell Uniqush three things: the **Service** (Local Weather), the **Subscriber** (John), and the **Data** (rain, cloudy, etc.)
 
 ![john-weather-data]
 
 - Moreover, John has several cell phones. All of them subscribe the Local Weather service.
-  He wants all devices to be able to receive messages from the server.
-  We call each device is a **Delivery Point**.
+  He wants each device to be able to receive messages from the server.
+  We call each device a **Delivery Point**.
   Each subscriber may have several delivery points.
-- **Definition** *Delivery Point*: An entity which receives data from one or more Services. It must have an subscriber as its Owner. One subscriber may have more than one delivery points. 
-- The server side program could simply tell 3 things to uniqush: **who** --- the subscriber; **where** --- the service, i.e. where is the subscriber; and **what** --- the data. Uniqush will send data to all delivery points of that subscriber. 
+- **Definition** *Delivery Point*: An entity which receives data from one or more Services.
+  It must have an subscriber as its Owner.
+  One subscriber may have more than one delivery point.
+- The server side program could simply tell 3 things to Uniqush: **who** --- the subscriber; **where** --- the service, i.e. where is the subscriber; and **what** --- the data. Uniqush will send data to each delivery point of that subscriber.
 
 ![john-received-msgs]
 
@@ -89,9 +91,9 @@ Example: A person who installed Local News app on his / her cell phone.
 
 ### Delivery Point
 
-A Delivery Point receives data from one or more Services. It must have an subscriber as its Owner. One subscriber may have more than one delivery points.
+A Delivery Point receives data from one or more Services. It must have an subscriber as its Owner. One subscriber may have more than one delivery point.
 
-Examples: an android device; an iOS device; a Black Berry, etc. 
+Examples: an android device; an iOS device; a Black Berry, etc.
 
 ******
 
