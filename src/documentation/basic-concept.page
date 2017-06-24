@@ -35,7 +35,11 @@ This document explain some basic concept in uniqush's terminology. Understanding
 
 ## Uniqush Gets Involved
 
-- By running uniqush, the server could send data to multiple could through uniqush using **one and only one** protocol. The server program first sends the data to uniqush process through HTTP, then uniqush will send the data to each cloud using cloud-specific protocols. We call each cloud is a **Push Service Provider**. Supporting more platforms is easy for server side, because uniqush did all dirty works.
+- By running uniqush, the server could send data to multiple clouds through uniqush using **one and only one** protocol.
+The server program first sends the data to uniqush process through HTTP,
+then uniqush will send the data to each cloud using cloud-specific protocols.
+We call each cloud a **Push Service Provider**.
+Supporting more platforms is easy for the server side, because uniqush did all of the dirty work.
 - **Definition** *Push Service Provider*: An entity which can push data to a device. Uniqush handles protocol to different Push Service Providers, hiding all communication details from the server. 
 
 ![uniqushinvolved]
@@ -50,9 +54,12 @@ This document explain some basic concept in uniqush's terminology. Understanding
 
 ![john-weather-data]
 
-- Moreover, John has several cell phones. All of them subscribe the Local Weather service. He wants all devices could receive messages from the server. We call each device is a **Delivery Point**. Each subscriber may have several delivery points.
+- Moreover, John has several cell phones. All of them subscribe the Local Weather service.
+  He wants all devices to be able to receive messages from the server.
+  We call each device is a **Delivery Point**.
+  Each subscriber may have several delivery points.
 - **Definition** *Delivery Point*: An entity which receives data from one or more Services. It must have an subscriber as its Owner. One subscriber may have more than one delivery points. 
-- The server side program could simply telling 3 things to uniqush: **who** --- the subscriber; **where** --- the service, i.e. where is the subscriber; and **what** --- the data. Uniqush will send data to all delivery points of that subscriber. 
+- The server side program could simply tell 3 things to uniqush: **who** --- the subscriber; **where** --- the service, i.e. where is the subscriber; and **what** --- the data. Uniqush will send data to all delivery points of that subscriber. 
 
 ![john-received-msgs]
 
