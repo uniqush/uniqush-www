@@ -12,16 +12,16 @@ This document describes the structure and details of the configuration file of u
 
 ******
 
-## Location 
+## Location
 
-The configuration file is located at `/etc/uniqush/uniqush-push.conf`. Or you can specify your own configuration file with `-config` flag when you run `uniqush-push`. 
+The configuration file is located at `/etc/uniqush/uniqush-push.conf`. Or you can specify your own configuration file with `-config` flag when you run `uniqush-push`.
 
 Example: `uniqush-push -config#/path/to/configfile`.
 
 ******
 
 
-## Structure of the Configuration File 
+## Structure of the Configuration File
 
 
 The configuration file consists of several **sections**. Each section contains several **options**. An option is a key-value pair. Here is an example:
@@ -35,8 +35,12 @@ The configuration file consists of several **sections**. Each section contains s
     [Section2]
     option=value
 
-In this example, there are two sections: *Section1* and *Section2*. A section starts from line containing the section name within a pair of brackets, ends to the start of next section (except the starting line of next section) or end of file. In the example above, `[Section1]` is the starting point of *Section1*. There is an outer-most section, we call it *default* section. The options in *default* section lays outside of all other section. In this example,
-*globaloption#globalvalue* lays in *default* section.
+This example has two sections: *Section1* and *Section2*.
+A section starts from line containing the section name within a pair of brackets, ends at the start of next section (except the starting line of next section) or the end of the file.
+In the example above, `[Section1]` is the starting point of *Section1*.
+There is an outer-most section, we call it the *default* section.
+The options in the *default* section lays outside of all other section. In this example,
+*globaloption#globalvalue* lays in the *default* section.
 
 *Section1* provides two options: *option1* and *option2*. Their values are *value1*, and *value2* respectively. Each option occupies one and only one line.
 
@@ -45,69 +49,69 @@ The library we used to parse the configuration file is [goconf](http://code.goog
 ******
 
 
-## Sections in Uniqush Configuration File 
+## Sections in Uniqush Configuration File
 
 
 In uniqush configuration file, there are 8 valid sections [^note]\: *default*, *WebFrontend*, *AddPushServiceProvider*, *RemovePushServiceProvider*, *Subscribe*, *Unsubscribe*, *Push* and *Database*. Each section controls different parts/operations of uniqush. We will first examine the common options in all sections. Then discuss the section-specific options. All options in the configuration file are optional. If any option is not
-missed, `uniqush-push` will use its default value instead. In other word, you can use an empty config file to run `uniqush-push`.
+missed, `uniqush-push` will use its default value instead. In other words, you can use an empty config file to run `uniqush-push`.
 
 
 ### Function of Each Section
 
- |  **Section**  |  **Description**  | 
- |  default  |  Default section is the outer-most section which does not need a section name. It lays outside of all sections and some global settings are sitting there.  | 
- |  WebFrontend  |  Controls the web service interface of `uniqush-push`. Because a user of `uniqush-push` communicates with it through HTTP Post request, it has to specify some basic information, like the port number, logging level, etc., to work with uniqush  | 
- |  AddPushServiceProvider  |  Contains the options used when adding a push service provider request is being processed  | 
- |  RemovePushServiceProvider  |  Contains the options used when removing a push service provider request is being processed  | 
- |  Subscribe  |  Contains the options used when a subscribe request is being processed  | 
- |  Unsubscribe  |  Contains the options used when when an unsubscribe request is being processed  | 
- |  Push  |  Contains the options used when a push request is being processed  | 
- |  Database  |  Contains the options specifying the database parameters  | 
+ |  **Section**  |  **Description**  |
+ |  default  |  Default section is the outermost section, which does not need a section name. It lays outside of all sections and some global settings exist there.  |
+ |  WebFrontend  |  Controls the web service interface of `uniqush-push`. Because a user of `uniqush-push` communicates with it through HTTP Post request, it has to specify some basic information, such as the port number, logging level, etc., to work with uniqush  |
+ |  AddPushServiceProvider  |  Contains the options used when adding a push service provider request is being processed  |
+ |  RemovePushServiceProvider  |  Contains the options used when removing a push service provider request is being processed  |
+ |  Subscribe  |  Contains the options used when a subscribe request is being processed  |
+ |  Unsubscribe  |  Contains the options used when when an unsubscribe request is being processed  |
+ |  Push  |  Contains the options used when a push request is being processed  |
+ |  Database  |  Contains the options specifying the database parameters  |
 
 
 ### Options in default Section
 
- |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  | 
- |  logfile  |  A file name of the log file.  |  standard error  |  The value of this option should be path to the log file. `uniqush-push` should have write permission to that file. If the file does not exist, `uniqush-push`} will try to create it with permission 0600. If all fails, it will write to standard error.  | 
+ |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  |
+ |  logfile  |  A file name of the log file.  |  standard error  |  The value of this option should be path to the log file. `uniqush-push` should have write permission to that file. If the file does not exist, `uniqush-push`} will try to create it with permission 0600. If all fails, it will write to standard error.  |
 
 ### Common Options in All Sections (Except Database and default)
 
 
-All sections, except *Database* and *default*, could contains the following options. If there is no such option in that section, it will use the default value.
+All sections, except *Database* and *default*, could contain the following options. If there is no such option in that section, it will use the default value.
 
- |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  | 
- |  log  |  on/off  |  on  |  Turn on/off the logging facility of a specific part. If the log is turned off, then the logging-related options will be ignored.  | 
- |  loglevel  |  standard, verbose  |  standard  |  The verbosility of the log  | 
+ |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  |
+ |  log  |  on/off  |  on  |  Turn on/off the logging facility of a specific part. If the log is turned off, then the logging-related options will be ignored.  |
+ |  loglevel  |  standard, verbose  |  standard  |  The verbosity of the log  |
 
 
 ### Options for *WebFrontend* Section
 
- |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  | 
- |  addr  |  `[ip address]:[port number]`  |  localhost:9898  |  Accepted host address and the port number of the web service. If you want to accept all connections (you probably do not want to do that), you can specify the *ip address* as `0.0.0.0`. We recommend `uniqush-push` only accept localhost connections or connections from a known server.  | 
+ |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  |
+ |  addr  |  `[ip address]:[port number]`  |  localhost:9898  |  Accepted host address and the port number of the web service. If you want to accept all connections (you probably do not want to do that), you can specify the *ip address* as `0.0.0.0`. We recommend `uniqush-push` accept connections only from localhost or only from a known server.  |
 
 
 ### Options for *Database* Section
 
- |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  | 
- |  engine  |  redis  |  redis  |  The database engine name. We only support [redis](http://redis.io) database at this point of time. So only *redis* is the valid value for this option  | 
- |  name  |  0  |  0  |  The database name.  | 
- |  host  |  *IP Addreess*  |  localhost  |  The host's name on which the database is running  | 
- |  port  |  *Port Number*  |  0  |  The port number to connect to the database program. `0` stands for the default port of the specified database engine  | 
- |  password  |  *Password*  |  empty string  |  The password of the database  | 
- |  everysec  |  *Number of seconds*  |  600  |  The synchronization period of cache.  | 
- |  leastdirty  |  *Number of elements*  |  10  |  The least number of dirty elements in cache. Combining with *everysec* option, they tell the cache to synchronize to database every *everysec* if there are at lease *leastdirty* changes.  | 
- |  cachesize  |  *Integer Value*  |  1024  |  The number of elements that a cache will hold at most.  | 
+ |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  |
+ |  engine  |  redis  |  redis  |  The database engine name. We support only the [redis](http://redis.io) database at this point of time. So only *redis* is the valid value for this option  |
+ |  name  |  0  |  0  |  The database name.  |
+ |  host  |  *IP Address*  |  localhost  |  The host's name on which the database is running  |
+ |  port  |  *Port Number*  |  0  |  The port number to connect to the database program. `0` stands for the default port of the specified database engine  |
+ |  password  |  *Password*  |  empty string  |  The password of the database  |
+ |  everysec  |  *Number of seconds*  |  600  |  The synchronization period of cache.  |
+ |  leastdirty  |  *Number of elements*  |  10  |  The least number of dirty elements in cache. Combining with *everysec* option, these options tell the cache to synchronize to database every *everysec* if there are at lease *leastdirty* changes.  |
+ |  cachesize  |  *Integer Value*  |  1024  |  The number of elements that a cache will hold at most.  |
 
 ******
 
-## Sample Configuration File 
+## Sample Configuration File
 
     logfile=/var/log/uniqush
 
 
     # Comment starts from a Number sign (#) to end of the line.
 
-    # Log level: verbose, standard, 
+    # Log level: verbose, standard,
     [WebFrontend]
     log=on
     loglevel=standard
@@ -143,12 +147,12 @@ All sections, except *Database* and *default*, could contains the following opti
 
 ******
 
-## Related Topics 
+## Related Topics
 
-- [Basic Concepts](basic-concept.html): This document explains the basic concepts inside Uniqush. They are critical to using Uniqush. 
-- [Basic Operations](basic-opts.html): This document covers the basic operations provided by Uniqush. 
+- [Basic Concepts](basic-concept.html): This document explains the basic concepts inside Uniqush. These concepts are critical to using Uniqush.
+- [Basic Operations](basic-opts.html): This document covers the basic operations provided by Uniqush.
 - [Install](install.html): This document explains how to install Uniqush and its dependencies.
-- [Using Uniqush](usage.html): This document shows how to use uniqushd, the core part of Uniqush, through HTTP requests. 
+- [Using Uniqush](usage.html): This document shows how to use `uniqush-push`, the core part of Uniqush, through HTTP requests.
 
 
 [^note]: If you read code carefully, you may find there are actually 9 valid sections. However, the *Backend* section is useless at this point.

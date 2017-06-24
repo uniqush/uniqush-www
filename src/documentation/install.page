@@ -14,13 +14,13 @@ lang: en
 
 `uniqush-push` is now the only component of Uniqush.
 
-It is highly recommanded to install the **binary** package on a **64-bit** system.
+It is highly recommended to install the **binary** package on a **64-bit** system.
 
 ### Install Redis
 
 The only dependency of `uniqush-push` is [Redis], which is a key-value database.
 
-Redis should be installed on a server which has low latency to the server
+Redis should be installed on a server that has low latency to the server
 `uniqush-push` is installed on (e.g. the same datacenter). One solution is to
 install both programs on the same server.
 
@@ -78,9 +78,9 @@ install both programs on the same server.
 
 ******
 
-## Related Topics 
+## Related Topics
 
-- [Basic Concepts](basic-concept.html): This document explains the basic concepts inside Uniqush. They are critical to using Uniqush. 
-- [Basic Operations](basic-opts.html): This document covers the basic operations provided by Uniqush. 
+- [Basic Concepts](basic-concept.html): This document explains the basic concepts inside Uniqush. They are critical to using Uniqush.
+- [Basic Operations](basic-opts.html): This document covers the basic operations provided by Uniqush.
 - [Configuration](config.html): This document explains how to configure Uniqush.
 - [Using Uniqush](usage.html): This document shows how to use `uniqush-push`'s REST API.

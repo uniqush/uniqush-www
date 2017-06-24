@@ -11,9 +11,9 @@ author_url: /authors/monnand.html
 
 This document explains how to contribute changes to uniqush project.
 
-## Pre-requisite
+## FIXME-requisite
 
-Before contributing any changes, please make sure you have the following tools/knowledges ready to be used:
+Before contributing any changes, please make sure you have the following tools/knowledge ready to be used:
 
 - [git]. Please make sure you have installed [git] and know how to use it.
 - [github]. Please make sure you have an account on [github] and know how it works.
@@ -30,15 +30,15 @@ We put all our repositories on [github] under [our github organization]. The bas
 1. Push any change to your clone.
 1. Send a pull request to our original repository. Once the request is received, it will be reviewed and your change will be merged into the repository if we think it is a good change.
 
-Because we put **everything** on [our github organization], there may be additional steps in the basic procedure. In general, there are two types of repositories: *code* repositories, which contains programs/libraries' source code; and *content* repositories, which contains everything but source code (e.g. blog posts, web pages, etc.)
+Because we put **everything** on [our github organization], there may be additional steps in the basic procedure. In general, repositories fall into two categories: *code* repositories, which contains programs/libraries' source code; and *content* repositories, which contains everything but source code (e.g. blog posts, web pages, etc.)
 
-If you have any question, please send it to [our mailing list]. *NOTE*: Given current volumn of the mailing list, users and developers are sharing a same mailing list. It may be splited into two if we observed a high volumn of emails.
+If you have any question, please send it to [our mailing list]. *NOTE*: Given current volume of the mailing list, users and developers are sharing a same mailing list. It may be split into two if we observed a high volume of emails.
 
 ## Source code repositories
 
 The server side code is written in [go programming language]. If you want to make a contribution there, please make sure you know this language well enough.
 
-For all source code repositories, there are three branches:
+Each source code repository has three branches:
 
 - master branch, contains the most recent changes, which are tested and will be contained in the next release version. Normally, the code in master branch should be compiled correctly and pass some basic test cases.
 - exp branch, contains the most recent changes, which may contain bugs, or even not be compiled. **Every contribution should be made based on exp branch**.

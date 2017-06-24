@@ -1,5 +1,5 @@
 ---
-title: Basic Operations 
+title: Basic Operations
 in_menu: true
 author: Nan Deng
 author_url: /authors/monnand.html
@@ -12,11 +12,15 @@ This document covers the basic operations provided by Uniqush. It won't cover th
 
 ## How to Communicate with Uniqush
 
-Uniqush runs as a stand alone service, which means you don't need to write any code to link against uniqush. Uniqush listens on a TCP port when it is running. You can change the port in its configuration file. To send a request to Uniqush, you simply need to connect to that port, and send an HTTP POST request with the parameters inside the body.
+Uniqush runs as a stand alone service, which means you don't need to write any code to link against uniqush.
+Uniqush listens on a TCP port when it is running.
+You can change the port in its configuration file.
+To send a request to Uniqush, you simply need to connect to that port,
+and send an HTTP POST request with the parameters inside the body.
 
 ## Adding Push Service Providers to a Service
 
-Without telling Uniqush infomation about a push service provider, a server can never send data through Uniqush. Typically, to use a push service provider, Uniqush need to know the type of that push service provider (e.g. [GCM], [APNS], [ADM]) and authentication information -- for example, authentication token for [GCM]; private/public keys for [APNS], etc.
+Without telling Uniqush information about a push service provider, a server can never send data through Uniqush. Typically, to use a push service provider, Uniqush need to know the type of that push service provider (e.g. [GCM], [APNs], [ADM]) and authentication information -- for example, authentication token for [GCM]; private/public keys for [APNs], etc.
 
 You can add more than one push service provider information to a service, so that you can support multiple platforms.
 
@@ -24,29 +28,36 @@ You can add more than one push service provider information to a service, so tha
 
 When a subscriber subscribes to a service, Uniqush need to know at least three things: the subscriber's id; the service name; and the delivery point information. The delivery point information including the identity of the device, its OS type and other push service provider specific information. For example, for android delivery points, they need to provide a registration id to Uniqush, which will be used to send data through [GCM] later.
 
-Sending such information to Uniqush could be done by a mobile app, which could connect to the Uniqush server via HTTP. However, this is not best practice since it's insecure. If your Uniqush server is publically accessible, then anyone can perform malicious operations potentially. Allowing direct communication from the client to Uniqush is insecure. In this case, it would be best to put Uniqush behind a web server that does HTTPS and only allows specific operations.
+Sending such information to Uniqush could be done by a mobile app, which could connect to the Uniqush server via HTTP. However, this is not best practice since it's insecure. If your Uniqush server is publicly accessible, then anyone can perform malicious operations potentially. Allowing direct communication from the client to Uniqush is insecure. To prevent direct communication to Uniqush, it is recommended to put Uniqush behind a web server that does HTTPS and only allows specific operations.
 
-Another possible way of sending this information to Uniqush: the app sends the information to some program on server side; this program processes the information, extracts the data that Uniqush wants, and then forwards the data to Uniqush through HTTP. There are several pros for this approach. First of all, the server side has more flexibility of choosing authentication methods. Second, the server side is typically in the best position to handle sending notifications through Uniqush. Let's say you're have a chat application and Alice sends a message to Bob. Alice's message goes to your server application, which does whatever processing it needs, and then makes a request to Uniqush to send a push notification to Bob.
+Another possible way of sending this information to Uniqush: the app sends the information to some program on server side; this program processes the information, extracts the data that Uniqush wants, and then forwards the data to Uniqush through HTTP. Several pros for this approach exist. First, the server side has more flexibility of choosing authentication methods. Second, the server side is typically in the best position to handle sending notifications through Uniqush. Let's say you're have a chat application and Alice sends a message to Bob. Alice's message goes to your server application, which does whatever processing it needs, and then makes a request to Uniqush to send a push notification to Bob.
 
-As mentioned in [basic concepts], a subscriber may have more than one delivery point subscribes a service. So several delivery points could subscribe same service under same subscriber. This requires the server side have some mechanism to authenticate the subscriber's identity.
+As mentioned in [basic concepts], a subscriber may have more than one delivery point subscriptions for a service.
+As a result, several delivery points could subscribe same service under the same subscriber.
+This requires the server side to have some mechanism to authenticate the subscriber's identity.
 
 ## Sending Push Notifications to a Subscriber
 
-Once a service has at least one push service provider and at least one subscriber, Uniqush can push data on behalf of that service to the apps running on the subscribers' devices. Before pushing data, the server side only needs to provide the service name, subscriber id, and data. Uniqush will push the data to all active delivery points of that subscriber.
+Once a service has at least one push service provider and at least one subscriber,
+Uniqush can push data on behalf of that service to the apps running on the subscribers' devices.
+Before pushing data, the server side needs only to provide the service name, subscriber id, and data.
+Uniqush will push the data to all active delivery points of that subscriber.
 
 ## Removing a Push Service Provider and Unsubscribing
 
-What I didn't mention is removing a push service provider from a service and unsubscribing from a service. It won't be hard once you understand adding a push service provider and subscribing to a service. They are just reverse operations.
+What I didn't mention is removing a push service provider from a service and unsubscribing from a service.
+It won't be hard once you understand adding a push service provider and subscribing to a service.
+Adding and removing PSPs are just reverse operations.
 
 ## Summary
 
 In general, Uniqush provides the following seven operations:
 
-    Add / Remove a push service provider to/from a service
+    Add / Remove a push service provider to/from a service.
     Add / Remove a subscription to/from a subscriber.
-    Send push notifications
-    Get information about a subscriber's subscriptions
-    Get configuration for all services
+    Send a push notification.
+    Get information about a subscriber's subscriptions.
+    Get the configuration for all services.
 
 ******
 
@@ -56,9 +67,7 @@ In general, Uniqush provides the following seven operations:
 - [Installing Uniqush and its Dependencies](install.html)
 - [Basic Concept](basic-concept.html)
 
-[Google]: http://google.com
-[Google Cloud Message]: http://developer.android.com/guide/google/gcm/index.html
-[GCM]: http://developer.android.com/guide/google/gcm/index.html
-[Apple Push Notification Service]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
-[APNS]: http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html
+[GCM]: https://developers.google.com/cloud-messaging/gcm
+[APNs]: https://developer.apple.com/go/?id=push-notifications
+[ADM]: https://developer.amazon.com/device-messaging
 [basic concepts]: basic-concept.html
