@@ -23,7 +23,7 @@ If you have any other questions, please feel free to send it on [mailing list].
 
 Yes and no.
 
-If you just want to use [GCM] on Google App Engine, then `uniqush-push` has some code which you can directly use.
+If you just want to use [GCM] or [FCM] on Google App Engine, then `uniqush-push` has some code which you can directly use.
 
 However, because Google App Engine does not support socket connection, there is no way to use [APNs].
 In other words, if you want to setup a server on Google App Engine, you **cannot** push any notification to iOS devices no matter what software/library you are using.
@@ -79,4 +79,5 @@ If you have some programming background, then yes. Actually, I think there are s
 [uniqush.go at gmail dot com]: mailto:uniqush.go@gmail.com
 [mailing list]: http://groups.google.com/group/uniqush
 [GCM]: https://developers.google.com/cloud-messaging/gcm
+[FCM]: https://firebase.google.com/docs/cloud-messaging/
 [APNs]: https://developer.apple.com/go/?id=push-notifications

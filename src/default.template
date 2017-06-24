@@ -20,7 +20,7 @@
     <% else %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Uniqush" />
-    <meta name="keywords" content="push,ios,android,APNs,GCM,C2DM,uniqush" />
+    <meta name="keywords" content="push,ios,android,APNs,GCM,FCM,C2DM,uniqush" />
     <% if context.node.meta_info["author"] != nil %>
     <meta name="author" content="{author:}" />
     <% else %>
@@ -30,18 +30,18 @@
     <link href="{relocatable: default.css}" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="{relocatable: images/favicon.ico}" />
     <script type="text/javascript">
-  
+
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-37737378-1']);
     _gaq.push(['_setDomainName', 'uniqush.org']);
     _gaq.push(['_trackPageview']);
-  
+
     (function() {
       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-  
+
     </script>
 
   </head>
@@ -63,7 +63,7 @@
       <div id="toc">
 		<% if context.node.children.length > 1 %>
 			<h2>Table of Content</h2>
-			{menu: {used_nodes: fragments, start_level: 1, max_levels: 3}} 
+			{menu: {used_nodes: fragments, start_level: 1, max_levels: 3}}
 		<% else %>
 			<% if context.node.children.length == 1 %>
 				<% if context.node.children[0].children.length > 1 %>

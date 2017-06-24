@@ -15,7 +15,7 @@ Before executing any command below, make sure you have already started *uniqush-
 
 **NOTE:** ``uniqush-push`` is only a server side program. You need to use the native client code for each platform. For more information on how to support push notification on client side, please look at the corresponding documents for each platform:
 
-- [GCM] for Android
+- [GCM] (or [FCM]) for Android
 - [APNs] for iOS
 - [ADM] for Kindle tablets
 
@@ -50,10 +50,24 @@ Before executing any command below, make sure you have already started *uniqush-
  |  apikey  |  API Key  |
 
 Read [this](https://developers.google.com/cloud-messaging/gcm#senderid) link on
-how to get Project ID and API key. Note: you need to make a **Server key** not
+how to get a Project ID and API key. Note: you need to make a **Server key** not
 an Android key.
 
 Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicetype=gcm -d projectid=123 -d apikey=somekey`
+
+### Parameters for FCM Push Service Provider
+
+ |  **Parameter**  |  **Description**  |
+ |  service  |  Service Name  |
+ |  pushservicetype  |  For FCM Push Service Provider, this is always *fcm*  |
+ |  projectid  |  Project ID.  |
+ |  apikey  |  API Key  |
+
+Read [this](https://firebase.google.com/docs/android/setup#manually_add_firebase) link on
+how to get a Project ID and API key. Note: you need to make a **Server key** not
+an Android key.
+
+Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicetype=fcm -d projectid=123 -d apikey=somekey`
 
 ### Parameters for APNs Push Service Provider
 
@@ -105,9 +119,21 @@ Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d clientid=som
  |  projectid  |  Project ID.  |
  |  apikey  |  API Key  |
 
-Read [this](https://developers.google.com/cloud-messaging/gcm#senderid) link for how to get Project ID and API key.
+Read [this](https://developers.google.com/cloud-messaging/gcm#senderid) link for how to get a Project ID and API key.
 
 Example: `curl http://127.0.0.1:9898/rmpsp -d service=myservice -d pushservicetype=gcm -d projectid=123`
+
+### Parameters for FCM Push Service Provider
+
+ |  **Parameter**  |  **Description**  |
+ |  service  |  Service Name  |
+ |  pushservicetype  |  For FCM Push Service Provider, this is always *fcm*  |
+ |  projectid  |  Project ID.  |
+ |  apikey  |  API Key  |
+
+Read [this](https://firebase.google.com/docs/android/setup#manually_add_firebase) link for how to get a Project ID and API key.
+
+Example: `curl http://127.0.0.1:9898/rmpsp -d service=myservice -d pushservicetype=fcm -d projectid=123`
 
 ### Parameters for APNs Push Service Provider
 
@@ -159,6 +185,16 @@ Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d clientid=som
 
 Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=gcm -d regid=fakeregid`
 
+### Parameters for Android Devices Using FCM
+
+ |  **Parameter**  |  **Description**  |
+ |  service  |  Service Name  |
+ |  subscriber  |  Subscriber ID  |
+ |  pushservicetype  |  For Android Device using FCM, this is always *fcm*  |
+ |  regid  |  Registration ID  |
+
+Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=fcm -d regid=fakeregid`
+
 ### Parameters for iOS Devices Using APNs
 
  |  **Parameter**  |  **Description**  |
@@ -196,6 +232,18 @@ Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservi
 Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=gcm -d regid=fakeregid`
 
 The registration ID should be same one used to subscribe the service. That is: you don't need to consider if the GCM will update the registration ID for the device. Uniqush can handle it.
+
+### Parameters for Android Devices Using FCM
+
+ |  **Parameter**  |  **Description**  |
+ |  service  |  Service Name  |
+ |  subscriber  |  Subscriber ID  |
+ |  pushservicetype  |  For Android Device using FCM, this is always *fcm*  |
+ |  regid  |  Registration ID. NOTE: This registration ID must be exactly the same one used to subscribe. |
+
+Example: `curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=fcm -d regid=fakeregid`
+
+The registration ID should be same one used to subscribe the service. That is: you don't need to consider if the FCM will update the registration ID for the device. Uniqush can handle it.
 
 ### Parameters for iOS Devices Using APNs
 
@@ -336,5 +384,6 @@ Example: `curl http://127.0.0.1:9898/nrdp -d service=myservice -d subscriber=uni
 - [Configuration](config.html): This document explains the detail of configuration of Uniqush.
 
 [GCM]: https://developers.google.com/cloud-messaging/gcm
+[FCM]: https://firebase.google.com/docs/cloud-messaging/
 [APNs]: https://developer.apple.com/go/?id=push-notifications
 [ADM]: https://developer.amazon.com/device-messaging

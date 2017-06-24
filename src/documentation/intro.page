@@ -17,7 +17,7 @@ This document helps you to understand the basic idea of **uniqush-push** by tell
 ![android-and-android-rain]
 
 - On android platform, sending a notification to an app is easy: [Google] provides a cloud service, [Google Cloud Message], or GCM, to help developers to send data from servers to apps.
-- Developers could push any data to their apps by sending an HTTP request to [GCM] cloud.
+- Developers could push any data to their apps by sending an HTTP request to the [GCM] cloud.
 - Empowered by [GCM], the developers were quite happy to write server side programs. They didn't need to consider the systems on which the app run. [GCM] did all works. Everything they need to do was grabbing weather information, establishing HTTP connection to [GCM] cloud and sending data through this connection. Clean, easy, and less coding work.
 
 ![gcm-demo]
