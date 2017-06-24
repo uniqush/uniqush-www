@@ -15,7 +15,7 @@ sort_info: 7
 Sure. 
 
 The core part (and the only part right now) of uniqush is `uniqush-push`. It is a stand alone program. You can communicate with this program through HTTP connection. Asking uniqush to do some work can be done by sending an HTTP Post request to `uniqush-push`. In short, once you start `uniqush-push`, you can use it as a common web service according to its [APIs](usage.html). You may want to know which port it will use for the HTTP connection. Actually, you can [configure it and
-other parameters](config.html) by youself.
+other parameters](config.html) by yourself.
 
 If you have any other questions, please feel free to send it on [mailing list].
 
@@ -69,7 +69,7 @@ push operation. Moreover, because this activation/deactivation operation won't b
 
 It's really cool, seriously. You should try it.
 
-I love the desgin of Go. Easy, simple, fast. No fancy patterns, no rigid awkward grammars. Especially its emphasis on concurrency which must be a critical point for future multi-core CPUs. It won't provide a huge fancy library like spaghetti. Also it won't give you nothing but malloc / free leaving you do everything by yourself.
+I love the design of Go. Easy, simple, fast. No fancy patterns, no rigid awkward grammars. Especially its emphasis on concurrency which must be a critical point for future multi-core CPUs. It won't provide a huge fancy library like spaghetti. Also it won't give you nothing but malloc / free leaving you do everything by yourself.
 
 ### I am new to Go. Do you think I can use your code to learn Go? 
 

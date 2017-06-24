@@ -76,7 +76,7 @@ See [this blog](http://blog.boxedice.com/2010/06/05/how-to-renew-your-apple-push
  |  clientid  | The Client ID. |
  |  clientsecret | The Client Secret. |
 
-To obtain the Client ID and Client Scret:
+To obtain the Client ID and Client Secret:
 
 - Create an account on the [Amazon Mobile App Distribution Portal](https://developer.amazon.com/welcome.html) and add your app, if you have not already done so.
 - In "Apps & Services > My Apps", select the app with which you want to use ADM.
@@ -126,7 +126,7 @@ Example: `curl http://127.0.0.1:9898/rmpsp -d service=myservice -d pushservicety
  |  clientid  | The Client ID. |
  |  clientsecret | The Client Secret. |
 
-To obtain the Client ID and Client Scret:
+To obtain the Client ID and Client Secret:
 
 - Create an account on the [Amazon Mobile App Distribution Portal](https://developer.amazon.com/welcome.html) and add your app, if you have not already done so.
 - In "Apps & Services > My Apps", select the app with which you want to use ADM.

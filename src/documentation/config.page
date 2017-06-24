@@ -77,7 +77,7 @@ All sections, except *Database* and *default*, could contains the following opti
 
  |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  | 
  |  log  |  on/off  |  on  |  Turn on/off the logging facility of a specific part. If the log is turned off, then the logging-related options will be ignored.  | 
- |  loglevel  |  standard, verbose  |  standard  |  The verbosility of the log  | 
+ |  loglevel  |  standard, verbose  |  standard  |  The verbosity of the log  | 
 
 
 ### Options for *WebFrontend* Section
@@ -91,7 +91,7 @@ All sections, except *Database* and *default*, could contains the following opti
  |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  | 
  |  engine  |  redis  |  redis  |  The database engine name. We only support [redis](http://redis.io) database at this point of time. So only *redis* is the valid value for this option  | 
  |  name  |  0  |  0  |  The database name.  | 
- |  host  |  *IP Addreess*  |  localhost  |  The host's name on which the database is running  | 
+ |  host  |  *IP Address*  |  localhost  |  The host's name on which the database is running  | 
  |  port  |  *Port Number*  |  0  |  The port number to connect to the database program. `0` stands for the default port of the specified database engine  | 
  |  password  |  *Password*  |  empty string  |  The password of the database  | 
  |  everysec  |  *Number of seconds*  |  600  |  The synchronization period of cache.  | 
@@ -148,7 +148,7 @@ All sections, except *Database* and *default*, could contains the following opti
 - [Basic Concepts](basic-concept.html): This document explains the basic concepts inside Uniqush. They are critical to using Uniqush. 
 - [Basic Operations](basic-opts.html): This document covers the basic operations provided by Uniqush. 
 - [Install](install.html): This document explains how to install Uniqush and its dependencies.
-- [Using Uniqush](usage.html): This document shows how to use uniqushd, the core part of Uniqush, through HTTP requests. 
+- [Using Uniqush](usage.html): This document shows how to use `uniqush-push`, the core part of Uniqush, through HTTP requests. 
 
 
 [^note]: If you read code carefully, you may find there are actually 9 valid sections. However, the *Backend* section is useless at this point.

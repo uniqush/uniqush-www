@@ -16,7 +16,7 @@ Uniqush runs as a stand alone service, which means you don't need to write any c
 
 ## Adding Push Service Providers to a Service
 
-Without telling Uniqush infomation about a push service provider, a server can never send data through Uniqush. Typically, to use a push service provider, Uniqush need to know the type of that push service provider (e.g. [GCM], [APNs], [ADM]) and authentication information -- for example, authentication token for [GCM]; private/public keys for [APNs], etc.
+Without telling Uniqush information about a push service provider, a server can never send data through Uniqush. Typically, to use a push service provider, Uniqush need to know the type of that push service provider (e.g. [GCM], [APNs], [ADM]) and authentication information -- for example, authentication token for [GCM]; private/public keys for [APNs], etc.
 
 You can add more than one push service provider information to a service, so that you can support multiple platforms.
 
@@ -24,7 +24,7 @@ You can add more than one push service provider information to a service, so tha
 
 When a subscriber subscribes to a service, Uniqush need to know at least three things: the subscriber's id; the service name; and the delivery point information. The delivery point information including the identity of the device, its OS type and other push service provider specific information. For example, for android delivery points, they need to provide a registration id to Uniqush, which will be used to send data through [GCM] later.
 
-Sending such information to Uniqush could be done by a mobile app, which could connect to the Uniqush server via HTTP. However, this is not best practice since it's insecure. If your Uniqush server is publically accessible, then anyone can perform malicious operations potentially. Allowing direct communication from the client to Uniqush is insecure. In this case, it would be best to put Uniqush behind a web server that does HTTPS and only allows specific operations.
+Sending such information to Uniqush could be done by a mobile app, which could connect to the Uniqush server via HTTP. However, this is not best practice since it's insecure. If your Uniqush server is publicly accessible, then anyone can perform malicious operations potentially. Allowing direct communication from the client to Uniqush is insecure. In this case, it would be best to put Uniqush behind a web server that does HTTPS and only allows specific operations.
 
 Another possible way of sending this information to Uniqush: the app sends the information to some program on server side; this program processes the information, extracts the data that Uniqush wants, and then forwards the data to Uniqush through HTTP. There are several pros for this approach. First of all, the server side has more flexibility of choosing authentication methods. Second, the server side is typically in the best position to handle sending notifications through Uniqush. Let's say you're have a chat application and Alice sends a message to Bob. Alice's message goes to your server application, which does whatever processing it needs, and then makes a request to Uniqush to send a push notification to Bob.
 
