@@ -12,3 +12,5 @@ bundle install
 webgen
 # Alternately, run the command `bundle exec rake auto_webgen` to regenerate the site in the background as changes are made.
 ```
+
+A dockerized version is available at `./main.sh`, to avoid the need to fiddle with specifics of the host operating system.
