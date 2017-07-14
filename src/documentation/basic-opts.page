@@ -20,13 +20,15 @@ and send an HTTP POST request with the parameters inside the body.
 
 ## Adding Push Service Providers to a Service
 
-Without telling Uniqush information about a push service provider, a server can never send data through Uniqush. Typically, to use a push service provider, Uniqush need to know the type of that push service provider (e.g. [GCM], [APNs], [ADM]) and authentication information -- for example, authentication token for [GCM]; private/public keys for [APNs], etc.
+Without telling Uniqush information about a push service provider, a server can never send data through Uniqush.
+Typically, to use a push service provider, Uniqush needs to know the type of that push service provider (e.g. [GCM], [FCM], [APNs], [ADM]) and authentication information --
+for example, authentication token for [GCM] or [FCM], private/public keys for [APNs], etc.
 
 You can add more than one push service provider information to a service, so that you can support multiple platforms.
 
 ## Subscribing to a Service
 
-When a subscriber subscribes to a service, Uniqush need to know at least three things: the subscriber's id; the service name; and the delivery point information. The delivery point information including the identity of the device, its OS type and other push service provider specific information. For example, for android delivery points, they need to provide a registration id to Uniqush, which will be used to send data through [GCM] later.
+When a subscriber subscribes to a service, Uniqush need to know at least three things: the subscriber's id; the service name; and the delivery point information. The delivery point information including the identity of the device, its OS type and other push service provider specific information. For example, for android delivery points, they need to provide a registration id to Uniqush, which will be used to send data through [GCM] (or [FCM]) later.
 
 Sending such information to Uniqush could be done by a mobile app, which could connect to the Uniqush server via HTTP. However, this is not best practice since it's insecure. If your Uniqush server is publicly accessible, then anyone can perform malicious operations potentially. Allowing direct communication from the client to Uniqush is insecure. To prevent direct communication to Uniqush, it is recommended to put Uniqush behind a web server that does HTTPS and only allows specific operations.
 
@@ -68,6 +70,7 @@ In general, Uniqush provides the following seven operations:
 - [Basic Concept](basic-concept.html)
 
 [GCM]: https://developers.google.com/cloud-messaging/gcm
+[FCM]: https://firebase.google.com/docs/cloud-messaging/
 [APNs]: https://developer.apple.com/go/?id=push-notifications
 [ADM]: https://developer.amazon.com/device-messaging
 [basic concepts]: basic-concept.html

@@ -38,7 +38,7 @@ The latest release version is [2.1.0](release-notes/rn-uniqush-push-2-1-0.html).
 
 **NOTICE**: We will support more in the future.
 
-- [GCM] for Android
+- [GCM] or [FCM] for Android
 - [APNs] for iOS
 - [ADM] for Kindle tablets
 
@@ -60,6 +60,7 @@ You can either send a mail to [uniqush.go at gmail dot com] privately, or post y
 [uniqush.go at gmail dot com]: mailto:uniqush.go@gmail.com
 [mailing list]: http://groups.google.com/group/uniqush
 [GCM]: https://developers.google.com/cloud-messaging/gcm
+[FCM]: https://firebase.google.com/docs/cloud-messaging/
 [APNs]: https://developer.apple.com/go/?id=push-notifications
 [ADM]: https://developer.amazon.com/device-messaging
 [our github repositories]: http://github.com/uniqush
