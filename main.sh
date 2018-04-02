@@ -11,5 +11,5 @@ fi
 sudo docker build -t uniqush-www-build .
 # TODO: Need to be root to "bundle install" before running webgen, but want -u $UID.
 # For now, manually change ownership of new files
-sudo docker run -v $PWD:/webgen uniqush-www-build /webgen/webgen-run.sh
+sudo docker run --rm -v $PWD:/webgen uniqush-www-build /webgen/webgen-run.sh
 sudo chown $USER:$USER -R out
