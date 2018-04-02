@@ -1,0 +1,45 @@
+---
+title: Release Note 2.3.0
+in_menu: false
+author: Tyson Andre
+---
+
+# Release Note 2.3.0
+
+18-Jul-2017
+
+This release contains bugfixes, new APIs and improvements.
+
+Download:
+
+- [amd64 2.3.0 deb](http://uniqush.org/downloads/uniqush-push_2.3.0_amd64.deb)
+- [amd64 2.3.0 rpm](http://uniqush.org/downloads/uniqush-push-2.3.0-1.x86_64.rpm)
+- [amd64 2.3.0 tar.gz](http://uniqush.org/downloads/uniqush-push_2.3.0_x86_64.tar.gz)
+
+ChangeLog:
+
++ New feature: Add /previewpush endpoint to preview the payload that would be
+  generated and sent to push services. (Issue #140)
+  This helps with debugging.
++ Maintenance: Update APNS binary provider API(default) from version 1 to version 2.
++ Maintenance: Upgrade to redis.v5 (Issue #143)
++ New provider: Add FCM support. (Issue #148)
+  The parameters that would be provided to /addpsp, /subscribe, and /push are
+  the same as they would be for GCM. (Replace "gcm" with "fcm" when following instructions)
++ New feature: Add support APNS HTTP2 API (Issue #157, PR #173)
+  This gives more accurate results on whether a push succeeded,
+  and should not impact Uniqush's performance.
+  To set this up, call /addpsp (to create a new provider or modify an
+  existing provider) with the same params you would use to create a new
+  APNS endpoint for binary providers (including cert and key),
+  in addition to providing `bundleid`.
+  Currently, to make testing easy, each call to `/push` must be provided with
+  the query param value `uniqush.http=1`.
+  Otherwise, uniqush continues to use the APNS binary provider API.
++ Maintenance: Use unescaped payloads for GCM and FCM.
+  This allows larger payloads, avoiding escaping characters such as `<` and `>`
+
+Fixes #134
+
+go 1.8.3+ and an up to date version of golang.org/x/net/http2
+are suggested (For the APNS HTTP2 API).
