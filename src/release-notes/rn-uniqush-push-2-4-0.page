@@ -1,0 +1,30 @@
+---
+title: Release Note 2.4.0
+in_menu: false
+author: Tyson Andre
+---
+
+# Release Note 2.4.0
+
+07-Oct-2017
+
+This release contains bugfixes, new APIs and improvements.
+
+Download:
+
+- [amd64 2.4.0 deb](http://uniqush.org/downloads/uniqush-push_2.4.0_amd64.deb)
+- [amd64 2.4.0 rpm](http://uniqush.org/downloads/uniqush-push-2.4.0-1.x86_64.rpm)
+- [amd64 2.4.0 tar.gz](http://uniqush.org/downloads/uniqush-push_2.4.0_x86_64.tar.gz)
+
+ChangeLog:
+
+- New feature: Initial support for GCM/FCM "notification" pushes (Documented in PR #185).
+  `uniqush.notification.gcm` and `uniqush.notification.fcm` can be used
+  as fields for `/push`, with the JSON blob to send GCM/FCM for the
+  optional "notification" message.
+  "notification" messages will let GCM/FCM display the notification for you.
+- Maintenance: Change from https://android.googleapis.com/gcm/send to
+  https://gcm-http.googleapis.com/gcm/send (equivalent endpoints)
+- Maintenance: Bump go version used to compile releases
+- Maintenance: go 1.9+ is recommended for compiling and testing
+- Bug fix: Improve logging subscriber name in failed API requests.

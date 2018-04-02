@@ -1,0 +1,27 @@
+---
+title: Release Note 2.5.0
+in_menu: false
+author: Tyson Andre
+---
+
+# Release Note 2.5.0
+
+01-Apr-2018
+
+This release contains new APIs and improvements.
+
+Download:
+
+- [amd64 2.5.0 deb](http://uniqush.org/downloads/uniqush-push_2.5.0_amd64.deb)
+- [amd64 2.5.0 rpm](http://uniqush.org/downloads/uniqush-push-2.5.0-1.x86_64.rpm)
+- [amd64 2.5.0 tar.gz](http://uniqush.org/downloads/uniqush-push_2.5.0_x86_64.tar.gz)
+
+ChangeLog:
+
+- Support "title", "title-loc-key", and "title-loc-args"
+- Support larger APNS payloads.
+  Support 5120 byte payloads for APNS voip pushes
+  (Where the Cert is a VOIP cert and `uniqush.apns_voip=1` is part of
+  the query params in the call to /push
+- Support more granular loglevel levels in uniqush config files:
+  alert, error, warn/warning, standard/verbose/info, and debug

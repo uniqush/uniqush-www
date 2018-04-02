@@ -12,7 +12,31 @@ Please follow the instructions from [Installing Uniqush and its Dependencies](do
 
 ##uniqush-push
 
-latest version: **2.1.0**
+latest version: **2.5.0**
+
+[uniqush-push 2.5.0 release note](release-notes/rn-uniqush-push-2-5-0.html)
+
+- [amd64 2.5.0 deb](downloads/uniqush-push_2.5.0_amd64.deb)
+- [amd64 2.5.0 rpm](downloads/uniqush-push-2.5.0-1.x86_64.rpm)
+- [amd64 2.5.0 tar.gz](downloads/uniqush-push_2.5.0_x86_64.tar.gz)
+
+[uniqush-push 2.4.0 release note](release-notes/rn-uniqush-push-2-4-0.html)
+
+- [amd64 2.4.0 deb](downloads/uniqush-push_2.4.0_amd64.deb)
+- [amd64 2.4.0 rpm](downloads/uniqush-push-2.4.0-1.x86_64.rpm)
+- [amd64 2.4.0 tar.gz](downloads/uniqush-push_2.4.0_x86_64.tar.gz)
+
+[uniqush-push 2.3.0 release note](release-notes/rn-uniqush-push-2-3-0.html)
+
+- [amd64 2.3.0 deb](downloads/uniqush-push_2.3.0_amd64.deb)
+- [amd64 2.3.0 rpm](downloads/uniqush-push-2.3.0-1.x86_64.rpm)
+- [amd64 2.3.0 tar.gz](downloads/uniqush-push_2.3.0_x86_64.tar.gz)
+
+[uniqush-push 2.2.0 release note](release-notes/rn-uniqush-push-2-2-0.html)
+
+- [amd64 2.2.0 deb](downloads/uniqush-push_2.2.0_amd64.deb)
+- [amd64 2.2.0 rpm](downloads/uniqush-push-2.2.0-1.x86_64.rpm)
+- [amd64 2.2.0 tar.gz](downloads/uniqush-push_2.2.0_x86_64.tar.gz)
 
 [uniqush-push 2.1.0 release note](release-notes/rn-uniqush-push-2-1-0.html)
 
