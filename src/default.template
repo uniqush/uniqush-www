@@ -52,7 +52,6 @@
 
     <div id="headerbar" class="bar">
       <span class="left">Location: {breadcrumb_trail: }</span>
-      <span class="right">Language: {langbar: }</span>
       <div style="clear:both"></div>
     </div>
 
