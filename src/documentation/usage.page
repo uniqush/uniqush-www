@@ -314,17 +314,21 @@ Initializes the set of all service names.  This API is needed for the /subscript
  |  badge  |  Optional. Badge  |
  |  img  |  Optional. Image  |
  |  sound  |  Optional. Sound  |
- | loc-key | Optional. loc-key for APNs |
- | loc-args | Optional. loc-args for APNs. It is a comma-separated string. |
- | action-loc-key | Option. action-loc-key for APNs. |
- |  *Reserved Parameter*  |  Any parameter whose name starts with "uniqush." is reserved by Uniqush. Users should avoid using those parameter names. |
+ | loc-key | Optional. loc-key for APNS |
+ | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
+ | action-loc-key | Option. action-loc-key for APNS. |
+ | uniqush.payload.gcm  | The raw JSON payload for GCM subscribers (for "data"). If this is specified, it replaces the GCM payload. |
+ | uniqush.payload.apns  | The raw JSON payload for APNS subscribers. If this is specified, it replaces the APNS payload. (except ttl) |
+ |  *Reserved Parameter*  |  Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
  |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
 
-At least one of the optional parameter should be provided, or it will be an empty message and won't be sent.
+At least one of the optional parameters should be provided, or it will be an empty message and won't be sent.
 
 For android and kindle client, the message will be received as *Intent* containing key-value pairs. *msg, badge, img, sound, loc-key, loc-args* and *User Defined Parameters* will be put as key-value pairs in the *Intent*. You can use *getExtras()* method of the *Intent* to get all key-value pairs.
 
 For iOS client, the notification is sent as JSON encoded message to APNs. All parameters are mapped to their corresponding place as follows:
+
+The payload (currently always JSON) that would be sent for any client type can be viewed with the `/previewpush` endpoint
 
 | **Parameter** | **Mapped To** |
 | msg	| "aps" > "alert" > "body" |
@@ -361,6 +365,39 @@ Examples:
     `curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=* -d msg="Hello World"`
 
 ******
+
+## Preview Push Payload
+
+- URL: `/previewpush`
+
+### Parameters
+
+ | **Parameter**  |  **Description**  |
+ | pushservicetype  |  A supported push service type ("apns", "gcm", or "adm"). |
+ | msg  |  Optional. Message Body  |
+ | ttl | Optional. Time to live. How long (in seconds) the message should be kept on push service provider's server if the device is offline |
+ | badge  |  Optional. Badge  |
+ | img  |  Optional. Image  |
+ | sound  |  Optional. Sound  |
+ | loc-key | Optional. loc-key for APNS |
+ | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
+ | action-loc-key | Optional. action-loc-key for APNS. |
+ | uniqush.payload.gcm | Optional. Raw JSON payload for GCM clients (for "data"). If this is specified, it replaces the GCM payload. |
+ | uniqush.payload.apns | Optional. Raw JSON payload for APNS clients. If this is specified, it replaces the APNS payload. (except ttl) |
+ | *Reserved Parameter*  |Optional. Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
+ | *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
+
+At least one of the optional parameters should be provided, or it will be an empty message. This API returns the same error code `/push` would.
+
+See the section for "Push Notifications".
+
+Examples:
+
+- Preview the payload sent to GCM, APNS, or ADM clients:
+
+  - `curl http://127.0.0.1:9898/previewpush -d pushservicetype=gcm -d msg="Hello World"`
+  - `curl http://127.0.0.1:9898/previewpush -d pushservicetype=apns -d msg="Hello World"`
+  - `curl http://127.0.0.1:9898/previewpush -d pushservicetype=adm -d msg="Hello World"`
 
 ## Getting The Number of Delivery Points for a Subscriber to a Service
 
