@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Uniqush - Push Notification Solution for Mobile Platforms [Configuration]</title>
+
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Uniqush" />
+    <meta name="keywords" content="push,ios,android,APNs,GCM,FCM,C2DM,uniqush" />
+    
+    <meta name="author" content="Nan Deng" />
+    
+    <meta name="generator" content="webgen - http://webgen.rubyforge.com/" />
+    <link href="../default.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37737378-1']);
+    _gaq.push(['_setDomainName', 'uniqush.org']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    </script>
+
+  </head>
+  <body>
+    <div id="header">
+        <img id="frontphoto" src="../images/front.png" alt="" />
+    </div>
+
+    <div id="headerbar" class="bar">
+      <span class="left">Location: <a href="../index.html">Home</a> / <a href="index.html">Documentation</a> / <span>Configuration</span></span>
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+      <ul><li class="webgen-menu-level1"><a href="../index.html">Home</a></li><li class="webgen-menu-level1"><a href="../blog.html">Blog</a></li><li class="webgen-menu-level1 webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="index.html">Documentation</a><ul><li class="webgen-menu-level2"><a href="intro.html">Introduction</a></li><li class="webgen-menu-level2"><a href="install.html">Install</a></li><li class="webgen-menu-level2"><a href="basic-concept.html">Basic Concept</a></li><li class="webgen-menu-level2"><a href="basic-opts.html">Basic Operations</a></li><li class="webgen-menu-level2 webgen-menu-item-selected"><span>Configuration</span></li><li class="webgen-menu-level2"><a href="usage.html">Using Uniqush</a></li><li class="webgen-menu-level2"><a href="faq.html">FAQ</a></li></ul></li><li class="webgen-menu-level1"><a href="../mailinglist.html">Mailing List</a></li><li class="webgen-menu-level1"><a href="../src.html">Source Code</a></li></ul>
+
+      
+    </div>
+
+    <div id="body">
+      
+<h1 id="uniqush-configuration">Uniqush Configuration</h1>
+
+<p>This document describes the structure and details of the configuration file of uniqush. Before reading this document, please make sure you understand <a href="basic-opts.html">Basic Operations Provided by Uniqush</a>.</p>
+
+<hr />
+
+<h2 id="location">Location</h2>
+
+<p>The configuration file is located at <code>/etc/uniqush/uniqush-push.conf</code>. Or you can specify your own configuration file with <code>-config</code> flag when you run <code>uniqush-push</code>.</p>
+
+<p>Example: <code>uniqush-push -config#/path/to/configfile</code>.</p>
+
+<hr />
+
+<h2 id="structure-of-the-configuration-file">Structure of the Configuration File</h2>
+
+<p>The configuration file consists of several <strong>sections</strong>. Each section contains several <strong>options</strong>. An option is a key-value pair. Here is an example:</p>
+
+<pre><code>globaloption=globalvalue
+
+[Section1]
+option1=value1
+option2=value2
+
+[Section2]
+option=value
+</code></pre>
+
+<p>This example has two sections: <em>Section1</em> and <em>Section2</em>.
+A section starts from line containing the section name within a pair of brackets, ends at the start of next section (except the starting line of next section) or the end of the file.
+In the example above, <code>[Section1]</code> is the starting point of <em>Section1</em>.
+There is an outer-most section, we call it the <em>default</em> section.
+The options in the <em>default</em> section lays outside of all other section. In this example,
+<em>globaloption#globalvalue</em> lays in the <em>default</em> section.</p>
+
+<p><em>Section1</em> provides two options: <em>option1</em> and <em>option2</em>. Their values are <em>value1</em>, and <em>value2</em> respectively. Each option occupies one and only one line.</p>
+
+<p>The library we used to parse the configuration file is <a href="http://code.google.com/p/goconf/">goconf</a>. Although it supports nested sections (a section inside another section). We do not use it in uniqush.</p>
+
+<hr />
+
+<h2 id="sections-in-uniqush-configuration-file">Sections in Uniqush Configuration File</h2>
+
+<p>In uniqush configuration file, there are 8 valid sections <sup id="fnref:note"><a href="#fn:note" class="footnote">1</a></sup>: <em>default</em>, <em>WebFrontend</em>, <em>AddPushServiceProvider</em>, <em>RemovePushServiceProvider</em>, <em>Subscribe</em>, <em>Unsubscribe</em>, <em>Push</em> and <em>Database</em>. Each section controls different parts/operations of uniqush. We will first examine the common options in all sections. Then discuss the section-specific options. All options in the configuration file are optional. If any option is not
+missed, <code>uniqush-push</code> will use its default value instead. In other words, you can use an empty config file to run <code>uniqush-push</code>.</p>
+
+<h3 id="function-of-each-section">Function of Each Section</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Section</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>default</td>
+      <td>Default section is the outermost section, which does not need a section name. It lays outside of all sections and some global settings exist there.</td>
+    </tr>
+    <tr>
+      <td>WebFrontend</td>
+      <td>Controls the web service interface of <code>uniqush-push</code>. Because a user of <code>uniqush-push</code> communicates with it through HTTP Post request, it has to specify some basic information, such as the port number, logging level, etc., to work with uniqush</td>
+    </tr>
+    <tr>
+      <td>AddPushServiceProvider</td>
+      <td>Contains the options used when adding a push service provider request is being processed</td>
+    </tr>
+    <tr>
+      <td>RemovePushServiceProvider</td>
+      <td>Contains the options used when removing a push service provider request is being processed</td>
+    </tr>
+    <tr>
+      <td>Subscribe</td>
+      <td>Contains the options used when a subscribe request is being processed</td>
+    </tr>
+    <tr>
+      <td>Unsubscribe</td>
+      <td>Contains the options used when when an unsubscribe request is being processed</td>
+    </tr>
+    <tr>
+      <td>Push</td>
+      <td>Contains the options used when a push request is being processed</td>
+    </tr>
+    <tr>
+      <td>Database</td>
+      <td>Contains the options specifying the database parameters</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="options-in-default-section">Options in default Section</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Option Name</strong></td>
+      <td><strong>Possible Values</strong></td>
+      <td><strong>Default Value</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>logfile</td>
+      <td>A file name of the log file.</td>
+      <td>standard error</td>
+      <td>The value of this option should be path to the log file. <code>uniqush-push</code> should have write permission to that file. If the file does not exist, <code>uniqush-push</code>} will try to create it with permission 0600. If all fails, it will write to standard error.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="common-options-in-all-sections-except-database-and-default">Common Options in All Sections (Except Database and default)</h3>
+
+<p>All sections, except <em>Database</em> and <em>default</em>, could contain the following options. If there is no such option in that section, it will use the default value.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Option Name</strong></td>
+      <td><strong>Possible Values</strong></td>
+      <td><strong>Default Value</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>log</td>
+      <td>on/off</td>
+      <td>on</td>
+      <td>Turn on/off the logging facility of a specific part. If the log is turned off, then the logging-related options will be ignored.</td>
+    </tr>
+    <tr>
+      <td>loglevel</td>
+      <td>standard, verbose</td>
+      <td>standard</td>
+      <td>The verbosity of the log</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="options-for-webfrontend-section">Options for <em>WebFrontend</em> Section</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Option Name</strong></td>
+      <td><strong>Possible Values</strong></td>
+      <td><strong>Default Value</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>addr</td>
+      <td><code>[ip address]:[port number]</code></td>
+      <td>localhost:9898</td>
+      <td>Accepted host address and the port number of the web service. If you want to accept all connections (you probably do not want to do that), you can specify the <em>ip address</em> as <code>0.0.0.0</code>. We recommend <code>uniqush-push</code> accept connections only from localhost or only from a known server.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="options-for-database-section">Options for <em>Database</em> Section</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Option Name</strong></td>
+      <td><strong>Possible Values</strong></td>
+      <td><strong>Default Value</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>engine</td>
+      <td>redis</td>
+      <td>redis</td>
+      <td>The database engine name. We support only the <a href="http://redis.io">redis</a> database at this point of time. So only <em>redis</em> is the valid value for this option</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>0</td>
+      <td>0</td>
+      <td>The database name.</td>
+    </tr>
+    <tr>
+      <td>host</td>
+      <td><em>IP Address</em></td>
+      <td>localhost</td>
+      <td>The host&#8217;s name on which the database is running</td>
+    </tr>
+    <tr>
+      <td>port</td>
+      <td><em>Port Number</em></td>
+      <td>0</td>
+      <td>The port number to connect to the database program. <code>0</code> stands for the default port of the specified database engine</td>
+    </tr>
+    <tr>
+      <td>password</td>
+      <td><em>Password</em></td>
+      <td>empty string</td>
+      <td>The password of the database</td>
+    </tr>
+    <tr>
+      <td>everysec</td>
+      <td><em>Number of seconds</em></td>
+      <td>600</td>
+      <td>The synchronization period of cache.</td>
+    </tr>
+    <tr>
+      <td>leastdirty</td>
+      <td><em>Number of elements</em></td>
+      <td>10</td>
+      <td>The least number of dirty elements in cache. Combining with <em>everysec</em> option, these options tell the cache to synchronize to database every <em>everysec</em> if there are at lease <em>leastdirty</em> changes.</td>
+    </tr>
+    <tr>
+      <td>cachesize</td>
+      <td><em>Integer Value</em></td>
+      <td>1024</td>
+      <td>The number of elements that a cache will hold at most.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="sample-configuration-file">Sample Configuration File</h2>
+
+<pre><code>logfile=/var/log/uniqush
+
+
+# Comment starts from a Number sign (#) to end of the line.
+
+# Log level: verbose, standard,
+[WebFrontend]
+log=on
+loglevel=standard
+addr=localhost:9898
+
+[AddPushServiceProvider]
+log=on
+loglevel=standard
+
+[RemovePushServiceProvider]
+log=on
+loglevel=standard
+
+[Subscribe]
+log=on
+loglevel=standard
+
+[Unsubscribe]
+log=on
+loglevel=standard
+
+[Push]
+log=on
+loglevel=standard
+
+[Database]
+engine=redis
+port=0
+name=0
+everysec=600
+leastdirty=10
+cachesize=1024
+</code></pre>
+
+<hr />
+
+<h2 id="related-topics">Related Topics</h2>
+
+<ul>
+  <li><a href="basic-concept.html">Basic Concepts</a>: This document explains the basic concepts inside Uniqush. These concepts are critical to using Uniqush.</li>
+  <li><a href="basic-opts.html">Basic Operations</a>: This document covers the basic operations provided by Uniqush.</li>
+  <li><a href="install.html">Install</a>: This document explains how to install Uniqush and its dependencies.</li>
+  <li><a href="usage.html">Using Uniqush</a>: This document shows how to use <code>uniqush-push</code>, the core part of Uniqush, through HTTP requests.</li>
+</ul>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:note">
+      <p>If you read code carefully, you may find there are actually 9 valid sections. However, the <em>Backend</em> section is useless at this point. <a href="#fnref:note" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+
+    <div id="footer" class="bar">
+      
+        
+            Created by <a href="/authors/monnand.html">Nan Deng</a>
+        
+      
+      Generated by <a href="http://webgen.rubyforge.org">webgen</a> on <b>2018-04-02 02:48:10</b>
+
+      <br />
+
+      <div id="license">
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
+        </div>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Uniqush - Push Notification Solution for Mobile Platforms [Basic Concept]</title>
+
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Uniqush" />
+    <meta name="keywords" content="push,ios,android,APNs,GCM,FCM,C2DM,uniqush" />
+    
+    <meta name="author" content="Nan Deng" />
+    
+    <meta name="generator" content="webgen - http://webgen.rubyforge.com/" />
+    <link href="../default.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37737378-1']);
+    _gaq.push(['_setDomainName', 'uniqush.org']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    </script>
+
+  </head>
+  <body>
+    <div id="header">
+        <img id="frontphoto" src="../images/front.png" alt="" />
+    </div>
+
+    <div id="headerbar" class="bar">
+      <span class="left">Location: <a href="../index.html">Home</a> / <a href="index.html">Documentation</a> / <span>Basic Concept</span></span>
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+      <ul><li class="webgen-menu-level1"><a href="../index.html">Home</a></li><li class="webgen-menu-level1"><a href="../blog.html">Blog</a></li><li class="webgen-menu-level1 webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="index.html">Documentation</a><ul><li class="webgen-menu-level2"><a href="intro.html">Introduction</a></li><li class="webgen-menu-level2"><a href="install.html">Install</a></li><li class="webgen-menu-level2 webgen-menu-item-selected"><span>Basic Concept</span></li><li class="webgen-menu-level2"><a href="basic-opts.html">Basic Operations</a></li><li class="webgen-menu-level2"><a href="config.html">Configuration</a></li><li class="webgen-menu-level2"><a href="usage.html">Using Uniqush</a></li><li class="webgen-menu-level2"><a href="faq.html">FAQ</a></li></ul></li><li class="webgen-menu-level1"><a href="../mailinglist.html">Mailing List</a></li><li class="webgen-menu-level1"><a href="../src.html">Source Code</a></li></ul>
+
+      
+    </div>
+
+    <div id="body">
+      
+<h1 id="basic-concept">Basic Concept</h1>
+
+<p>This document explain some basic concept in Uniqush&#8217;s terminology. Understanding these terms is critical to use Uniqush. Fortunately, it won&#8217;t be too hard to capture these ideas.</p>
+
+<h2 id="sending-notifications-through-clouds">Sending Notifications Through Clouds</h2>
+
+<ul>
+  <li>Many clouds are available to push data from a server side program to mobile devices.</li>
+</ul>
+
+<p><img src="img/basic-concept/manyclouds.png" alt="manyclouds" /></p>
+
+<ul>
+  <li>Each cloud is dedicated to its own mobile platform. e.g. a cloud named <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a> (or <a href="https://firebase.google.com/docs/cloud-messaging/">FCM</a>) for Android; a cloud named <a href="https://developer.apple.com/go/?id=push-notifications">APNs</a> for iOS, etc.</li>
+</ul>
+
+<p><img src="img/basic-concept/clouds2platforms.png" alt="clouds2platforms" /></p>
+
+<ul>
+  <li>If an app server want to send data to its end user, it first sends the data to the corresponding cloud.</li>
+</ul>
+
+<p><img src="img/basic-concept/server2cloud.png" alt="server2cloud" /></p>
+
+<ul>
+  <li>
+    <p>Then the cloud will delivery the data to the app running on the device.
+<img src="img/basic-concept/cloud2device.png" alt="cloud2device" /></p>
+  </li>
+  <li>
+    <p>If a server wants to support multiple mobile platforms, it has to communicate with different clouds through different protocols.</p>
+  </li>
+</ul>
+
+<p><img src="img/basic-concept/serverandseveralclouds.png" alt="serverandseveralclouds" /></p>
+
+<hr />
+
+<h2 id="uniqush-gets-involved">Uniqush Gets Involved</h2>
+
+<ul>
+  <li>By running Uniqush, the server can send data to multiple clouds through Uniqush using <strong>one and only one</strong> protocol.
+The server program first sends the data to the Uniqush process through HTTP,
+then Uniqush will send the data to each cloud using cloud-specific protocols.
+We call each cloud a <strong>Push Service Provider</strong>.
+Supporting more platforms is easy for the server side, because Uniqush did all of the dirty work.</li>
+  <li><strong>Definition</strong> <em>Push Service Provider</em>: An entity which can push data to a device. Uniqush handles protocol to different Push Service Providers, hiding all communication details from the server.</li>
+</ul>
+
+<p><img src="img/basic-concept/uniqushinvolved.png" alt="uniqushinvolved" /></p>
+
+<ul>
+  <li>The serve only need to care about <strong>who</strong> subscribes to <strong>which</strong> service. For example, the server may provide weather report service, called <em>Local Weather</em>. Then John installed the Local Weather app on his device and <strong>subscribes</strong> the service.</li>
+  <li><strong>Definition</strong> <em>Service</em>: An entity which can generate data ready to be sent to remote device. A service is the source of information.</li>
+  <li><strong>Definition</strong> <em>Subscriber</em>: An entity which consumes the information generated from the service. A subscriber is the sink of information.</li>
+</ul>
+
+<p><img src="img/basic-concept/johnsubweather.png" alt="johnsubweather" /></p>
+
+<ul>
+  <li>When server wants to send weather report to John, it needs only to tell Uniqush three things: the <strong>Service</strong> (Local Weather), the <strong>Subscriber</strong> (John), and the <strong>Data</strong> (rain, cloudy, etc.)</li>
+</ul>
+
+<p><img src="img/basic-concept/john-weather-data.png" alt="john-weather-data" /></p>
+
+<ul>
+  <li>Moreover, John has several cell phones. All of them subscribe the Local Weather service.
+He wants each device to be able to receive messages from the server.
+We call each device a <strong>Delivery Point</strong>.
+Each subscriber may have several delivery points.</li>
+  <li><strong>Definition</strong> <em>Delivery Point</em>: An entity which receives data from one or more Services.
+It must have an subscriber as its Owner.
+One subscriber may have more than one delivery point.</li>
+  <li>The server side program could simply tell 3 things to Uniqush: <strong>who</strong> &#8212; the subscriber; <strong>where</strong> &#8212; the service, i.e. where is the subscriber; and <strong>what</strong> &#8212; the data. Uniqush will send data to each delivery point of that subscriber.</li>
+</ul>
+
+<p><img src="img/basic-concept/john-received-msgs.png" alt="john-received-msgs" /></p>
+
+<hr />
+
+<h2 id="review">Review</h2>
+
+<p>Here are important concepts that we mentioned in this document. Understanding these concepts is critical and we listed them here for your convenience.</p>
+
+<h3 id="push-service-provider">Push Service Provider</h3>
+
+<p>A push service provider can push data to a device. Uniqush handles protocol to different Push Service Providers, hiding all communication details from the server.</p>
+
+<p>Examples:  <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a> (or <a href="https://firebase.google.com/docs/cloud-messaging/">FCM</a>) can send notifications to Android devices;  <a href="https://developer.apple.com/go/?id=push-notifications">APNS</a> can send notifications to iOS devices.</p>
+
+<h3 id="service">Service</h3>
+
+<p>A service can generate data ready to be sent to apps running on remote device. A service is the source of information. One server may provide more than one service.</p>
+
+<p>Examples: Local Weather service; Local News service.</p>
+
+<h3 id="subscriber">Subscriber</h3>
+
+<p>A subscriber consumes the information generated from the service. A subscriber is the sink of information. In most cases a subscriber usually refers to a real person.</p>
+
+<p>Example: A person who installed Local News app on his / her cell phone.</p>
+
+<h3 id="delivery-point">Delivery Point</h3>
+
+<p>A Delivery Point receives data from one or more Services. It must have an subscriber as its Owner. One subscriber may have more than one delivery point.</p>
+
+<p>Examples: an Android device; an iOS device; a BlackBerry, etc.</p>
+
+<hr />
+
+<h2 id="related-topics">Related Topics</h2>
+
+<ul>
+  <li><a href="intro.html">Introduction</a></li>
+  <li><a href="install.html">Installing Uniqush and its Dependencies</a></li>
+</ul>
+
+
+    </div>
+
+    <div id="footer" class="bar">
+      
+        
+            Created by <a href="/authors/monnand.html">Nan Deng</a>
+        
+      
+      Generated by <a href="http://webgen.rubyforge.org">webgen</a> on <b>2018-04-02 02:48:10</b>
+
+      <br />
+
+      <div id="license">
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
+        </div>
+    </div>
+  </body>
+</html>
+

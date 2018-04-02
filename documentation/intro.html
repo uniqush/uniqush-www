@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Uniqush - Push Notification Solution for Mobile Platforms [Introduction]</title>
+
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Uniqush" />
+    <meta name="keywords" content="push,ios,android,APNs,GCM,FCM,C2DM,uniqush" />
+    
+    <meta name="author" content="Monnand" />
+    
+    <meta name="generator" content="webgen - http://webgen.rubyforge.com/" />
+    <link href="../default.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37737378-1']);
+    _gaq.push(['_setDomainName', 'uniqush.org']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    </script>
+
+  </head>
+  <body>
+    <div id="header">
+        <img id="frontphoto" src="../images/front.png" alt="" />
+    </div>
+
+    <div id="headerbar" class="bar">
+      <span class="left">Location: <a href="../index.html">Home</a> / <a href="index.html">Documentation</a> / <span>Introduction</span></span>
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+      <ul><li class="webgen-menu-level1"><a href="../index.html">Home</a></li><li class="webgen-menu-level1"><a href="../blog.html">Blog</a></li><li class="webgen-menu-level1 webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="index.html">Documentation</a><ul><li class="webgen-menu-level2 webgen-menu-item-selected"><span>Introduction</span></li><li class="webgen-menu-level2"><a href="install.html">Install</a></li><li class="webgen-menu-level2"><a href="basic-concept.html">Basic Concept</a></li><li class="webgen-menu-level2"><a href="basic-opts.html">Basic Operations</a></li><li class="webgen-menu-level2"><a href="config.html">Configuration</a></li><li class="webgen-menu-level2"><a href="usage.html">Using Uniqush</a></li><li class="webgen-menu-level2"><a href="faq.html">FAQ</a></li></ul></li><li class="webgen-menu-level1"><a href="../mailinglist.html">Mailing List</a></li><li class="webgen-menu-level1"><a href="../src.html">Source Code</a></li></ul>
+
+      
+    </div>
+
+    <div id="body">
+      <h1 id="a-story-of-an-app-development">A Story of an App Development</h1>
+
+<p>This document helps you to understand the basic idea of <strong>uniqush-push</strong> by telling a imaginary story of a group of app developers.</p>
+
+<ul>
+  <li>Once upon a time, there was a group of developers developing weather report app for mobile devices.
+They were from the open source community and hence preferred open platforms. Android was their choice.</li>
+  <li>The idea of their app was naive and simple: sending weather report from their server to their app every day.</li>
+</ul>
+
+<p><img src="img/intro/android-and-android-rain.png" alt="android-and-android-rain" /></p>
+
+<ul>
+  <li>On android platform, sending a notification to an app is easy: <a href="http://google.com">Google</a> provides a cloud service, <a href="https://developers.google.com/cloud-messaging/gcm">Google Cloud Message</a>, or GCM, to help developers to send data from servers to apps.</li>
+  <li>Developers could push any data to their apps by sending an HTTP request to the <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a> cloud.</li>
+  <li>Empowered by <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a>, the developers were quite happy to write server side programs. They didn&#8217;t need to consider the systems on which the app run. <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a> did all works. Everything they need to do was grabbing weather information, establishing HTTP connection to <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a> cloud and sending data through this connection. Clean, easy, and less coding work.</li>
+</ul>
+
+<p><img src="img/intro/gcm-demo.png" alt="gcm-demo" /></p>
+
+<ul>
+  <li>After several months, quite a few android users were using their weather report app. Our lucky developers were encouraged by this success and they decided to expand their business to other platforms.</li>
+  <li>They noticed that a lot of users were willing to use cell phones developed by a fruit company making this platform so popular that they could not refuse to support.</li>
+  <li>(To apple fans: Please forgive for not using their logo, I do not know if I can legally use their logo here. So I have to draw by myself and you can get the idea. Also, Forrest Gump told me it is OK to call it a fruit company.)</li>
+</ul>
+
+<p><img src="img/intro/apple-and-iphone.png" alt="apple-and-iphone" /></p>
+
+<ul>
+  <li>The server side developers found documents from this fruit company knowing that they provide a similar cloud service called <a href="https://developer.apple.com/go/?id=push-notifications">Apple Push Notification Service</a>, or APNs. Again, developers need to establish a connection to APNs cloud and push data to that cloud. Then the cloud would send the data to end users.</li>
+</ul>
+
+<p><img src="img/intro/apns-demo.png" alt="apns-demo" /></p>
+
+<ul>
+  <li>However, it&#8217;s a simple TCP connection this time instead of HTTP connection as in <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a>. Moreover, our developers needed to use another authentication protocol in order to communicate with <a href="https://developer.apple.com/go/?id=push-notifications">APNs</a>.</li>
+  <li>The server side program needed to be changed in order to support both <a href="https://developer.apple.com/go/?id=push-notifications">APNs</a> and <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a>.</li>
+</ul>
+
+<p><img src="img/intro/apns-gcm.png" alt="apns-gcm" /></p>
+
+<ul>
+  <li>After adding support to APNs, the project manager wanted to support more platforms, such as BlackBerry. Again, it uses a similar cloud and specific to BlackBerry devices.</li>
+</ul>
+
+<p><img src="img/intro/blackberry.png" alt="blackberry" /></p>
+
+<ul>
+  <li>The server side developers became impatient because they were spending too much time to add support to another fancy cloud.</li>
+  <li>They needed to focus on what to push to their customers, not how to push messages.</li>
+  <li>No more clouds, please!</li>
+</ul>
+
+<p><img src="img/intro/noclouds.png" alt="noclouds" /></p>
+
+<ul>
+  <li>Finally, our clever developers found <strong>uniqush-push</strong> which solved their problem perfectly.</li>
+  <li>Developers do not need to know which cloud will be used. They just push messages.</li>
+  <li><strong>uniqush-push</strong> will communicate with different clouds through the cloud-specific protocol.</li>
+  <li>After running uniqush on their server, server side developers could again simply use an HTTP connection to <strong>uniqush-push</strong> process and send messages to apps on any platform that uniqush supports.</li>
+</ul>
+
+<p><img src="img/intro/uniqush-demo.png" alt="uniqush-demo" /></p>
+
+<hr />
+
+<h2 id="related-topics">Related Topics</h2>
+
+<ul>
+  <li><a href="install.html">Installing Uniqush and its Dependencies</a></li>
+  <li><a href="basic-concept.html">Basic Concept</a></li>
+</ul>
+
+
+    </div>
+
+    <div id="footer" class="bar">
+      
+        
+            Created by <a href="/authors/monnand.html">Monnand</a>
+        
+      
+      Generated by <a href="http://webgen.rubyforge.org">webgen</a> on <b>2018-04-02 02:48:10</b>
+
+      <br />
+
+      <div id="license">
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
+        </div>
+    </div>
+  </body>
+</html>
+

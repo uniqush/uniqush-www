@@ -1,0 +1,36 @@
+<h1 id="InstallKDB">Install KDB</h1>
+<h2 id="Download">Download</h2>
+<ul><li><a class="ext-link" href="http://oss.sgi.com/projects/kdb/"><span class="icon"> </span>Homepage</a>
+</li><li><a class="ext-link" href="ftp://oss.sgi.com/www/projects/kdb/download/"><span class="icon"> </span>Download Page</a>
+</li><li>Which version should I download? Here is its naming convention:
+</li></ul><pre class="wiki"> vx.y    The version of kdb.  x.y is updated as new features are added to kdb.
+ -v.p.s  The kernel version that the patch applies to.  's' may include -pre,
+         -rc or whatever numbering system the kernel keepers have thought up this
+         week.
+ -common The common kdb code.  Everybody needs this.
+ -ia64   Architecture dependent code for ia64, etc.
+ -x86    Architecture dependent code for x86 (32 bits and 64 bits)
+     (The x86 architecture replaces i386 and x86_64 since 2.6.24-rc1.)
+ -n      If there are multiple kdb patches against the same kernel version then
+         the last number is incremented.
+</pre><p>
+...
+</p>
+<pre class="wiki">For example, to use kdb for i386 on kernel 2.6.6, apply
+  kdb-v4.4-2.6.6-common-&lt;n&gt;            (use highest value of &lt;n&gt;)
+  kdb-v4.4-2.6.6-i386-&lt;n&gt;              (use highest value of &lt;n&gt;)
+in that order.  To use kdb for ia64 with patch 040521 on kernel 2.6.6, apply
+  kdb-v4.4-2.6.6-common-&lt;n&gt;            (use highest value of &lt;n&gt;)
+  kdb-v4.4-2.6.6-ia64-040521-&lt;n&gt;       (use highest value of &lt;n&gt;)
+in that order.
+
+Use patch -p1 for all patches.
+</pre><h2 id="PatchingtheKernel">Patching the Kernel</h2>
+<ul><li><tt>cd linux-2.6.9</tt>
+</li><li><tt>patch -p1 &lt;kdb-v4.4-2.6.9-common-2</tt>
+</li><li><tt>patch -p1 &lt;kdb-v4.4-2.6.9-i386-1</tt>
+</li></ul><h2 id="KernelConfiguration">Kernel Configuration</h2>
+<p>
+Go to the "Kernel hacking" section at the end and select the "Built-in Kernel Debugger support" option and other useful options.
+</p>
+</div>

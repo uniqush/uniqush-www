@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Uniqush - Push Notification Solution for Mobile Platforms [Using Uniqush]</title>
+
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Uniqush" />
+    <meta name="keywords" content="push,ios,android,APNs,GCM,FCM,C2DM,uniqush" />
+    
+    <meta name="author" content="Nan Deng" />
+    
+    <meta name="generator" content="webgen - http://webgen.rubyforge.com/" />
+    <link href="../default.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37737378-1']);
+    _gaq.push(['_setDomainName', 'uniqush.org']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    </script>
+
+  </head>
+  <body>
+    <div id="header">
+        <img id="frontphoto" src="../images/front.png" alt="" />
+    </div>
+
+    <div id="headerbar" class="bar">
+      <span class="left">Location: <a href="../index.html">Home</a> / <a href="index.html">Documentation</a> / <span>Using Uniqush</span></span>
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+      <ul><li class="webgen-menu-level1"><a href="../index.html">Home</a></li><li class="webgen-menu-level1"><a href="../blog.html">Blog</a></li><li class="webgen-menu-level1 webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="index.html">Documentation</a><ul><li class="webgen-menu-level2"><a href="intro.html">Introduction</a></li><li class="webgen-menu-level2"><a href="install.html">Install</a></li><li class="webgen-menu-level2"><a href="basic-concept.html">Basic Concept</a></li><li class="webgen-menu-level2"><a href="basic-opts.html">Basic Operations</a></li><li class="webgen-menu-level2"><a href="config.html">Configuration</a></li><li class="webgen-menu-level2 webgen-menu-item-selected"><span>Using Uniqush</span></li><li class="webgen-menu-level2"><a href="faq.html">FAQ</a></li></ul></li><li class="webgen-menu-level1"><a href="../mailinglist.html">Mailing List</a></li><li class="webgen-menu-level1"><a href="../src.html">Source Code</a></li></ul>
+
+      
+      <div id="toc">
+		
+			
+		
+      </div>
+      
+    </div>
+
+    <div id="body">
+      
+<h1 id="using-uniqush">Using Uniqush</h1>
+
+<p>This document describes how to use Uniqush by sending HTTP POST request to <code>uniqush-push</code>. Please make sure you understand <a href="basic-opts.html">Basic Operations Provided by Uniqush</a>. Parameters of a request should be properly <a href="http://en.wikipedia.org/wiki/URL_encoding">URL encoded</a>. We will use <a href="http://curl.haxx.se/">curl</a> to show some examples.</p>
+
+<p>Before executing any command below, make sure you have already started <em>uniqush-push</em>. It will be under <code>/usr/bin</code> directory if you installed Uniqush from official binary files.</p>
+
+<p><strong>NOTE:</strong> <code>uniqush-push</code> is only a server side program. You need to use the native client code for each platform. For more information on how to support push notification on client side, please look at the corresponding documents for each platform:</p>
+
+<ul>
+  <li><a href="https://developers.google.com/cloud-messaging/gcm">GCM</a> (or <a href="https://firebase.google.com/docs/cloud-messaging/">FCM</a>) for Android</li>
+  <li><a href="https://developer.apple.com/go/?id=push-notifications">APNs</a> for iOS</li>
+  <li><a href="https://developer.amazon.com/device-messaging">ADM</a> for Kindle tablets</li>
+</ul>
+
+<hr />
+
+<h2 id="get-the-version-of-uniqush-push">Get the Version of <code>uniqush-push</code></h2>
+
+<ul>
+  <li>URL: <code>/version</code></li>
+  <li>Alternatively, you can run <strong><code>uniqush-push -version</code></strong> to get the version of <code>uniqush-push</code></li>
+</ul>
+
+<hr />
+
+<h2 id="stop-uniqush-push">Stop <code>uniqush-push</code></h2>
+
+<ul>
+  <li>URL: <code>/stop</code></li>
+</ul>
+
+<p><strong>NOTE:</strong> You need to stop the program or it may not synchronize the cache with the database.</p>
+
+<hr />
+
+<h2 id="adding-push-service-provider">Adding Push Service Provider</h2>
+<ul>
+  <li>URL: <code>/addpsp</code></li>
+</ul>
+
+<h3 id="parameters-for-gcm-push-service-provider">Parameters for GCM Push Service Provider</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For GCM Push Service Provider, this is always <em>gcm</em></td>
+    </tr>
+    <tr>
+      <td>projectid</td>
+      <td>Project ID.</td>
+    </tr>
+    <tr>
+      <td>apikey</td>
+      <td>API Key</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Read <a href="https://developers.google.com/cloud-messaging/gcm#senderid">this</a> link on
+how to get a Project ID and API key. Note: you need to make a <strong>Server key</strong> not
+an Android key.</p>
+
+<p>Example: <code>curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicetype=gcm -d projectid=123 -d apikey=somekey</code></p>
+
+<h3 id="parameters-for-fcm-push-service-provider">Parameters for FCM Push Service Provider</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For FCM Push Service Provider, this is always <em>fcm</em></td>
+    </tr>
+    <tr>
+      <td>projectid</td>
+      <td>Project ID.</td>
+    </tr>
+    <tr>
+      <td>apikey</td>
+      <td>API Key</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Read <a href="https://firebase.google.com/docs/android/setup#manually_add_firebase">this</a> link on
+how to get a Project ID and API key. Note: you need to make a <strong>Server key</strong> not
+an Android key.</p>
+
+<p>Example: <code>curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicetype=fcm -d projectid=123 -d apikey=somekey</code></p>
+
+<h3 id="parameters-for-apns-push-service-provider">Parameters for APNs Push Service Provider</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For APNs Push Service Provider, this is always <em>apns</em></td>
+    </tr>
+    <tr>
+      <td>cert</td>
+      <td>The absolute path to the certificate file in .pem format</td>
+    </tr>
+    <tr>
+      <td>key</td>
+      <td>The absolute path to the private key file in .pem format</td>
+    </tr>
+    <tr>
+      <td>sandbox</td>
+      <td>Optional. <em>true</em> for sandbox; otherwise for production environment</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicetype=apns -d cert=/path/to/certificate.pem -d key=/path/to/privatekey.pem -d sandbox=true</code></p>
+
+<p>See <a href="http://blog.boxedice.com/2010/06/05/how-to-renew-your-apple-push-notification-push-ssl-certificate/">this blog</a> for details how to acquire the PEM files (certificate and private key).</p>
+
+<h3 id="parameters-for-adm-push-service-provider">Parameters for ADM Push Service Provider</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For ADM Push Service Provider, this is always <em>adm</em></td>
+    </tr>
+    <tr>
+      <td>clientid</td>
+      <td>The Client ID.</td>
+    </tr>
+    <tr>
+      <td>clientsecret</td>
+      <td>The Client Secret.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To obtain the Client ID and Client Secret:</p>
+
+<ul>
+  <li>Create an account on the <a href="https://developer.amazon.com/welcome.html">Amazon Mobile App Distribution Portal</a> and add your app, if you have not already done so.</li>
+  <li>In &#8220;Apps &amp; Services &gt; My Apps&#8221;, select the app with which you want to use ADM.</li>
+  <li>Select the &#8220;Security Profile&#8221; link for the app.</li>
+  <li>Click &#8220;View Security Profile&#8221; button and the Client ID and Secret will be shown on the page.</li>
+</ul>
+
+<p>Here is an example of a Client ID: <code>amzn1.iba-client.b2b360f8a77d457981625636121d6edf</code></p>
+
+<p>Here is an example of a Client Secret: <code>c559965801308f2bb79ca787b1dfc8deece8a2fd7d7618946cec1635d26dcbfb</code></p>
+
+<p><strong>NOTE</strong>: The method mentioned above may be changed. Please refer to the <a href="https://developer.amazon.com/sdk/adm/credentials.html">Document from Amazon</a> for more details.</p>
+
+<p>Example: <code>curl http://127.0.0.1:9898/addpsp -d service=myservice -d clientid=someClientId -d clientsecret=ClientSecret -d pushservicetype=adm</code></p>
+
+<hr />
+
+<h2 id="removing-push-service-provider">Removing Push Service Provider</h2>
+
+<ul>
+  <li>URL: <code>/rmpsp</code></li>
+</ul>
+
+<h3 id="parameters-for-gcm-push-service-provider-1">Parameters for GCM Push Service Provider</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For GCM Push Service Provider, this is always <em>gcm</em></td>
+    </tr>
+    <tr>
+      <td>projectid</td>
+      <td>Project ID.</td>
+    </tr>
+    <tr>
+      <td>apikey</td>
+      <td>API Key</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Read <a href="https://developers.google.com/cloud-messaging/gcm#senderid">this</a> link for how to get a Project ID and API key.</p>
+
+<p>Example: <code>curl http://127.0.0.1:9898/rmpsp -d service=myservice -d pushservicetype=gcm -d projectid=123</code></p>
+
+<h3 id="parameters-for-fcm-push-service-provider-1">Parameters for FCM Push Service Provider</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For FCM Push Service Provider, this is always <em>fcm</em></td>
+    </tr>
+    <tr>
+      <td>projectid</td>
+      <td>Project ID.</td>
+    </tr>
+    <tr>
+      <td>apikey</td>
+      <td>API Key</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Read <a href="https://firebase.google.com/docs/android/setup#manually_add_firebase">this</a> link for how to get a Project ID and API key.</p>
+
+<p>Example: <code>curl http://127.0.0.1:9898/rmpsp -d service=myservice -d pushservicetype=fcm -d projectid=123</code></p>
+
+<h3 id="parameters-for-apns-push-service-provider-1">Parameters for APNs Push Service Provider</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For APNs Push Service Provider, this is always <em>apns</em></td>
+    </tr>
+    <tr>
+      <td>cert</td>
+      <td>The absolute path to the certificate file in .pem format</td>
+    </tr>
+    <tr>
+      <td>key</td>
+      <td>The absolute path to the private key file in .pem format</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/rmpsp -d service=myservice -d pushservicetype=apns -d cert=/path/to/certificate.pem -d key=/path/to/privatekey.pem</code></p>
+
+<h3 id="parameters-for-adm-push-service-provider-1">Parameters for ADM Push Service Provider</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For ADM Push Service Provider, this is always <em>adm</em></td>
+    </tr>
+    <tr>
+      <td>clientid</td>
+      <td>The Client ID.</td>
+    </tr>
+    <tr>
+      <td>clientsecret</td>
+      <td>The Client Secret.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To obtain the Client ID and Client Secret:</p>
+
+<ul>
+  <li>Create an account on the <a href="https://developer.amazon.com/welcome.html">Amazon Mobile App Distribution Portal</a> and add your app, if you have not already done so.</li>
+  <li>In &#8220;Apps &amp; Services &gt; My Apps&#8221;, select the app with which you want to use ADM.</li>
+  <li>Select the &#8220;Security Profile&#8221; link for the app.</li>
+  <li>Click &#8220;View Security Profile&#8221; button and the Client ID and Secret will be shown on the page.</li>
+</ul>
+
+<p>Here is an example of a Client ID: <code>amzn1.iba-client.b2b360f8a77d457981625636121d6edf</code></p>
+
+<p>Here is an example of a Client Secret: <code>c559965801308f2bb79ca787b1dfc8deece8a2fd7d7618946cec1635d26dcbfb</code></p>
+
+<p><strong>NOTE</strong>: The method mentioned above may be changed. Please refer to the <a href="https://developer.amazon.com/sdk/adm/credentials.html">Document from Amazon</a> for more details.</p>
+
+<p>Example: <code>curl http://127.0.0.1:9898/addpsp -d service=myservice -d clientid=someClientId -d clientsecret=ClientSecret -d pushservicetype=adm</code></p>
+
+<hr />
+
+<h2 id="subscribe">Subscribe</h2>
+
+<ul>
+  <li>URL: <code>/subscribe</code></li>
+</ul>
+
+<h3 id="parameters-for-android-devices-using-gcm">Parameters for Android Devices Using GCM</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For Android Device using GCM, this is always <em>gcm</em></td>
+    </tr>
+    <tr>
+      <td>regid</td>
+      <td>Registration ID</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=gcm -d regid=fakeregid</code></p>
+
+<h3 id="parameters-for-android-devices-using-fcm">Parameters for Android Devices Using FCM</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For Android Device using FCM, this is always <em>fcm</em></td>
+    </tr>
+    <tr>
+      <td>regid</td>
+      <td>Registration ID</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=fcm -d regid=fakeregid</code></p>
+
+<h3 id="parameters-for-ios-devices-using-apns">Parameters for iOS Devices Using APNs</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For iOS device using APNs, this is always <em>apns</em></td>
+    </tr>
+    <tr>
+      <td>devtoken</td>
+      <td>Device token</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=apns -d devtoken=some-device-token</code></p>
+
+<h3 id="parameters-for-kindle-devices-using-adm">Parameters for Kindle Devices Using ADM</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For Kindle Device using ADM, this is always <em>adm</em></td>
+    </tr>
+    <tr>
+      <td>regid</td>
+      <td>Registration ID</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservicetype=adm -d subscriber=firehd -d regid=RegistrationId</code></p>
+
+<hr />
+
+<h2 id="unsubscribe">Unsubscribe</h2>
+
+<ul>
+  <li>URL: <code>/unsubscribe</code></li>
+</ul>
+
+<h3 id="parameters-for-android-devices-using-gcm-1">Parameters for Android Devices Using GCM</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For Android Device using GCM, this is always <em>gcm</em></td>
+    </tr>
+    <tr>
+      <td>regid</td>
+      <td>Registration ID. NOTE: This registration ID must be exactly the same one used to subscribe.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=gcm -d regid=fakeregid</code></p>
+
+<p>The registration ID should be same one used to subscribe the service. That is: you don&#8217;t need to consider if the GCM will update the registration ID for the device. Uniqush can handle it.</p>
+
+<h3 id="parameters-for-android-devices-using-fcm-1">Parameters for Android Devices Using FCM</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For Android Device using FCM, this is always <em>fcm</em></td>
+    </tr>
+    <tr>
+      <td>regid</td>
+      <td>Registration ID. NOTE: This registration ID must be exactly the same one used to subscribe.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=fcm -d regid=fakeregid</code></p>
+
+<p>The registration ID should be same one used to subscribe the service. That is: you don&#8217;t need to consider if the FCM will update the registration ID for the device. Uniqush can handle it.</p>
+
+<h3 id="parameters-for-ios-devices-using-apns-1">Parameters for iOS Devices Using APNs</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For iOS device using APNs, this is always <em>apns</em></td>
+    </tr>
+    <tr>
+      <td>devtoken</td>
+      <td>Device token</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/unsubscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=apns -d devtoken=devtoken</code></p>
+
+<h3 id="parameters-for-kindle-devices-using-adm-1">Parameters for Kindle Devices Using ADM</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID</td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>For Kindle Device using ADM, this is always <em>adm</em></td>
+    </tr>
+    <tr>
+      <td>regid</td>
+      <td>Registration ID</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservicetype=adm -d subscriber=firehd -d regid=RegistrationId</code></p>
+
+<h2 id="get-subscriptions">Get Subscriptions</h2>
+
+<ul>
+  <li>URL: <code>/subscriptions</code></li>
+</ul>
+
+<h3 id="parameters-for-getting-subscriptions-for-a-set-of-service-names">Parameters for getting subscriptions for a set of service names</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>services</td>
+      <td>Service Name(s)</td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/subscriptions -d services=myservice,myotherservice -d subscriber=uniqush.client</code></p>
+
+<h3 id="parameters-for-getting-subscriptions-across-each-service">Parameters for getting subscriptions across each service</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/subscriptions -d subscriber=uniqush.client</code></p>
+
+<p>If this fails to return results for some valid services, then use the <code>/rebuildserviceset</code> API.</p>
+
+<h2 id="get-psps">Get PSPs</h2>
+
+<ul>
+  <li>URL: <code>/psps</code></li>
+</ul>
+
+<p>Returns JSON representing the PSPs stored in Uniqush, along with their configs (API keys, paths to certificates, service type, etc.).</p>
+
+<h2 id="migrating-from-10-to-20">Migrating from 1.0 to 2.0</h2>
+
+<ul>
+  <li>URL: <code>/rebuildserviceset</code></li>
+</ul>
+
+<p>Initializes the set of all service names.  This API is needed for the /subscriptions and the /psps APIs to work(and be efficient).</p>
+
+<hr />
+
+<h2 id="push-message">Push Message</h2>
+
+<ul>
+  <li>URL: <code>/push</code></li>
+</ul>
+
+<h3 id="parameters">Parameters</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name.</td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID. Could be more than one subscriber. Comma separated. Asterisk (*) could be used as a wildcard to match any string</td>
+    </tr>
+    <tr>
+      <td>msg</td>
+      <td>Optional. Message Body</td>
+    </tr>
+    <tr>
+      <td>ttl</td>
+      <td>Optional. Time to live. How long (in seconds) the message should be kept on push service provider&#8217;s server if the device is offline</td>
+    </tr>
+    <tr>
+      <td>badge</td>
+      <td>Optional. Badge</td>
+    </tr>
+    <tr>
+      <td>img</td>
+      <td>Optional. Image</td>
+    </tr>
+    <tr>
+      <td>sound</td>
+      <td>Optional. Sound</td>
+    </tr>
+    <tr>
+      <td>loc-key</td>
+      <td>Optional. loc-key for APNS</td>
+    </tr>
+    <tr>
+      <td>loc-args</td>
+      <td>Optional. loc-args for APNS. It is a comma-separated string.</td>
+    </tr>
+    <tr>
+      <td>action-loc-key</td>
+      <td>Option. action-loc-key for APNS.</td>
+    </tr>
+    <tr>
+      <td>uniqush.payload.gcm</td>
+      <td>The raw JSON payload for GCM subscribers (for &#8220;data&#8221;). If this is specified, it replaces the GCM payload.</td>
+    </tr>
+    <tr>
+      <td>uniqush.payload.apns</td>
+      <td>The raw JSON payload for APNS subscribers. If this is specified, it replaces the APNS payload. (except ttl)</td>
+    </tr>
+    <tr>
+      <td><em>Reserved Parameter</em></td>
+      <td>Any parameter whose name starts from &#8220;uniqush.&#8221; is reserved by uniqush. Users should avoid using those parameter names.</td>
+    </tr>
+    <tr>
+      <td><em>User Defined Parameter</em></td>
+      <td>Optional. Any other parameter is accepted which will be sent to mobile devices</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>At least one of the optional parameters should be provided, or it will be an empty message and won&#8217;t be sent.</p>
+
+<p>For android and kindle client, the message will be received as <em>Intent</em> containing key-value pairs. <em>msg, badge, img, sound, loc-key, loc-args</em> and <em>User Defined Parameters</em> will be put as key-value pairs in the <em>Intent</em>. You can use <em>getExtras()</em> method of the <em>Intent</em> to get all key-value pairs.</p>
+
+<p>For iOS client, the notification is sent as JSON encoded message to APNs. All parameters are mapped to their corresponding place as follows:</p>
+
+<p>The payload (currently always JSON) that would be sent for any client type can be viewed with the <code>/previewpush</code> endpoint</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Mapped To</strong></td>
+    </tr>
+    <tr>
+      <td>msg</td>
+      <td>&#8220;aps&#8221; &gt; &#8220;alert&#8221; &gt; &#8220;body&#8221;</td>
+    </tr>
+    <tr>
+      <td>badge</td>
+      <td>&#8220;aps&#8221; &gt; &#8220;badge&#8221;</td>
+    </tr>
+    <tr>
+      <td>img</td>
+      <td>&#8220;aps&#8221; &gt; &#8220;alert&#8221; &gt; &#8220;launch-image&#8221;</td>
+    </tr>
+    <tr>
+      <td>sound</td>
+      <td>&#8220;aps&#8221; &gt; &#8220;sound&#8221;</td>
+    </tr>
+    <tr>
+      <td>loc-key</td>
+      <td>&#8220;aps&#8221; &gt; &#8220;alert&#8221; &gt; &#8220;loc-key&#8221;</td>
+    </tr>
+    <tr>
+      <td>loc-args</td>
+      <td>&#8220;aps&#8221; &gt; &#8220;alert&#8221; &gt; &#8220;loc-args&#8221;</td>
+    </tr>
+    <tr>
+      <td>action-loc-key</td>
+      <td>&#8220;aps&#8221; &gt; &#8220;alert&#8221; &gt; &#8220;action-loc-key&#8221;</td>
+    </tr>
+    <tr>
+      <td>content-available</td>
+      <td>&#8220;aps&#8221; &gt; &#8220;content-available&#8221;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For user defined parameters, they are key-value pairs in the same hash table with &#8220;aps&#8221;.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li>
+    <p>Push to one subscriber:</p>
+
+    <p><code>curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client -d msg="Hello World"</code></p>
+  </li>
+  <li>
+    <p>Push to multiple subscribers:</p>
+
+    <p><code>curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client1,uniqush.client2 -d msg="Hello World"</code></p>
+  </li>
+  <li>
+    <p>Push with user defined parameter</p>
+
+    <p><code>curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.client -d msg="Hello World" -d userdefinedparam=somearbitraryvalue</code></p>
+  </li>
+  <li>
+    <p>Push to multiple subscribers with pattern:</p>
+
+    <p><code>curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=uniqush.* -d msg="Hello World"</code></p>
+  </li>
+  <li>
+    <p>Push to all subscribers under some service (you probably do not want to do that):</p>
+
+    <p><code>curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=* -d msg="Hello World"</code></p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="preview-push-payload">Preview Push Payload</h2>
+
+<ul>
+  <li>URL: <code>/previewpush</code></li>
+</ul>
+
+<h3 id="parameters-1">Parameters</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>pushservicetype</td>
+      <td>A supported push service type (&#8220;apns&#8221;, &#8220;gcm&#8221;, or &#8220;adm&#8221;).</td>
+    </tr>
+    <tr>
+      <td>msg</td>
+      <td>Optional. Message Body</td>
+    </tr>
+    <tr>
+      <td>ttl</td>
+      <td>Optional. Time to live. How long (in seconds) the message should be kept on push service provider&#8217;s server if the device is offline</td>
+    </tr>
+    <tr>
+      <td>badge</td>
+      <td>Optional. Badge</td>
+    </tr>
+    <tr>
+      <td>img</td>
+      <td>Optional. Image</td>
+    </tr>
+    <tr>
+      <td>sound</td>
+      <td>Optional. Sound</td>
+    </tr>
+    <tr>
+      <td>loc-key</td>
+      <td>Optional. loc-key for APNS</td>
+    </tr>
+    <tr>
+      <td>loc-args</td>
+      <td>Optional. loc-args for APNS. It is a comma-separated string.</td>
+    </tr>
+    <tr>
+      <td>action-loc-key</td>
+      <td>Optional. action-loc-key for APNS.</td>
+    </tr>
+    <tr>
+      <td>uniqush.payload.gcm</td>
+      <td>Optional. Raw JSON payload for GCM clients (for &#8220;data&#8221;). If this is specified, it replaces the GCM payload.</td>
+    </tr>
+    <tr>
+      <td>uniqush.payload.apns</td>
+      <td>Optional. Raw JSON payload for APNS clients. If this is specified, it replaces the APNS payload. (except ttl)</td>
+    </tr>
+    <tr>
+      <td><em>Reserved Parameter</em></td>
+      <td>Optional. Any parameter whose name starts from &#8220;uniqush.&#8221; is reserved by uniqush. Users should avoid using those parameter names.</td>
+    </tr>
+    <tr>
+      <td><em>User Defined Parameter</em></td>
+      <td>Optional. Any other parameter is accepted which will be sent to mobile devices</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>At least one of the optional parameters should be provided, or it will be an empty message. This API returns the same error code <code>/push</code> would.</p>
+
+<p>See the section for &#8220;Push Notifications&#8221;.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li>
+    <p>Preview the payload sent to GCM, APNS, or ADM clients:</p>
+
+    <ul>
+      <li><code>curl http://127.0.0.1:9898/previewpush -d pushservicetype=gcm -d msg="Hello World"</code></li>
+      <li><code>curl http://127.0.0.1:9898/previewpush -d pushservicetype=apns -d msg="Hello World"</code></li>
+      <li><code>curl http://127.0.0.1:9898/previewpush -d pushservicetype=adm -d msg="Hello World"</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="getting-the-number-of-delivery-points-for-a-subscriber-to-a-service">Getting The Number of Delivery Points for a Subscriber to a Service</h2>
+
+<ul>
+  <li>URL: <code>/nrdp</code></li>
+</ul>
+
+<h3 id="parameters-for-getting-the-number-of-delivery-points">Parameters for getting the number of delivery points</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td>Service Name</td>
+    </tr>
+    <tr>
+      <td>subscriber</td>
+      <td>Subscriber ID</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/nrdp -d service=myservice -d subscriber=uniqush.client</code></p>
+
+<hr />
+
+<h2 id="related-topics">Related Topics</h2>
+
+<ul>
+  <li><a href="basic-concept.html">Basic Concepts</a>: This document explains the basic concepts inside Uniqush. They are critical to using Uniqush.</li>
+  <li><a href="basic-opts.html">Basic Operations</a>: This document covers the basic operations provided by Uniqush.</li>
+  <li><a href="install.html">Install</a>: This document explains how to install Uniqush and its dependencies.</li>
+  <li><a href="config.html">Configuration</a>: This document explains the detail of configuration of Uniqush.</li>
+</ul>
+
+
+    </div>
+
+    <div id="footer" class="bar">
+      
+        
+            Created by <a href="/authors/monnand.html">Nan Deng</a>
+        
+      
+      Generated by <a href="http://webgen.rubyforge.org">webgen</a> on <b>2018-04-02 02:48:10</b>
+
+      <br />
+
+      <div id="license">
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
+        </div>
+    </div>
+  </body>
+</html>
+

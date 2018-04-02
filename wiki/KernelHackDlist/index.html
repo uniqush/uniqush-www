@@ -1,0 +1,114 @@
+<pre class="wiki">/* Author: Deng, Nan &lt;deng.72@osu.edu&gt; */
+#ifndef __VOILA_DOUBLY_LINKED_LIST_H
+#define __VOILA_DOUBLY_LINKED_LIST_H
+
+#include &lt;stdio.h&gt;
+
+#ifdef  __cplusplus
+extern "C" {
+#endif
+
+
+/*!\file dlist.h
+ * \brif Simple doubly linked list implementation
+ *
+ * Borrowed the doubly linked list idea from Linux kernel. 
+ * Read Linux kernel's code: $KERNEL/include/linux/list.h for details
+ */
+
+typedef struct dlist_head {
+    struct dlist_head *next, *prev;
+}dlist_head_t;
+
+/*!\fn dlist_head_init
+ * Initialise a list head
+ */
+static inline void dlist_head_init(dlist_head_t *list)
+{
+    list-&gt;next = list;
+    list-&gt;prev = list;
+}
+
+/*!\fn __dlist_add
+ * Insert a new entry between two know consecutive entries.
+ */
+static inline void __dlist_add(dlist_head_t *item,
+            dlist_head_t *prev,
+            dlist_head_t *next)
+{
+    next-&gt;prev = item;
+    item-&gt;next = next;
+    item-&gt;prev = prev;
+    prev-&gt;next = item;
+}
+
+/*!\fn dlist_add
+ * Insert a new entry after the specified head.
+ * This is good for implementing stacks.
+ * \param item entry to be added
+ * \param head list head to add it after
+ */
+static inline void dlist_add(dlist_head_t *item,dlist_head_t *head)
+{
+    __dlist_add(item,head,head-&gt;next);
+}
+
+/*!\fn dlist_add_tail
+ * Insert a new entry before the specified head.
+ * This is useful for implementing queues.
+ * \param item new entry to be added
+ * \param head list head to add it before
+ */
+static inline void dlist_add_tail(dlist_head_t *item,dlist_head_t *head)
+{
+    __dlist_add(item,head-&gt;prev,head);
+}
+
+/*!\fn __dlist_del
+ * Delete a list entry by making the prev/next entries
+ * point to each other.
+ */
+static inline void __dlist_del(dlist_head_t *prev,dlist_head_t *next)
+{
+    next-&gt;prev = prev;
+    prev-&gt;next = next;
+}
+
+/*!\fn dlist_del
+ * Deletes entry from list.
+ * \param entry the element to delete from the list.
+ */
+static inline void dlist_del(dlist_head_t *entry)
+{
+    __dlist_del(entry-&gt;prev,entry-&gt;next);
+}
+
+/*!\fn dlist_is_empty
+ * \return true if the list is empty. 0 on otherwise
+ */
+static inline int dlist_is_empty(dlist_head_t *head)
+{
+    return head-&gt;next == head;
+}
+
+#ifndef dlist_entry
+#define dlist_entry(ptr,type,member)    \
+    ((type *)((char *)(ptr) - (char *)(&amp;((type *)0)-&gt;member)))
+#endif /* dlist_entry */
+
+#ifndef dlist_for_each
+#define dlist_for_each(pos,head)    \
+    for((pos)=((head)-&gt;next);(pos)!=(head);(pos)=((pos)-&gt;next))
+#endif /* dlist_for_each */
+
+#define dlist_for_each_safe(pos, n, head)   \
+    for ((pos) = ((head)-&gt;next), n = (pos)-&gt;next; \
+            (pos) != (head);    \
+            (pos) = (n), (n) = (pos)-&gt;next)
+
+#ifdef  __cplusplus
+}
+#endif
+
+#endif /* __VOILA_DOUBLY_LINKED_LIST_H */
+</pre>

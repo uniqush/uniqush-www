@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Uniqush - Push Notification Solution for Mobile Platforms [FAQ]</title>
+
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Uniqush" />
+    <meta name="keywords" content="push,ios,android,APNs,GCM,FCM,C2DM,uniqush" />
+    
+    <meta name="author" content="Nan Deng" />
+    
+    <meta name="generator" content="webgen - http://webgen.rubyforge.com/" />
+    <link href="../default.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37737378-1']);
+    _gaq.push(['_setDomainName', 'uniqush.org']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    </script>
+
+  </head>
+  <body>
+    <div id="header">
+        <img id="frontphoto" src="../images/front.png" alt="" />
+    </div>
+
+    <div id="headerbar" class="bar">
+      <span class="left">Location: <a href="../index.html">Home</a> / <a href="index.html">Documentation</a> / <span>FAQ</span></span>
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+      <ul><li class="webgen-menu-level1"><a href="../index.html">Home</a></li><li class="webgen-menu-level1"><a href="../blog.html">Blog</a></li><li class="webgen-menu-level1 webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="index.html">Documentation</a><ul><li class="webgen-menu-level2"><a href="intro.html">Introduction</a></li><li class="webgen-menu-level2"><a href="install.html">Install</a></li><li class="webgen-menu-level2"><a href="basic-concept.html">Basic Concept</a></li><li class="webgen-menu-level2"><a href="basic-opts.html">Basic Operations</a></li><li class="webgen-menu-level2"><a href="config.html">Configuration</a></li><li class="webgen-menu-level2"><a href="usage.html">Using Uniqush</a></li><li class="webgen-menu-level2 webgen-menu-item-selected"><span>FAQ</span></li></ul></li><li class="webgen-menu-level1"><a href="../mailinglist.html">Mailing List</a></li><li class="webgen-menu-level1"><a href="../src.html">Source Code</a></li></ul>
+
+      
+    </div>
+
+    <div id="body">
+      
+<h1 id="faq">FAQ</h1>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="i-do-not-know-how-to-use-uniqush-can-you-explain-it-a-little-bit">I do not know how to use uniqush. Can you explain it a little bit?</h3>
+
+<p>Sure.</p>
+
+<p>The core part (and the only part right now) of uniqush is <code>uniqush-push</code>. It is a stand alone program. You can communicate with this program through HTTP connection. Asking uniqush to do some work can be done by sending an HTTP Post request to <code>uniqush-push</code>. In short, once you start <code>uniqush-push</code>, you can use it as a common web service according to its <a href="usage.html">APIs</a>. You may want to know which port it will use for the HTTP connection. Actually, you can <a href="config.html">configure it and
+other parameters</a> by yourself.</p>
+
+<p>If you have any other questions, please feel free to send it on <a href="http://groups.google.com/group/uniqush">mailing list</a>.</p>
+
+<h3 id="can-i-use-uniqush-on-google-app-engine">Can I use uniqush on Google App Engine?</h3>
+
+<p>Yes and no.</p>
+
+<p>If you just want to use <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a> or <a href="https://firebase.google.com/docs/cloud-messaging/">FCM</a> on Google App Engine, then <code>uniqush-push</code> has some code which you can directly use.</p>
+
+<p>However, because Google App Engine does not support socket connection, there is no way to use <a href="https://developer.apple.com/go/?id=push-notifications">APNs</a>.
+In other words, if you want to setup a server on Google App Engine, you <strong>cannot</strong> push any notification to iOS devices no matter what software/library you are using.</p>
+
+<p>I did consider porting uniqush to Google App Engine. But because of the lack of socket connection support, I think it may be better to port it until Google let us use client-side socket connections, or provide some way to connect to <a href="https://developer.apple.com/go/?id=push-notifications">APNs</a> server.</p>
+
+<p>Again, if you are considering to use Google App Engine as a server for your App, please be aware that you will not be able to push notification to any iOS device right now. If this fact does not bother you, then do it.</p>
+
+<p>Personally, I recommend that you run a server with full control. It is not expensive nowadays. Amazon EC2 or similar cloud products may be a good choice to run uniqush.</p>
+
+<hr />
+
+<h2 id="development">Development</h2>
+
+<h3 id="where-should-i-submit-the-bug-report">Where should I submit the bug report</h3>
+
+<p>You found a bug? Great! I really appreciate!</p>
+
+<p>You can send a mail to our <a href="http://groups.google.com/group/uniqush">mailing list</a> or to <a href="mailto:uniqush.go@gmail.com">uniqush.go at gmail dot com</a>.</p>
+
+<p>If you know which part is wrong, you can submit an issue on <a href="http://github.com/uniqush">github.com</a>.</p>
+
+<h3 id="i-have-some-suggestions">I have some suggestions</h3>
+
+<p>Thank you very much! You can send your idea to <a href="http://groups.google.com/group/uniqush">mailing list</a> or to <a href="mailto:uniqush.go@gmail.com">uniqush.go at gmail dot com</a>.</p>
+
+<h3 id="why-not-provide-an-https-connection-inside-uniqush-push-its-safe">Why not provide an HTTPS connection inside <code>uniqush-push</code>? It&#8217;s safe!</h3>
+
+<p>Yes. It is safe. However, it is not <code>uniqush-push</code>&#8217;s responsibility to keep a safe connection to outside world. Why? Because many web-servers already provide proxy function. If you have an SSL certificate, you won&#8217;t want to configure it on two programs. You can always keep an HTTPS function on web-server and forward the request to <code>uniqush-push</code>.</p>
+
+<p>We recommend the <code>uniqush-push</code> accept connections only from localhost and other programs do authentication/encryption jobs. We may provide another program which communicate with outside world used for subscribing/unsubscribing service. However, it is still a stand along program outside the <code>uniqush-push</code>.</p>
+
+<h3 id="why-not-provide-function-to-activatedeactivate-the-delivery-point-inside-uniqush-push">Why not provide function to activate/deactivate the delivery point inside <code>uniqush-push</code></h3>
+
+<p>Again, this function should be implemented outside <code>uniqush-push</code>.</p>
+
+<p>We want the <code>uniqush-push</code> to be fast, simple and providing the only essential functions. Imaging you have a subscriber who has several delivery points. Some of them are activated and some of them are not. Then <code>uniqush-push</code> has to fetch these delivery points from either database or cache, iterate over all of them. In each iteration, <code>uniqush-push</code> &#8216;'&#8217;has to&#8217;&#8217;&#8217; detect if a delivery point is activated &#8212; a branching statement here which increases the CPU cache miss rate.
+Moreover, we have to branch in &#8216;&#8216;every&#8217;&#8217; iteration. What&#8217;s worse, such branches has to be executed in &#8216;&#8216;every&#8217;&#8217; push operation which is the most frequently used operation of <code>uniqush-push</code>. This is unacceptable when we have a more elegant way to solve this problem.</p>
+
+<p>Here is a solution: suppose you have a program outside <code>uniqush-push</code> (we may provide such program in the future), when you want to deactivate some delivery point, this program could simply tell the <code>uniqush-push</code> to unsubscribe this delivery point from specified subscriber. The outside program will record the information of that delivery point and re-subscribe it when user re-activate that delivery point. This is better because we don&#8217;t need to introduce more branches inside the
+push operation. Moreover, because this activation/deactivation operation won&#8217;t be executed too frequently, the communication cost could be neglected.</p>
+
+<h3 id="why-use-go-programming-language">Why use Go programming language?</h3>
+
+<p>It&#8217;s really cool, seriously. You should try it.</p>
+
+<p>I love the design of Go. Easy, simple, fast. No fancy patterns, no rigid awkward grammars. Especially its emphasis on concurrency which must be a critical point for future multi-core CPUs. It won&#8217;t provide a huge fancy library like spaghetti. Also, it doesn&#8217;t make you do everything yourself (It gives you much more than malloc / free).</p>
+
+<h3 id="i-am-new-to-go-do-you-think-i-can-use-your-code-to-learn-go">I am new to Go. Do you think I can use your code to learn Go?</h3>
+
+<p>If you have some programming background, then yes. Actually, I think there are several <code>.go</code> files inside my source code which may be useful for other projects. Please feel free to learn the code and it is more than welcome to make your own contribution.</p>
+
+
+    </div>
+
+    <div id="footer" class="bar">
+      
+        
+            Created by <a href="/authors/monnand.html">Nan Deng</a>
+        
+      
+      Generated by <a href="http://webgen.rubyforge.org">webgen</a> on <b>2018-04-02 02:48:10</b>
+
+      <br />
+
+      <div id="license">
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
+        </div>
+    </div>
+  </body>
+</html>
+

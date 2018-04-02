@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Uniqush - Push Notification Solution for Mobile Platforms [Basic Operations]</title>
+
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Uniqush" />
+    <meta name="keywords" content="push,ios,android,APNs,GCM,FCM,C2DM,uniqush" />
+    
+    <meta name="author" content="Nan Deng" />
+    
+    <meta name="generator" content="webgen - http://webgen.rubyforge.com/" />
+    <link href="../default.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37737378-1']);
+    _gaq.push(['_setDomainName', 'uniqush.org']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    </script>
+
+  </head>
+  <body>
+    <div id="header">
+        <img id="frontphoto" src="../images/front.png" alt="" />
+    </div>
+
+    <div id="headerbar" class="bar">
+      <span class="left">Location: <a href="../index.html">Home</a> / <a href="index.html">Documentation</a> / <span>Basic Operations</span></span>
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+      <ul><li class="webgen-menu-level1"><a href="../index.html">Home</a></li><li class="webgen-menu-level1"><a href="../blog.html">Blog</a></li><li class="webgen-menu-level1 webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="index.html">Documentation</a><ul><li class="webgen-menu-level2"><a href="intro.html">Introduction</a></li><li class="webgen-menu-level2"><a href="install.html">Install</a></li><li class="webgen-menu-level2"><a href="basic-concept.html">Basic Concept</a></li><li class="webgen-menu-level2 webgen-menu-item-selected"><span>Basic Operations</span></li><li class="webgen-menu-level2"><a href="config.html">Configuration</a></li><li class="webgen-menu-level2"><a href="usage.html">Using Uniqush</a></li><li class="webgen-menu-level2"><a href="faq.html">FAQ</a></li></ul></li><li class="webgen-menu-level1"><a href="../mailinglist.html">Mailing List</a></li><li class="webgen-menu-level1"><a href="../src.html">Source Code</a></li></ul>
+
+      
+    </div>
+
+    <div id="body">
+      
+<h1 id="basic-operations-provided-by-uniqush">Basic Operations Provided by Uniqush</h1>
+
+<p>This document covers the basic operations provided by Uniqush. It won&#8217;t cover the implementation details or usage details. For configuration and usage details, please see Configuration and Using Uniqush. Before reading this document, please make sure you have understood basic concepts in Uniqush.</p>
+
+<h2 id="how-to-communicate-with-uniqush">How to Communicate with Uniqush</h2>
+
+<p>Uniqush runs as a stand alone service, which means you don&#8217;t need to write any code to link against uniqush.
+Uniqush listens on a TCP port when it is running.
+You can change the port in its configuration file.
+To send a request to Uniqush, you simply need to connect to that port,
+and send an HTTP POST request with the parameters inside the body.</p>
+
+<h2 id="adding-push-service-providers-to-a-service">Adding Push Service Providers to a Service</h2>
+
+<p>Without telling Uniqush information about a push service provider, a server can never send data through Uniqush.
+Typically, to use a push service provider, Uniqush needs to know the type of that push service provider (e.g. <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a>, <a href="https://firebase.google.com/docs/cloud-messaging/">FCM</a>, <a href="https://developer.apple.com/go/?id=push-notifications">APNs</a>, <a href="https://developer.amazon.com/device-messaging">ADM</a>) and authentication information &#8211;
+for example, authentication token for <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a> or <a href="https://firebase.google.com/docs/cloud-messaging/">FCM</a>, private/public keys for <a href="https://developer.apple.com/go/?id=push-notifications">APNs</a>, etc.</p>
+
+<p>You can add more than one push service provider information to a service, so that you can support multiple platforms.</p>
+
+<h2 id="subscribing-to-a-service">Subscribing to a Service</h2>
+
+<p>When a subscriber subscribes to a service, Uniqush need to know at least three things: the subscriber&#8217;s id; the service name; and the delivery point information. The delivery point information including the identity of the device, its OS type and other push service provider specific information. For example, for android delivery points, they need to provide a registration id to Uniqush, which will be used to send data through <a href="https://developers.google.com/cloud-messaging/gcm">GCM</a> (or <a href="https://firebase.google.com/docs/cloud-messaging/">FCM</a>) later.</p>
+
+<p>Sending such information to Uniqush could be done by a mobile app, which could connect to the Uniqush server via HTTP. However, this is not best practice since it&#8217;s insecure. If your Uniqush server is publicly accessible, then anyone can perform malicious operations potentially. Allowing direct communication from the client to Uniqush is insecure. To prevent direct communication to Uniqush, it is recommended to put Uniqush behind a web server that does HTTPS and only allows specific operations.</p>
+
+<p>Another possible way of sending this information to Uniqush: the app sends the information to some program on server side; this program processes the information, extracts the data that Uniqush wants, and then forwards the data to Uniqush through HTTP. Several pros for this approach exist. First, the server side has more flexibility of choosing authentication methods. Second, the server side is typically in the best position to handle sending notifications through Uniqush. Let&#8217;s say you&#8217;re have a chat application and Alice sends a message to Bob. Alice&#8217;s message goes to your server application, which does whatever processing it needs, and then makes a request to Uniqush to send a push notification to Bob.</p>
+
+<p>As mentioned in <a href="basic-concept.html">basic concepts</a>, a subscriber may have more than one delivery point subscriptions for a service.
+As a result, several delivery points could subscribe same service under the same subscriber.
+This requires the server side to have some mechanism to authenticate the subscriber&#8217;s identity.</p>
+
+<h2 id="sending-push-notifications-to-a-subscriber">Sending Push Notifications to a Subscriber</h2>
+
+<p>Once a service has at least one push service provider and at least one subscriber,
+Uniqush can push data on behalf of that service to the apps running on the subscribers&#8217; devices.
+Before pushing data, the server side needs only to provide the service name, subscriber id, and data.
+Uniqush will push the data to all active delivery points of that subscriber.</p>
+
+<h2 id="removing-a-push-service-provider-and-unsubscribing">Removing a Push Service Provider and Unsubscribing</h2>
+
+<p>What I didn&#8217;t mention is removing a push service provider from a service and unsubscribing from a service.
+It won&#8217;t be hard once you understand adding a push service provider and subscribing to a service.
+Adding and removing PSPs are just reverse operations.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>In general, Uniqush provides the following seven operations:</p>
+
+<pre><code>Add / Remove a push service provider to/from a service.
+Add / Remove a subscription to/from a subscriber.
+Send a push notification.
+Get information about a subscriber's subscriptions.
+Get the configuration for all services.
+</code></pre>
+
+<hr />
+
+<h2 id="related-topics">Related Topics</h2>
+
+<ul>
+  <li><a href="intro.html">Introduction</a></li>
+  <li><a href="install.html">Installing Uniqush and its Dependencies</a></li>
+  <li><a href="basic-concept.html">Basic Concept</a></li>
+</ul>
+
+
+    </div>
+
+    <div id="footer" class="bar">
+      
+        
+            Created by <a href="/authors/monnand.html">Nan Deng</a>
+        
+      
+      Generated by <a href="http://webgen.rubyforge.org">webgen</a> on <b>2018-04-02 02:48:10</b>
+
+      <br />
+
+      <div id="license">
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
+        </div>
+    </div>
+  </body>
+</html>
+
