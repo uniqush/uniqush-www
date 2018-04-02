@@ -1,3 +1,6 @@
 .bundle/
 out/
 webgen.cache
+*.rpm
+*.tar.gz
+*.deb
