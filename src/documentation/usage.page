@@ -318,6 +318,7 @@ Initializes the set of all service names.  This API is needed for the /subscript
  | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
  | action-loc-key | Option. action-loc-key for APNS. |
  | uniqush.payload.gcm  | The raw JSON payload for GCM subscribers (for "data"). If this is specified, it replaces the GCM payload. |
+ | uniqush.payload.fcm  | The raw JSON payload for FCM subscribers (for "data"). If this is specified, it replaces the FCM payload. |
  | uniqush.payload.apns  | The raw JSON payload for APNS subscribers. If this is specified, it replaces the APNS payload. (except ttl) |
  |  *Reserved Parameter*  |  Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
  |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
@@ -373,7 +374,7 @@ Examples:
 ### Parameters
 
  | **Parameter**  |  **Description**  |
- | pushservicetype  |  A supported push service type ("apns", "gcm", or "adm"). |
+ | pushservicetype  |  A supported push service type ("apns", "gcm", "fcm", or "adm"). |
  | msg  |  Optional. Message Body  |
  | ttl | Optional. Time to live. How long (in seconds) the message should be kept on push service provider's server if the device is offline |
  | badge  |  Optional. Badge  |
@@ -383,6 +384,7 @@ Examples:
  | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
  | action-loc-key | Optional. action-loc-key for APNS. |
  | uniqush.payload.gcm | Optional. Raw JSON payload for GCM clients (for "data"). If this is specified, it replaces the GCM payload. |
+ | uniqush.payload.fcm  | The raw JSON payload for FCM subscribers (for "data"). If this is specified, it replaces the FCM payload. |
  | uniqush.payload.apns | Optional. Raw JSON payload for APNS clients. If this is specified, it replaces the APNS payload. (except ttl) |
  | *Reserved Parameter*  |Optional. Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
  | *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
