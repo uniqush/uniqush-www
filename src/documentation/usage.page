@@ -320,6 +320,8 @@ Initializes the set of all service names.  This API is needed for the /subscript
  | uniqush.payload.gcm  | The raw JSON payload for GCM subscribers (for "data"). If this is specified, it replaces the GCM payload. |
  | uniqush.payload.fcm  | The raw JSON payload for FCM subscribers (for "data"). If this is specified, it replaces the FCM payload. |
  | uniqush.payload.apns  | The raw JSON payload for APNS subscribers. If this is specified, it replaces the APNS payload. (except ttl) |
+ | uniqush.notification.gcm  | The raw JSON payload for GCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
+ | uniqush.notification.fcm  | The raw JSON payload for FCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
  |  *Reserved Parameter*  |  Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
  |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
 
@@ -386,6 +388,8 @@ Examples:
  | uniqush.payload.gcm | Optional. Raw JSON payload for GCM clients (for "data"). If this is specified, it replaces the GCM payload. |
  | uniqush.payload.fcm  | The raw JSON payload for FCM subscribers (for "data"). If this is specified, it replaces the FCM payload. |
  | uniqush.payload.apns | Optional. Raw JSON payload for APNS clients. If this is specified, it replaces the APNS payload. (except ttl) |
+ | uniqush.notification.gcm  | The raw JSON payload for GCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
+ | uniqush.notification.fcm  | The raw JSON payload for FCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
  | *Reserved Parameter*  |Optional. Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
  | *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
 
