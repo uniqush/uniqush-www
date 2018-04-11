@@ -306,17 +306,21 @@ Initializes the set of all service names.  This API is needed for the /subscript
 
 ### Parameters
 
- |  **Parameter**  |  **Description**  |
- |  service  |  Service Name. |
- |  subscriber  |  Subscriber ID. Could be more than one subscriber. Comma separated. Asterisk (\*) could be used as a wildcard to match any string |
- |  msg  |  Optional. Message Body  |
+ | **Parameter**  |  **Description**  |
+ | service  |  Service Name. |
+ | subscriber  |  Subscriber ID. Could be more than one subscriber. Comma separated. Asterisk (\*) could be used as a wildcard to match any string (not recommended for large lists of subscribers for performance reasons) |
+ | msg  |  Optional. Message Body  |
  | ttl | Optional. Time to live. How long (in seconds) the message should be kept on push service provider's server if the device is offline |
- |  badge  |  Optional. Badge  |
- |  img  |  Optional. Image  |
- |  sound  |  Optional. Sound  |
+ | badge  |  Optional. Badge  |
+ | img  |  Optional. Image  |
+ | sound  |  Optional. Sound  |
  | loc-key | Optional. loc-key for APNS |
  | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
  | action-loc-key | Option. action-loc-key for APNS. |
+ | title | Optional. title for APNS |
+ | title-loc-key | Optional. title-loc-key for APNS |
+ | title-loc-args | Optional. title-loc-args for APNS |
+ | uniqush.apns\_vip  | Set this to `1` to indicate that any APNS pushes should be subject to the VOIP payload size limit of 5120 bytes, instead of the default of 4096 bytes |
  | uniqush.payload.gcm  | The raw JSON payload for GCM subscribers (for "data"). If this is specified, it replaces the GCM payload. |
  | uniqush.payload.fcm  | The raw JSON payload for FCM subscribers (for "data"). If this is specified, it replaces the FCM payload. |
  | uniqush.payload.apns  | The raw JSON payload for APNS subscribers. If this is specified, it replaces the APNS payload. (except ttl) |
@@ -366,6 +370,10 @@ Examples:
 - Push to all subscribers under some service (you probably do not want to do that):
 
     `curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=* -d msg="Hello World"`
+
+- Push GCM "notification" payload to GCM subscribers (these are rendered directly on the device by GCM, similarly to APNS's default behavior)
+
+    `curl http://127.0.0.1:9898/push -d service=mygcmservice -d subscriber=uniqush.client -d uniqush.payload.gcm='{"title":"MyTitle","body":"NotifBodyText"}'`
 
 ******
 
