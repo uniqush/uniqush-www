@@ -4,6 +4,8 @@ This repository contains content on [uniqush.org](http://uniqush.org). We use [w
 Generating templates
 --------------------
 
+**A dockerized version is available at `./main.sh`, to avoid the need to fiddle with specifics of the host operating system.** Using that script is strongly recommended.
+
 This requires version 0.5.9 of webgen, and ruby 1.8 (because of a dependency on rcov). To generate these templates locally, use rvm to temporarily use ruby 1.8:
 
 ```bash
@@ -12,5 +14,3 @@ bundle install
 webgen
 # Alternately, run the command `bundle exec rake auto_webgen` to regenerate the site in the background as changes are made.
 ```
-
-A dockerized version is available at `./main.sh`, to avoid the need to fiddle with specifics of the host operating system.
