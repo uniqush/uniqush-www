@@ -125,7 +125,7 @@ programs.uniq.each do | prog |
             package_types.each do | pkg |
                 arch_name = archconv[pkg][arch]
                 filename = prog + prog_ver_sep[pkg] + ver + ver_arch_sep[pkg] + arch_name + "." + pkg
-                downloadf.write("- [" + arch + " " + ver + " " + pkg + "](downloads/" + filename + ")\n")
+                downloadf.write("- [" + arch + " " + ver + " " + pkg + "](https://github.com/uniqush/uniqush-push/releases/tag/" + ver + ")\n")
             end
         end
     end
