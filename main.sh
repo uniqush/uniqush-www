@@ -13,3 +13,4 @@ sudo docker build -t uniqush-www-build .
 # For now, manually change ownership of new files
 sudo docker run --rm -v $PWD:/webgen uniqush-www-build /webgen/webgen-run.sh
 sudo chown $USER:$USER -R out
+cp CNAME out/CNAME
