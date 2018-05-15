@@ -306,19 +306,26 @@ Initializes the set of all service names.  This API is needed for the /subscript
 
 ### Parameters
 
- |  **Parameter**  |  **Description**  |
- |  service  |  Service Name. |
- |  subscriber  |  Subscriber ID. Could be more than one subscriber. Comma separated. Asterisk (\*) could be used as a wildcard to match any string |
- |  msg  |  Optional. Message Body  |
+ | **Parameter**  |  **Description**  |
+ | service  |  Service Name. |
+ | subscriber  |  Subscriber ID. Could be more than one subscriber. Comma separated. Asterisk (\*) could be used as a wildcard to match any string (not recommended for large lists of subscribers for performance reasons) |
+ | msg  |  Optional. Message Body  |
  | ttl | Optional. Time to live. How long (in seconds) the message should be kept on push service provider's server if the device is offline |
- |  badge  |  Optional. Badge  |
- |  img  |  Optional. Image  |
- |  sound  |  Optional. Sound  |
+ | badge  |  Optional. Badge  |
+ | img  |  Optional. Image  |
+ | sound  |  Optional. Sound  |
  | loc-key | Optional. loc-key for APNS |
  | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
  | action-loc-key | Option. action-loc-key for APNS. |
+ | title | Optional. title for APNS |
+ | title-loc-key | Optional. title-loc-key for APNS |
+ | title-loc-args | Optional. title-loc-args for APNS |
+ | uniqush.apns\_vip  | Set this to `1` to indicate that any APNS pushes should be subject to the VOIP payload size limit of 5120 bytes, instead of the default of 4096 bytes |
  | uniqush.payload.gcm  | The raw JSON payload for GCM subscribers (for "data"). If this is specified, it replaces the GCM payload. |
+ | uniqush.payload.fcm  | The raw JSON payload for FCM subscribers (for "data"). If this is specified, it replaces the FCM payload. |
  | uniqush.payload.apns  | The raw JSON payload for APNS subscribers. If this is specified, it replaces the APNS payload. (except ttl) |
+ | uniqush.notification.gcm  | The raw JSON payload for GCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
+ | uniqush.notification.fcm  | The raw JSON payload for FCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
  |  *Reserved Parameter*  |  Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
  |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
 
@@ -364,6 +371,10 @@ Examples:
 
     `curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=* -d msg="Hello World"`
 
+- Push GCM "notification" payload to GCM subscribers (these are rendered directly on the device by GCM, similarly to APNS's default behavior)
+
+    `curl http://127.0.0.1:9898/push -d service=mygcmservice -d subscriber=uniqush.client -d uniqush.payload.gcm='{"title":"MyTitle","body":"NotifBodyText"}'`
+
 ******
 
 ## Preview Push Payload
@@ -373,7 +384,7 @@ Examples:
 ### Parameters
 
  | **Parameter**  |  **Description**  |
- | pushservicetype  |  A supported push service type ("apns", "gcm", or "adm"). |
+ | pushservicetype  |  A supported push service type ("apns", "gcm", "fcm", or "adm"). |
  | msg  |  Optional. Message Body  |
  | ttl | Optional. Time to live. How long (in seconds) the message should be kept on push service provider's server if the device is offline |
  | badge  |  Optional. Badge  |
@@ -383,7 +394,10 @@ Examples:
  | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
  | action-loc-key | Optional. action-loc-key for APNS. |
  | uniqush.payload.gcm | Optional. Raw JSON payload for GCM clients (for "data"). If this is specified, it replaces the GCM payload. |
+ | uniqush.payload.fcm  | The raw JSON payload for FCM subscribers (for "data"). If this is specified, it replaces the FCM payload. |
  | uniqush.payload.apns | Optional. Raw JSON payload for APNS clients. If this is specified, it replaces the APNS payload. (except ttl) |
+ | uniqush.notification.gcm  | The raw JSON payload for GCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
+ | uniqush.notification.fcm  | The raw JSON payload for FCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
  | *Reserved Parameter*  |Optional. Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
  | *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
 
