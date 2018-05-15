@@ -320,7 +320,7 @@ Initializes the set of all service names.  This API is needed for the /subscript
  | title | Optional. title for APNS |
  | title-loc-key | Optional. title-loc-key for APNS |
  | title-loc-args | Optional. title-loc-args for APNS |
- | uniqush.apns\_vip  | Set this to `1` to indicate that any APNS pushes should be subject to the VOIP payload size limit of 5120 bytes, instead of the default of 4096 bytes |
+ | uniqush.apns\_voip  | Set this to `1` to indicate that any APNS pushes should be subject to the VOIP payload size limit of 5120 bytes, instead of the default of 4096 bytes |
  | uniqush.payload.gcm  | The raw JSON payload for GCM subscribers (for "data"). If this is specified, it replaces the GCM payload. |
  | uniqush.payload.fcm  | The raw JSON payload for FCM subscribers (for "data"). If this is specified, it replaces the FCM payload. |
  | uniqush.payload.apns  | The raw JSON payload for APNS subscribers. If this is specified, it replaces the APNS payload. (except ttl) |
