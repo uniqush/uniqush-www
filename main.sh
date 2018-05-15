@@ -2,7 +2,7 @@
 # This is a dockerized version of webgen
 # There were issues setting up the ppa for ubuntu at the time,
 # similar to https://github.com/rvm/ubuntu_rvm/issues/8
-# set -eu
+set -eu
 rm -f webgen.cache || true
 rm -rf out || true
 if [[ "$(find src/downloads -iname '*.deb' | wc -l)" = "0" ]]; then
