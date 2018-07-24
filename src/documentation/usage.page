@@ -219,8 +219,9 @@ Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservi
 
 These are optional user-defined fields, which can be passed in when subscribing.
 These will be returned later when fetching subscriptions in `/subscriptions`.
-The below parameters can safely be changed if resubscribing, and resubscribing will update existing subscriptions without creating duplicate delivery points. (i.e. the below parameters don't change the delivery point's internal ID)
+The below parameters can safely be changed if resubscribing, and resubscribing will update existing subscriptions without creating duplicate delivery points. (i.e. the below parameters don't change the delivery point's internal ID, and they shouldn't be passed in when unsubscribing.)
 
+Storing these parameters requires `uniqush-push` 2.6.0+. Older releases will ignore these optional parameters if they are fetched from the database.
 
  |  **Parameter**   |  **Description**  |
  |  app_version     |  Application version string. (useful if clients plan to send different pushes (or different contents) to different application versions)  |
@@ -292,7 +293,7 @@ Calling this API will return the subscriptions (i.e. delivery points) created
  |  **Parameter**  |  **Description**  |
  |  services       |  Service Name(s)  |
  |  subscriber     |  Subscriber ID    |
- |  include_delivery_point_ids |  Set this to 1 if you want to return the internal `delivery_point_id` along with the subscription data.   The `delivery_point_id` can be passed to /push to limit pushes to a subset of a subscriber's devices. |
+ |  include_delivery_point_ids |  Set this to 1 if you want to return the internal `delivery_point_id` along with the subscription data.   The `delivery_point_id` can be passed to /push to limit pushes to a subset of a subscriber's devices. (Requires `uniqush-push` 2.6.0+. |
 
 Example: `curl http://127.0.0.1:9898/subscriptions -d services=myservice,myotherservice -d subscriber=uniqush.client`
 
@@ -345,7 +346,7 @@ Initializes the set of all service names.  This API is needed for the /subscript
  | uniqush.payload.apns  | The raw JSON payload for APNs subscribers. If this is specified, it replaces the APNs payload. (except ttl) |
  | uniqush.notification.gcm  | The raw JSON payload for GCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
  | uniqush.notification.fcm  | The raw JSON payload for FCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
- | delivery_point_id  | A comma separated list of 1 or more delivery points (belonging to the provided subscriber(s) and service(s)) to push to, e.g. `delivery_point_id=apns:abcdef0123456789,apns:1111aaaaacafe`. The delivery point ids can be requested from `/subscriptions`.  |
+ | delivery_point_id  | A comma separated list of 1 or more delivery points (belonging to the provided subscriber(s) and service(s)) to push to, e.g. `delivery_point_id=apns:abcdef0123456789,apns:1111aaaaacafe`. The delivery point ids can be requested from `/subscriptions`.  (Requires uniqush-push 2.6.0+) |
  |  *Reserved Parameter*  |  Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
  |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
 
