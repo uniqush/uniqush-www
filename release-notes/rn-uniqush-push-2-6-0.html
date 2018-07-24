@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
-    <title>Uniqush - Push Notification Solution for Mobile Platforms [Release Note 2.4.0]</title>
+    <title>Uniqush - Push Notification Solution for Mobile Platforms [Release Note 2.6.0]</title>
 
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -36,7 +36,7 @@
     </div>
 
     <div id="headerbar" class="bar">
-      <span class="left">Location: <a href="../index.html">Home</a> / <a href="index.html">dir</a> / <span>Release Note 2.4.0</span></span>
+      <span class="left">Location: <a href="../index.html">Home</a> / <a href="index.html">dir</a> / <span>Release Note 2.6.0</span></span>
       <div style="clear:both"></div>
     </div>
 
@@ -48,31 +48,28 @@
 
     <div id="body">
       
-<h1 id="release-note-240">Release Note 2.4.0</h1>
+<h1 id="release-note-260">Release Note 2.6.0</h1>
 
-<p>07-Oct-2017</p>
+<p>18-Jul-2018</p>
 
-<p>This release contains bugfixes, new APIs and improvements.</p>
+<p>This release contains new APIs and improvements.</p>
 
 <p>Download:</p>
 
 <ul>
-  <li><a href="https://github.com/uniqush/uniqush-push/releases/tag/2.4.0">GitHub Releases (rpm, deb, tar.gz)</a></li>
+  <li><a href="https://github.com/uniqush/uniqush-push/releases/tag/2.6.0">GitHub Releases (rpm, deb, tar.gz)</a></li>
 </ul>
 
 <p>ChangeLog:</p>
 
 <ul>
-  <li>New feature: Initial support for GCM/FCM &#8220;notification&#8221; pushes (Documented in PR #185).
-<code>uniqush.notification.gcm</code> and <code>uniqush.notification.fcm</code> can be used
-as fields for <code>/push</code>, with the JSON blob to send GCM/FCM for the
-optional &#8220;notification&#8221; message.
-&#8220;notification&#8221; messages will let GCM/FCM display the notification for you.</li>
-  <li>Maintenance: Change from https://android.googleapis.com/gcm/send to
-https://gcm-http.googleapis.com/gcm/send (equivalent endpoints)</li>
-  <li>Maintenance: Bump go version used to compile releases</li>
-  <li>Maintenance: go 1.9+ is recommended for compiling and testing</li>
-  <li>Bug fix: Improve logging subscriber name in failed API requests.</li>
+  <li>Support &#8220;title&#8221;, &#8220;title-loc-key&#8221;, and &#8220;title-loc-args&#8221;</li>
+  <li>Support larger APNS payloads.
+Support 5120 byte payloads for APNS voip pushes
+(Where the Cert is a VOIP cert and <code>uniqush.apns_voip=1</code> is part of
+the query params in the call to /push</li>
+  <li>Support more granular loglevel levels in uniqush config files:
+alert, error, warn/warning, standard/verbose/info, and debug</li>
 </ul>
 
     </div>

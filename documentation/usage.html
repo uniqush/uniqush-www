@@ -4,13 +4,13 @@
   <head>
     <title>Uniqush - Push Notification Solution for Mobile Platforms [Using Uniqush]</title>
 
-    
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Uniqush" />
     <meta name="keywords" content="push,ios,android,APNs,GCM,FCM,C2DM,uniqush" />
-    
+
     <meta name="author" content="Nan Deng" />
-    
+
     <meta name="generator" content="webgen - http://webgen.rubyforge.com/" />
     <link href="../default.css" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="../images/favicon.ico" />
@@ -43,17 +43,17 @@
     <div id="menu">
       <ul><li class="webgen-menu-level1"><a href="../index.html">Home</a></li><li class="webgen-menu-level1"><a href="../blog.html">Blog</a></li><li class="webgen-menu-level1 webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="index.html">Documentation</a><ul><li class="webgen-menu-level2"><a href="intro.html">Introduction</a></li><li class="webgen-menu-level2"><a href="install.html">Install</a></li><li class="webgen-menu-level2"><a href="basic-concept.html">Basic Concept</a></li><li class="webgen-menu-level2"><a href="basic-opts.html">Basic Operations</a></li><li class="webgen-menu-level2"><a href="config.html">Configuration</a></li><li class="webgen-menu-level2 webgen-menu-item-selected"><span>Using Uniqush</span></li><li class="webgen-menu-level2"><a href="faq.html">FAQ</a></li></ul></li><li class="webgen-menu-level1"><a href="../downloads.html">Downloads</a></li><li class="webgen-menu-level1"><a href="../mailinglist.html">Mailing List</a></li><li class="webgen-menu-level1"><a href="../src.html">Source Code</a></li></ul>
 
-      
+
       <div id="toc">
-		
-			
-		
+
+
+
       </div>
-      
+
     </div>
 
     <div id="body">
-      
+
 <h1 id="using-uniqush">Using Uniqush</h1>
 
 <p>This document describes how to use Uniqush by sending HTTP POST request to <code>uniqush-push</code>. Please make sure you understand <a href="basic-opts.html">Basic Operations Provided by Uniqush</a>. Parameters of a request should be properly <a href="http://en.wikipedia.org/wiki/URL_encoding">URL encoded</a>. We will use <a href="http://curl.haxx.se/">curl</a> to show some examples.</p>
@@ -506,6 +506,45 @@ an Android key.</p>
 
 <p>Example: <code>curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservicetype=adm -d subscriber=firehd -d regid=RegistrationId</code></p>
 
+<h3 id="optional-parameters-all-devices">Optional Parameters (all devices)</h3>
+
+<p>These are optional user-defined fields, which can be passed in when subscribing.
+These will be returned later when fetching subscriptions in <code>/subscriptions</code>.
+The below parameters can safely be changed if resubscribing, and resubscribing will update existing subscriptions without creating duplicate delivery points. (i.e. the below parameters don&#8217;t change the delivery point&#8217;s internal ID, and they shouldn&#8217;t be passed in when unsubscribing.)</p>
+
+<p>Storing these parameters requires <code>uniqush-push</code> 2.6.0+. Older releases will ignore these optional parameters if they are fetched from the database.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Parameter</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td>app_version</td>
+      <td>Application version string. (useful if clients plan to send different pushes (or different contents) to different application versions)</td>
+    </tr>
+    <tr>
+      <td>subscribe_date</td>
+      <td>Unix timestamp when the subscription was created (in seconds). This must be an integer.</td>
+    </tr>
+    <tr>
+      <td>locale</td>
+      <td>User-defined string. This may be useful if you wish to store individual device&#8217;s locales in uniqush&#8217;s database.</td>
+    </tr>
+    <tr>
+      <td>devid</td>
+      <td>An identifier uniquely identifying the device, to help clients identify duplicate subscriptions (E.g. identifierForVendor for APNS, ANDROID_ID (or Advertising ID, depending on the usage) for GCM/FCM). This can be used (e.g. in combination with subscribe_date) by clients to delete duplicate subscriptions.</td>
+    </tr>
+    <tr>
+      <td>old_devid</td>
+      <td>Can be used manually by clients if the way device ids was generated changed in a later app release, to identify duplicate subscriptions. Rarely needed.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <code>curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=apns -d devtoken=some-device-token -d app_version=1.2.3 -d subscribe_date=1234567890 -d locale=fr_FR -d devid=MyAppABCDE124ZY</code></p>
+
 <hr />
 
 <h2 id="unsubscribe">Unsubscribe</h2>
@@ -640,6 +679,8 @@ an Android key.</p>
   <li>URL: <code>/subscriptions</code></li>
 </ul>
 
+<p>Calling this API will return the subscriptions (i.e. delivery points) created</p>
+
 <h3 id="parameters-for-getting-subscriptions-for-a-set-of-service-names">Parameters for getting subscriptions for a set of service names</h3>
 
 <table>
@@ -655,6 +696,10 @@ an Android key.</p>
     <tr>
       <td>subscriber</td>
       <td>Subscriber ID</td>
+    </tr>
+    <tr>
+      <td>include_delivery_point_ids</td>
+      <td>Set this to 1 if you want to return the internal <code>delivery_point_id</code> along with the subscription data.   The <code>delivery_point_id</code> can be passed to /push to limit pushes to a subset of a subscriber&#8217;s devices. (Requires <code>uniqush-push</code> 2.6.0+.</td>
     </tr>
   </tbody>
 </table>
@@ -742,31 +787,31 @@ an Android key.</p>
     </tr>
     <tr>
       <td>loc-key</td>
-      <td>Optional. loc-key for APNS</td>
+      <td>Optional. loc-key for APNs</td>
     </tr>
     <tr>
       <td>loc-args</td>
-      <td>Optional. loc-args for APNS. It is a comma-separated string.</td>
+      <td>Optional. loc-args for APNs. It is a comma-separated string.</td>
     </tr>
     <tr>
       <td>action-loc-key</td>
-      <td>Option. action-loc-key for APNS.</td>
+      <td>Option. action-loc-key for APNs.</td>
     </tr>
     <tr>
       <td>title</td>
-      <td>Optional. title for APNS</td>
+      <td>Optional. title for APNs</td>
     </tr>
     <tr>
       <td>title-loc-key</td>
-      <td>Optional. title-loc-key for APNS</td>
+      <td>Optional. title-loc-key for APNs</td>
     </tr>
     <tr>
       <td>title-loc-args</td>
-      <td>Optional. title-loc-args for APNS</td>
+      <td>Optional. title-loc-args for APNs</td>
     </tr>
     <tr>
       <td>uniqush.apns_voip</td>
-      <td>Set this to <code>1</code> to indicate that any APNS pushes should be subject to the VOIP payload size limit of 5120 bytes, instead of the default of 4096 bytes</td>
+      <td>Set this to <code>1</code> to indicate that any APNs pushes should be subject to the VOIP payload size limit of 5120 bytes, instead of the default of 4096 bytes</td>
     </tr>
     <tr>
       <td>uniqush.payload.gcm</td>
@@ -778,7 +823,7 @@ an Android key.</p>
     </tr>
     <tr>
       <td>uniqush.payload.apns</td>
-      <td>The raw JSON payload for APNS subscribers. If this is specified, it replaces the APNS payload. (except ttl)</td>
+      <td>The raw JSON payload for APNs subscribers. If this is specified, it replaces the APNs payload. (except ttl)</td>
     </tr>
     <tr>
       <td>uniqush.notification.gcm</td>
@@ -787,6 +832,10 @@ an Android key.</p>
     <tr>
       <td>uniqush.notification.fcm</td>
       <td>The raw JSON payload for FCM subscribers (for &#8220;notification&#8221;). If this is specified, it is added alongside the &#8220;data&#8221; payload. (If there are no other fields, the &#8220;notification&#8221; will be the only section)</td>
+    </tr>
+    <tr>
+      <td>delivery_point_id</td>
+      <td>A comma separated list of 1 or more delivery points (belonging to the provided subscriber(s) and service(s)) to push to, e.g. <code>delivery_point_id=apns:abcdef0123456789,apns:1111aaaaacafe</code>. The delivery point ids can be requested from <code>/subscriptions</code>.  (Requires uniqush-push 2.6.0+)</td>
     </tr>
     <tr>
       <td><em>Reserved Parameter</em></td>
@@ -879,7 +928,7 @@ an Android key.</p>
     <p><code>curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=* -d msg="Hello World"</code></p>
   </li>
   <li>
-    <p>Push GCM &#8220;notification&#8221; payload to GCM subscribers (these are rendered directly on the device by GCM, similarly to APNS&#8217;s default behavior)</p>
+    <p>Push GCM &#8220;notification&#8221; payload to GCM subscribers (these are rendered directly on the device by GCM, similarly to APNs&#8217;s default behavior)</p>
 
     <p><code>curl http://127.0.0.1:9898/push -d service=mygcmservice -d subscriber=uniqush.client -d uniqush.payload.gcm='{"title":"MyTitle","body":"NotifBodyText"}'</code></p>
   </li>
@@ -927,15 +976,15 @@ an Android key.</p>
     </tr>
     <tr>
       <td>loc-key</td>
-      <td>Optional. loc-key for APNS</td>
+      <td>Optional. loc-key for APNs</td>
     </tr>
     <tr>
       <td>loc-args</td>
-      <td>Optional. loc-args for APNS. It is a comma-separated string.</td>
+      <td>Optional. loc-args for APNs. It is a comma-separated string.</td>
     </tr>
     <tr>
       <td>action-loc-key</td>
-      <td>Optional. action-loc-key for APNS.</td>
+      <td>Optional. action-loc-key for APNs.</td>
     </tr>
     <tr>
       <td>uniqush.payload.gcm</td>
@@ -947,7 +996,7 @@ an Android key.</p>
     </tr>
     <tr>
       <td>uniqush.payload.apns</td>
-      <td>Optional. Raw JSON payload for APNS clients. If this is specified, it replaces the APNS payload. (except ttl)</td>
+      <td>Optional. Raw JSON payload for APNs clients. If this is specified, it replaces the APNs payload. (except ttl)</td>
     </tr>
     <tr>
       <td>uniqush.notification.gcm</td>
@@ -976,7 +1025,7 @@ an Android key.</p>
 
 <ul>
   <li>
-    <p>Preview the payload sent to GCM, APNS, or ADM clients:</p>
+    <p>Preview the payload sent to GCM, APNs, or ADM clients:</p>
 
     <ul>
       <li><code>curl http://127.0.0.1:9898/previewpush -d pushservicetype=gcm -d msg="Hello World"</code></li>
@@ -1028,12 +1077,12 @@ an Android key.</p>
     </div>
 
     <div id="footer" class="bar">
-      
-        
+
+
             Created by <a href="/authors/monnand.html">Nan Deng</a>
-        
-      
-      Generated by <a href="http://webgen.rubyforge.org">webgen</a> on <b>2018-05-15 04:28:27</b>
+
+
+      Generated by <a href="http://webgen.rubyforge.org">webgen</a> on <b>2018-07-24 04:39:12</b>
 
       <br />
 
