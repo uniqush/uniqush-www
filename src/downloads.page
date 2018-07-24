@@ -12,7 +12,19 @@ Please follow the instructions from [Installing Uniqush and its Dependencies](do
 
 ##uniqush-push
 
-latest version: **2.5.0**
+latest version: **2.6.1**
+
+[uniqush-push 2.6.1 release note](release-notes/rn-uniqush-push-2-6-1.html)
+
+- [amd64 2.6.1 deb](https://github.com/uniqush/uniqush-push/releases/tag/2.6.1)
+- [amd64 2.6.1 rpm](https://github.com/uniqush/uniqush-push/releases/tag/2.6.1)
+- [amd64 2.6.1 tar.gz](https://github.com/uniqush/uniqush-push/releases/tag/2.6.1)
+
+[uniqush-push 2.6.0 release note](release-notes/rn-uniqush-push-2-6-0.html)
+
+- [amd64 2.6.0 deb](https://github.com/uniqush/uniqush-push/releases/tag/2.6.0)
+- [amd64 2.6.0 rpm](https://github.com/uniqush/uniqush-push/releases/tag/2.6.0)
+- [amd64 2.6.0 tar.gz](https://github.com/uniqush/uniqush-push/releases/tag/2.6.0)
 
 [uniqush-push 2.5.0 release note](release-notes/rn-uniqush-push-2-5-0.html)
 

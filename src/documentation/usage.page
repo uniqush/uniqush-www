@@ -215,6 +215,22 @@ Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscribe
 
 Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservicetype=adm -d subscriber=firehd -d regid=RegistrationId`
 
+### Optional Parameters (all devices)
+
+These are optional user-defined fields, which can be passed in when subscribing.
+These will be returned later when fetching subscriptions in `/subscriptions`.
+The below parameters can safely be changed if resubscribing, and resubscribing will update existing subscriptions without creating duplicate delivery points. (i.e. the below parameters don't change the delivery point's internal ID)
+
+
+ |  **Parameter**   |  **Description**  |
+ |  app_version     |  Application version string. (useful if clients plan to send different pushes (or different contents) to different application versions)  |
+ |  subscribe_date  |  Unix timestamp when the subscription was created (in seconds). This must be an integer. |
+ |  locale          |  User-defined string. This may be useful if you wish to store individual device's locales in uniqush's database. |
+ |  devid           |  An identifier uniquely identifying the device, to help clients identify duplicate subscriptions (E.g. identifierForVendor for APNS, ANDROID_ID (or Advertising ID, depending on the usage) for GCM/FCM). This can be used (e.g. in combination with subscribe_date) by clients to delete duplicate subscriptions. |
+ |  old_devid       |  Can be used manually by clients if the way device ids was generated changed in a later app release, to identify duplicate subscriptions. Rarely needed. |
+
+Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d subscriber=uniqush.client -d pushservicetype=apns -d devtoken=some-device-token -d app_version=1.2.3 -d subscribe_date=1234567890 -d locale=fr_FR -d devid=MyAppABCDE124ZY`
+
 ******
 
 ## Unsubscribe
@@ -269,11 +285,14 @@ Example: `curl http://127.0.0.1:9898/subscribe -d service=myservice -d pushservi
 
 - URL: `/subscriptions`
 
+Calling this API will return the subscriptions (i.e. delivery points) created
+
 ### Parameters for getting subscriptions for a set of service names
 
  |  **Parameter**  |  **Description**  |
- |  services  |  Service Name(s)  |
- |  subscriber  |  Subscriber ID  |
+ |  services       |  Service Name(s)  |
+ |  subscriber     |  Subscriber ID    |
+ |  include_delivery_point_ids |  Set this to 1 if you want to return the internal `delivery_point_id` along with the subscription data.   The `delivery_point_id` can be passed to /push to limit pushes to a subset of a subscriber's devices. |
 
 Example: `curl http://127.0.0.1:9898/subscriptions -d services=myservice,myotherservice -d subscriber=uniqush.client`
 
@@ -314,18 +333,19 @@ Initializes the set of all service names.  This API is needed for the /subscript
  | badge  |  Optional. Badge  |
  | img  |  Optional. Image  |
  | sound  |  Optional. Sound  |
- | loc-key | Optional. loc-key for APNS |
- | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
- | action-loc-key | Option. action-loc-key for APNS. |
- | title | Optional. title for APNS |
- | title-loc-key | Optional. title-loc-key for APNS |
- | title-loc-args | Optional. title-loc-args for APNS |
- | uniqush.apns\_voip  | Set this to `1` to indicate that any APNS pushes should be subject to the VOIP payload size limit of 5120 bytes, instead of the default of 4096 bytes |
+ | loc-key | Optional. loc-key for APNs |
+ | loc-args | Optional. loc-args for APNs. It is a comma-separated string. |
+ | action-loc-key | Option. action-loc-key for APNs. |
+ | title | Optional. title for APNs |
+ | title-loc-key | Optional. title-loc-key for APNs |
+ | title-loc-args | Optional. title-loc-args for APNs |
+ | uniqush.apns\_voip  | Set this to `1` to indicate that any APNs pushes should be subject to the VOIP payload size limit of 5120 bytes, instead of the default of 4096 bytes |
  | uniqush.payload.gcm  | The raw JSON payload for GCM subscribers (for "data"). If this is specified, it replaces the GCM payload. |
  | uniqush.payload.fcm  | The raw JSON payload for FCM subscribers (for "data"). If this is specified, it replaces the FCM payload. |
- | uniqush.payload.apns  | The raw JSON payload for APNS subscribers. If this is specified, it replaces the APNS payload. (except ttl) |
+ | uniqush.payload.apns  | The raw JSON payload for APNs subscribers. If this is specified, it replaces the APNs payload. (except ttl) |
  | uniqush.notification.gcm  | The raw JSON payload for GCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
  | uniqush.notification.fcm  | The raw JSON payload for FCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
+ | delivery_point_id  | A comma separated list of 1 or more delivery points (belonging to the provided subscriber(s) and service(s)) to push to, e.g. `delivery_point_id=apns:abcdef0123456789,apns:1111aaaaacafe`. The delivery point ids can be requested from `/subscriptions`.  |
  |  *Reserved Parameter*  |  Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
  |  *User Defined Parameter*  |  Optional. Any other parameter is accepted which will be sent to mobile devices  |
 
@@ -338,7 +358,7 @@ For iOS client, the notification is sent as JSON encoded message to APNs. All pa
 The payload (currently always JSON) that would be sent for any client type can be viewed with the `/previewpush` endpoint
 
 | **Parameter** | **Mapped To** |
-| msg	| "aps" > "alert" > "body" |
+| msg   | "aps" > "alert" > "body" |
 | badge | "aps" > "badge" |
 | img | "aps" > "alert" > "launch-image" |
 | sound | "aps" > "sound" |
@@ -371,7 +391,7 @@ Examples:
 
     `curl http://127.0.0.1:9898/push -d service=myservice -d subscriber=* -d msg="Hello World"`
 
-- Push GCM "notification" payload to GCM subscribers (these are rendered directly on the device by GCM, similarly to APNS's default behavior)
+- Push GCM "notification" payload to GCM subscribers (these are rendered directly on the device by GCM, similarly to APNs's default behavior)
 
     `curl http://127.0.0.1:9898/push -d service=mygcmservice -d subscriber=uniqush.client -d uniqush.payload.gcm='{"title":"MyTitle","body":"NotifBodyText"}'`
 
@@ -390,12 +410,12 @@ Examples:
  | badge  |  Optional. Badge  |
  | img  |  Optional. Image  |
  | sound  |  Optional. Sound  |
- | loc-key | Optional. loc-key for APNS |
- | loc-args | Optional. loc-args for APNS. It is a comma-separated string. |
- | action-loc-key | Optional. action-loc-key for APNS. |
+ | loc-key | Optional. loc-key for APNs |
+ | loc-args | Optional. loc-args for APNs. It is a comma-separated string. |
+ | action-loc-key | Optional. action-loc-key for APNs. |
  | uniqush.payload.gcm | Optional. Raw JSON payload for GCM clients (for "data"). If this is specified, it replaces the GCM payload. |
  | uniqush.payload.fcm  | The raw JSON payload for FCM subscribers (for "data"). If this is specified, it replaces the FCM payload. |
- | uniqush.payload.apns | Optional. Raw JSON payload for APNS clients. If this is specified, it replaces the APNS payload. (except ttl) |
+ | uniqush.payload.apns | Optional. Raw JSON payload for APNs clients. If this is specified, it replaces the APNs payload. (except ttl) |
  | uniqush.notification.gcm  | The raw JSON payload for GCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
  | uniqush.notification.fcm  | The raw JSON payload for FCM subscribers (for "notification"). If this is specified, it is added alongside the "data" payload. (If there are no other fields, the "notification" will be the only section) |
  | *Reserved Parameter*  |Optional. Any parameter whose name starts from "uniqush." is reserved by uniqush. Users should avoid using those parameter names. |
@@ -407,7 +427,7 @@ See the section for "Push Notifications".
 
 Examples:
 
-- Preview the payload sent to GCM, APNS, or ADM clients:
+- Preview the payload sent to GCM, APNs, or ADM clients:
 
   - `curl http://127.0.0.1:9898/previewpush -d pushservicetype=gcm -d msg="Hello World"`
   - `curl http://127.0.0.1:9898/previewpush -d pushservicetype=apns -d msg="Hello World"`
