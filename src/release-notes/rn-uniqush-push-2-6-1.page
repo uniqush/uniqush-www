@@ -12,9 +12,7 @@ This release contains documentation, refactoring, and minor bug fixes.
 
 Download:
 
-- [amd64 2.6.1 deb](http://uniqush.org/downloads/uniqush-push_2.6.1_amd64.deb)
-- [amd64 2.6.1 rpm](http://uniqush.org/downloads/uniqush-push-2.6.1-1.x86_64.rpm)
-- [amd64 2.6.1 tar.gz](http://uniqush.org/downloads/uniqush-push_2.6.1_x86_64.tar.gz)
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/2.6.1)
 
 ChangeLog:
 

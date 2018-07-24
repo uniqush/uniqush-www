@@ -14,9 +14,7 @@ report.
 
 Download:
 
-- [amd64 1.4.5 deb](http://uniqush.org/downloads/uniqush-push_1.4.5_amd64.deb)
-- [amd64 1.4.5 rpm](http://uniqush.org/downloads/uniqush-push-1.4.5-1.x86_64.rpm)
-- [amd64 1.4.5 tar.gz](http://uniqush.org/downloads/uniqush-push_1.4.5_x86_64.tar.gz)
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/1.4.5)
 
 ChangeLog:
 

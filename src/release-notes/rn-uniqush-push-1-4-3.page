@@ -13,9 +13,7 @@ This version contains some minor bug fixes and added some hidden feature making 
 
 Download:
 
-- [amd64 1.4.3 deb](http://uniqush.org/downloads/uniqush-push_1.4.3_amd64.deb)
-- [amd64 1.4.3 rpm](http://uniqush.org/downloads/uniqush-push-1.4.3-1.x86_64.rpm)
-- [amd64 1.4.3 tar.gz](http://uniqush.org/downloads/uniqush-push_1.4.3_x86_64.tar.gz)
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/1.4.3)
 
 ChangeLog:
 

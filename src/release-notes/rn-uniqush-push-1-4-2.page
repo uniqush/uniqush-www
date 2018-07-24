@@ -13,9 +13,7 @@ This version contains several bug fixes and a refactoring of the *main* package.
 
 Download:
 
-- [amd64 1.4.2 deb](http://uniqush.org/downloads/uniqush-push_1.4.2_amd64.deb)
-- [amd64 1.4.2 rpm](http://uniqush.org/downloads/uniqush-push-1.4.2-1.x86_64.rpm)
-- [amd64 1.4.2 tar.gz](http://uniqush.org/downloads/uniqush-push_1.4.2_x86_64.tar.gz)
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/1.4.2)
 
 ChangeLog:
 
