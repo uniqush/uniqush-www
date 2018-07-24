@@ -13,9 +13,7 @@ This release contains bugfixes, new APIs and improvements.
 
 Download:
 
-- [amd64 2.1.0 deb](http://uniqush.org/downloads/uniqush-push_2.1.0_amd64.deb)
-- [amd64 2.1.0 rpm](http://uniqush.org/downloads/uniqush-push-2.1.0-1.x86_64.rpm)
-- [amd64 2.1.0 tar.gz](http://uniqush.org/downloads/uniqush-push_2.1.0_x86_64.tar.gz)
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/2.1.0)
 
 ChangeLog:
 

@@ -1,18 +1,18 @@
 ---
-title: Release Note 2.5.0
+title: Release Note 2.6.0
 in_menu: false
 author: Tyson Andre
 ---
 
-# Release Note 2.5.0
+# Release Note 2.6.0
 
-01-Apr-2018
+18-Jul-2018
 
 This release contains new APIs and improvements.
 
 Download:
 
-- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/2.5.0)
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/2.6.0)
 
 ChangeLog:
 

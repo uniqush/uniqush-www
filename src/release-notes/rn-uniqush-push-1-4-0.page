@@ -13,9 +13,7 @@ This version contains several bug fixes, new features and interface changes for 
 
 Download:
 
-- [amd64 1.4.0 deb](http://uniqush.org/downloads/uniqush-push_1.4.0_amd64.deb)
-- [amd64 1.4.0 rpm](http://uniqush.org/downloads/uniqush-push-1.4.0-1.x86_64.rpm)
-- [amd64 1.4.0 tar.gz](http://uniqush.org/downloads/uniqush-push_1.4.0_x86_64.tar.gz)
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/1.4.0)
 
 ChangeLog:
 
