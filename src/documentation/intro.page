@@ -61,7 +61,7 @@ This document helps you to understand the basic idea of **uniqush-push** by tell
 - [Installing Uniqush and its Dependencies](install.html)
 - [Basic Concept](basic-concept.html)
 
-[Google]: http://google.com
+[Google]: https://www.google.com
 [Google Cloud Message]: https://developers.google.com/cloud-messaging/gcm
 [GCM]: https://developers.google.com/cloud-messaging/gcm
 [android-and-android-rain]: img/intro/android-and-android-rain.png

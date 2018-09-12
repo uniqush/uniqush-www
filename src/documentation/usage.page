@@ -9,7 +9,7 @@ toc: true
 
 # Using Uniqush
 
-This document describes how to use Uniqush by sending HTTP POST request to `uniqush-push`. Please make sure you understand [Basic Operations Provided by Uniqush](basic-opts.html). Parameters of a request should be properly [URL encoded](http://en.wikipedia.org/wiki/URL_encoding). We will use [curl](http://curl.haxx.se/) to show some examples.
+This document describes how to use Uniqush by sending HTTP POST request to `uniqush-push`. Please make sure you understand [Basic Operations Provided by Uniqush](basic-opts.html). Parameters of a request should be properly [URL encoded](https://en.wikipedia.org/wiki/URL_encoding). We will use [curl](https://curl.haxx.se/) to show some examples.
 
 Before executing any command below, make sure you have already started *uniqush-push*. It will be under `/usr/bin` directory if you installed Uniqush from official binary files.
 
@@ -80,7 +80,7 @@ Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicet
 
 Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicetype=apns -d cert=/path/to/certificate.pem -d key=/path/to/privatekey.pem -d sandbox=true`
 
-See [this blog](http://blog.boxedice.com/2010/06/05/how-to-renew-your-apple-push-notification-push-ssl-certificate/) for details how to acquire the PEM files (certificate and private key).
+See [this blog](https://blog.serverdensity.com/how-to-renew-your-apple-push-notification-push-ssl-certificate/) for details how to acquire the PEM files (certificate and private key).
 
 ### Parameters for ADM Push Service Provider
 

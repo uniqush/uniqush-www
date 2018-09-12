@@ -67,13 +67,13 @@ install both programs on the same server.
 
 - Please read [Configuration](config.html) and [Using Uniqush](usage.html) for more details
 
-[Redis]: http://redis.io
-[Debian]: http://debian.org
-[Ubuntu]: http://ubuntu.com
-[Mint]: http://linuxmint.com
-[Red Hat Enterprise Linux]: http://www.redhat.com/products/enterprise-linux/
-[Fedora]: http://fedoraproject.org
-[CentOS]: http://centos.org
+[Redis]: https://redis.io
+[Debian]: https://www.debian.org/
+[Ubuntu]: https://www.ubuntu.com/
+[Mint]: https://linuxmint.com/
+[Red Hat Enterprise Linux]: https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux
+[Fedora]: https://getfedora.org/
+[CentOS]: https://www.centos.org/
 [download page]: /downloads.html
 
 ******
