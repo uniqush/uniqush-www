@@ -26,4 +26,4 @@ method leads to integer overflow quickly because we represents time interval in
 nanoseconds. Right now, we will randomly increase the waiting time which solves
 the integer overflow problem and also reduces the probability of having message
 storm.
-- *improvement* Report an error when a user trys to add an iOS device with the wrong device token.
+- *improvement* Report an error when a user tries to add an iOS device with the wrong device token.
