@@ -67,14 +67,14 @@ Any content is under [Creative Commons Attribution 3.0 Unported License]. Again,
 Yes, I don't like it and please make sure you have read [Apache 2.0] before making any contribution that contains a patent.
 
 [Apache 2.0]: http://www.apache.org/licenses/LICENSE-2.0.html
-[Creative Commons Attribution 3.0 Unported License]: http://creativecommons.org/licenses/by/3.0/
-[downloads]: http://uniqush.org/downloads.html
-[uniqush.org]: http://uniqush.org
+[Creative Commons Attribution 3.0 Unported License]: https://creativecommons.org/licenses/by/3.0/
+[downloads]: https://uniqush.org/downloads.html
+[uniqush.org]: https://uniqush.org
 [uniqush blog]: http://blog.uniqush.org
 [webgen]: http://webgen.rubyforge.org/
 [pelican]: http://pelican.notmyidea.org/en/3.0/index.html
-[www repository]: http://github.com/uniqush/uniqush-www
-[blog repository]: http://github.com/uniqush/uniqush-blog
+[www repository]: https://github.com/uniqush/uniqush-www
+[blog repository]: https://github.com/uniqush/uniqush-blog
 [git]: http://git-scm.com
 [github]: http://github.com
 [our github organization]: http://github.com/uniqush

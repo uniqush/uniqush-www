@@ -61,12 +61,12 @@
       <% if context.node.meta_info["toc"] != nil %>
       <div id="toc">
 		<% if context.node.children.length > 1 %>
-			<h2>Table of Content</h2>
+			<h2>Table of Contents</h2>
 			{menu: {used_nodes: fragments, start_level: 1, max_levels: 3}}
 		<% else %>
 			<% if context.node.children.length == 1 %>
 				<% if context.node.children[0].children.length > 1 %>
-					<h2>Table of Content</h2>
+					<h2>Table of Contents</h2>
 					<ul>
 					<% context.node.children[0].children.each do |ch| %>
 						<li>
@@ -98,7 +98,7 @@
       <br />
 
       <div id="license">
-          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
+        <a rel="license" href="https://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
         </div>
     </div>
   </body>
