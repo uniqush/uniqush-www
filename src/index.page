@@ -61,13 +61,13 @@ You can either send a mail to [uniqush.go at gmail dot com] privately, or post y
 - Documents on this website are under a [Creative Commons Attribution 3.0 Unported License].
 
 [uniqush.go at gmail dot com]: mailto:uniqush.go@gmail.com
-[mailing list]: http://groups.google.com/group/uniqush
+[mailing list]: https://groups.google.com/forum/#!forum/uniqush
 [GCM]: https://developers.google.com/cloud-messaging/gcm
 [FCM]: https://firebase.google.com/docs/cloud-messaging/
 [APNs]: https://developer.apple.com/go/?id=push-notifications
 [ADM]: https://developer.amazon.com/device-messaging
-[our github repositories]: http://github.com/uniqush
+[our github repositories]: https://github.com/uniqush
 [install]: documentation/install.html
 [Apache License 2.0]: http://www.apache.org/licenses/LICENSE-2.0
-[Creative Commons Attribution 3.0 Unported License]: http://creativecommons.org/licenses/by/3.0/
+[Creative Commons Attribution 3.0 Unported License]: https://creativecommons.org/licenses/by/3.0/
 

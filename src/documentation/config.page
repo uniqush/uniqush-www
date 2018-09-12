@@ -44,7 +44,7 @@ The options in the *default* section lays outside of all other section. In this 
 
 *Section1* provides two options: *option1* and *option2*. Their values are *value1*, and *value2* respectively. Each option occupies one and only one line.
 
-The library we used to parse the configuration file is [goconf](http://code.google.com/p/goconf/). Although it supports nested sections (a section inside another section). We do not use it in uniqush.
+The library we used to parse the configuration file is [goconf](https://code.google.com/archive/p/goconf/). Although it supports nested sections (a section inside another section). We do not use it in uniqush.
 
 ******
 
@@ -93,7 +93,7 @@ All sections, except *Database* and *default*, could contain the following optio
 ### Options for *Database* Section
 
  |  **Option Name**  |  **Possible Values**  |  **Default Value**  |  **Description**  |
- |  engine  |  redis  |  redis  |  The database engine name. We support only the [redis](http://redis.io) database at this point of time. So only *redis* is the valid value for this option  |
+ |  engine  |  redis  |  redis  |  The database engine name. We support only the [redis](https://redis.io) database at this point of time. So only *redis* is the valid value for this option  |
  |  name  |  0  |  0  |  The database name.  |
  |  host  |  *IP Address*  |  localhost  |  The host's name on which the database is running  |
  |  port  |  *Port Number*  |  0  |  The port number to connect to the database program. `0` stands for the default port of the specified database engine  |

@@ -44,7 +44,7 @@ You found a bug? Great! I really appreciate!
 
 You can send a mail to our [mailing list] or to [uniqush.go at gmail dot com].
 
-If you know which part is wrong, you can submit an issue on [github.com](http://github.com/uniqush).
+If you know which part is wrong, you can submit an issue on [github.com](http:///github.com/uniqush).
 
 ### I have some suggestions
 
@@ -77,7 +77,7 @@ I love the design of Go. Easy, simple, fast. No fancy patterns, no rigid awkward
 If you have some programming background, then yes. Actually, I think there are several `.go` files inside my source code which may be useful for other projects. Please feel free to learn the code and it is more than welcome to make your own contribution.
 
 [uniqush.go at gmail dot com]: mailto:uniqush.go@gmail.com
-[mailing list]: http://groups.google.com/group/uniqush
+[mailing list]: https://groups.google.com/forum/#!forum/uniqush
 [GCM]: https://developers.google.com/cloud-messaging/gcm
 [FCM]: https://firebase.google.com/docs/cloud-messaging/
 [APNs]: https://developer.apple.com/go/?id=push-notifications
