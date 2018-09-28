@@ -26,8 +26,8 @@ the same user. This bug was found and reported by Ivan Yu.
 - The [uniqush organization on github](http://github.com/uniqush) moved three
 repositories under [uniqush-push repository] to merge them into a single
 repository. Old repositories will be removed soon. They are: *pushdb*, which
-now under *db* directory in [uniqush-push repository]; *pushsys*, which now
-under *push* directory in [uniqush-push repository]; *pushsrv*, which now under
+is now under *db* directory in [uniqush-push repository]; *pushsys*, which is now
+under *push* directory in [uniqush-push repository]; *pushsrv*, which is now under
 *srv* directory in [uniqush-push repository].
 
 Special thanks to Ivan Yu for his bug report.
