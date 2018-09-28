@@ -16,16 +16,16 @@
 <h2 id="DebuggingbyPrinting">Debugging by Printing</h2>
 <h3 id="LoggingLevels">Logging Levels</h3>
 <table class="wiki">
-<tr><td> KERN_EMERG </td><td> &lt;0&gt; </td><td> Emergency messages (precede a crash) 
-</td></tr><tr><td> KERN_ALERT </td><td> &lt;1&gt; </td><td> Error requiring immediate attention 
-</td></tr><tr><td> KERN_CRIT </td><td> &lt;2&gt; </td><td>  Critical error (hardware or software) 
-</td></tr><tr><td> KERN_ERR </td><td> &lt;3&gt; </td><td>   Error conditions (common in drivers) 
-</td></tr><tr><td> KERN_WARNING </td><td> &lt;4&gt; </td><td>       Warning conditions (could lead to errors) 
-</td></tr><tr><td> KERN_NOTICE </td><td> &lt;5&gt; </td><td>        Not an error but a significant condition 
-</td></tr><tr><td> KERN_INFO </td><td> &lt;6&gt; </td><td>  Informational message 
-</td></tr><tr><td> KERN_DEBUG </td><td> &lt;7&gt; </td><td> Used only for debug messages 
-</td></tr><tr><td> KERN_DEFAULT </td><td> &lt;d&gt; </td><td>       Default kernel logging level 
-</td></tr><tr><td> KERN_CONT </td><td> &lt;c&gt; </td><td>  Continuation of a log line (avoid adding new time stamp) 
+<tr><td> KERN_EMERG </td><td> &lt;0&gt; </td><td> Emergency messages (precede a crash)
+</td></tr><tr><td> KERN_ALERT </td><td> &lt;1&gt; </td><td> Error requiring immediate attention
+</td></tr><tr><td> KERN_CRIT </td><td> &lt;2&gt; </td><td>  Critical error (hardware or software)
+</td></tr><tr><td> KERN_ERR </td><td> &lt;3&gt; </td><td>   Error conditions (common in drivers)
+</td></tr><tr><td> KERN_WARNING </td><td> &lt;4&gt; </td><td>       Warning conditions (could lead to errors)
+</td></tr><tr><td> KERN_NOTICE </td><td> &lt;5&gt; </td><td>        Not an error but a significant condition
+</td></tr><tr><td> KERN_INFO </td><td> &lt;6&gt; </td><td>  Informational message
+</td></tr><tr><td> KERN_DEBUG </td><td> &lt;7&gt; </td><td> Used only for debug messages
+</td></tr><tr><td> KERN_DEFAULT </td><td> &lt;d&gt; </td><td>       Default kernel logging level
+</td></tr><tr><td> KERN_CONT </td><td> &lt;c&gt; </td><td>  Continuation of a log line (avoid adding new time stamp)
 </td></tr></table>
 <ul><li>Default logging levels: <tt>kernel/printk.c</tt>
 <pre class="wiki">#define DEFAULT_MESSAGE_LOGLEVEL    4 /* KERN_WARNING */
@@ -63,7 +63,7 @@
 </li><li>go: continue
 </li><li>rd/rm: show/modify register(s)
 </li><li>md/mds: show memory content
-</li><li>mm: modify memroy content
+</li><li>mm: modify memory content
 </li></ul></li><li>More <a class="ext-link" href="http://www.ibm.com/developerworks/linux/library/l-kdbug/"><span class="icon"> </span>details</a>
 </li></ul></li></ul><h2 id="DataStructure">Data Structure</h2>
 <ul><li>kernel defined a set of useful data structures, including: doublely linked list (list), red black tree (rb_tree), hash table (hlist), radix tree, etc.
