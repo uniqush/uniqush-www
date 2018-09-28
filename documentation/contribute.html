@@ -4,13 +4,13 @@
   <head>
     <title>Uniqush - Push Notification Solution for Mobile Platforms [Contribution Guidelines]</title>
 
-    
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Uniqush" />
     <meta name="keywords" content="push,ios,android,APNs,GCM,FCM,C2DM,uniqush" />
-    
+
     <meta name="author" content="Nan Deng" />
-    
+
     <meta name="generator" content="webgen - http://webgen.rubyforge.com/" />
     <link href="../default.css" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="../images/favicon.ico" />
@@ -43,11 +43,11 @@
     <div id="menu">
       <ul><li class="webgen-menu-level1"><a href="../index.html">Home</a></li><li class="webgen-menu-level1"><a href="../blog.html">Blog</a></li><li class="webgen-menu-level1 webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="index.html">Documentation</a><ul><li class="webgen-menu-level2"><a href="intro.html">Introduction</a></li><li class="webgen-menu-level2"><a href="install.html">Install</a></li><li class="webgen-menu-level2"><a href="basic-concept.html">Basic Concept</a></li><li class="webgen-menu-level2"><a href="basic-opts.html">Basic Operations</a></li><li class="webgen-menu-level2"><a href="config.html">Configuration</a></li><li class="webgen-menu-level2"><a href="usage.html">Using Uniqush</a></li><li class="webgen-menu-level2"><a href="faq.html">FAQ</a></li></ul></li><li class="webgen-menu-level1"><a href="../downloads.html">Downloads</a></li><li class="webgen-menu-level1"><a href="../mailinglist.html">Mailing List</a></li><li class="webgen-menu-level1"><a href="../src.html">Source Code</a></li></ul>
 
-      
+
     </div>
 
     <div id="body">
-      
+
 <h1 id="contribution-guidelines">Contribution Guidelines</h1>
 
 <h2 id="introduction">Introduction</h2>
@@ -60,76 +60,76 @@
 
 <ul>
   <li><a href="http://git-scm.com">git</a>. Please make sure you have installed <a href="http://git-scm.com">git</a> and know how to use it.</li>
-  <li><a href="http://github.com">github</a>. Please make sure you have an account on <a href="http://github.com">github</a> and know how it works.</li>
+  <li><a href="https://github.com">github</a>. Please make sure you have an account on <a href="https://github.com">github</a> and know how it works.</li>
 </ul>
 
 <p>Given different tasks, there may be additional knowledge/tools required.</p>
 
 <h2 id="basic-procedure">Basic procedure</h2>
 
-<p>We put all our repositories on <a href="http://github.com">github</a> under <a href="http://github.com/uniqush">our github organization</a>. The basic procedure of contributing changes is:</p>
+<p>We put all our repositories on <a href="https://github.com">github</a> under <a href="https://github.com/uniqush">our github organization</a>. The basic procedure of contributing changes is:</p>
 
 <ol>
-  <li>Find a repository you want to change under <a href="http://github.com/uniqush">our github organization</a>.</li>
+  <li>Find a repository you want to change under <a href="https://github.com/uniqush">our github organization</a>.</li>
   <li>Fork the repository.</li>
   <li>Change the repository in your clone.</li>
   <li>Push any change to your clone.</li>
   <li>Send a pull request to our original repository. Once the request is received, it will be reviewed and your change will be merged into the repository if we think it is a good change.</li>
 </ol>
 
-<p>Because we put <strong>everything</strong> on <a href="http://github.com/uniqush">our github organization</a>, there may be additional steps in the basic procedure. In general, repositories fall into two categories: <em>code</em> repositories, which contains programs/libraries&#8217; source code; and <em>content</em> repositories, which contains everything but source code (e.g. blog posts, web pages, etc.)</p>
+<p>Because we put <strong>everything</strong> on <a href="https://github.com/uniqush">our github organization</a>, there may be additional steps in the basic procedure. In general, repositories fall into two categories: <em>code</em> repositories, which contains programs/libraries&#8217; source code; and <em>content</em> repositories, which contains everything but source code (e.g. blog posts, web pages, etc.)</p>
 
-<p>If you have any question, please send it to <a href="http://groups.google.com/group/uniqush">our mailing list</a>. <em>NOTE</em>: Given current volume of the mailing list, users and developers are sharing a same mailing list. It may be split into two if we observed a high volume of emails.</p>
+<p>If you have any question, please send it to <a href="https://groups.google.com/forum/#!forum/uniqush">our mailing list</a>. <em>NOTE</em>: Given current volume of the mailing list, users and developers are sharing a same mailing list. It may be split into two if we observed a high volume of emails.</p>
 
 <h2 id="source-code-repositories">Source code repositories</h2>
 
-<p>The server side code is written in <a href="http://golang.org">go programming language</a>. If you want to make a contribution there, please make sure you know this language well enough.</p>
+<p>The server side code is written in <a href="https://golang.org/">go programming language</a>. If you want to make a contribution there, please make sure you know this language well enough.</p>
 
 <p>Each source code repository has three branches:</p>
 
 <ul>
   <li>master branch, contains the most recent changes, which are tested and will be contained in the next release version. Normally, the code in master branch should be compiled correctly and pass some basic test cases.</li>
   <li>exp branch, contains the most recent changes, which may contain bugs, or even not be compiled. <strong>Every contribution should be made based on exp branch</strong>.</li>
-  <li>go1 branch (or release branch). If it is a repository contains <a href="http://golang.org">go</a> code, then this branch is named <em>go1</em>; otherwise, it is named <em>release</em>. As the name suggested, it contains the latest release version of the code. Please <em>DO NOT</em> make contribution based on this branch.</li>
+  <li>go1 branch (or release branch). If it is a repository contains <a href="https://golang.org/">go</a> code, then this branch is named <em>go1</em>; otherwise, it is named <em>release</em>. As the name suggested, it contains the latest release version of the code. Please <em>DO NOT</em> make contribution based on this branch.</li>
 </ul>
 
-<p>If you want to contribute your source code, please make sure your changes are based on <em>exp</em> branch, because we put our latest code there. It would be better to put your changed version in an individual branch or at least in <em>exp</em> branch, and then send your pull request on github. Before doing any work, you may want to read <a href="https://help.github.com/articles/fork-a-repo">this document</a> from <a href="http://github.com">github</a>.</p>
+<p>If you want to contribute your source code, please make sure your changes are based on <em>exp</em> branch, because we put our latest code there. It would be better to put your changed version in an individual branch or at least in <em>exp</em> branch, and then send your pull request on github. Before doing any work, you may want to read <a href="https://help.github.com/articles/fork-a-repo">this document</a> from <a href="https://github.com">github</a>.</p>
 
 <h2 id="content-repositories">Content repositories</h2>
 
-<p>The whole website of <a href="http://uniqush.org">uniqush.org</a> is put to the <a href="http://github.com/uniqush/uniqush-www">www repository</a>. You can rebuild it with <a href="http://webgen.rubyforge.org/">webgen</a>.</p>
+<p>The whole website of <a href="https://uniqush.org">uniqush.org</a> is put to the <a href="https://github.com/uniqush/uniqush-www">www repository</a>. You can rebuild it with <a href="http://webgen.rubyforge.org/">webgen</a>.</p>
 
-<p>Because the <a href="http://uniqush.org/downloads.html">downloads</a> page is automatically generated with our own ruby script, you should put some packages under <em>downloads</em> directory to let it run correctly. Please make sure you have created a <em>downloads</em> directory under <em>src/</em> and put some .deb/.rpm/.tar.gz files under it.</p>
+<p>Because the <a href="https://uniqush.org/downloads.html">downloads</a> page is automatically generated with our own ruby script, you should put some packages under <em>downloads</em> directory to let it run correctly. Please make sure you have created a <em>downloads</em> directory under <em>src/</em> and put some .deb/.rpm/.tar.gz files under it.</p>
 
-<p>The <a href="http://blog.uniqush.org">uniqush blog</a> posts are put to the <a href="http://github.com/uniqush/uniqush-blog">blog repository</a> respectively. You should generate the whole blog site with <a href="http://pelican.notmyidea.org/en/3.0/index.html">pelican</a>.</p>
+<p>The <a href="http://blog.uniqush.org">uniqush blog</a> posts are put to the <a href="https://github.com/uniqush/uniqush-blog">blog repository</a> respectively. You should generate the whole blog site with <a href="http://pelican.notmyidea.org/en/3.0/index.html">pelican</a>.</p>
 
 <p>If you want to make any change to content repositories, simply fork and change, then send the pull request.</p>
 
 <h2 id="copyright-matters">Copyright matters</h2>
 
-<p>Any source code is under <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a> license, please make sure you have read and understand the license before making any changes.</p>
+<p>Any source code is under <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a> license, please make sure you have read and understand the license before making any changes.</p>
 
-<p>Any content is under <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>. Again, please read it and make sure you accept it.</p>
+<p>Any content is under <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>. Again, please read it and make sure you accept it.</p>
 
 <h2 id="software-patent-sucks">Software patent sucks</h2>
 
-<p>Yes, I don&#8217;t like it and please make sure you have read <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a> before making any contribution that contains a patent.</p>
+<p>Yes, I don&#8217;t like it and please make sure you have read <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a> before making any contribution that contains a patent.</p>
 
 
     </div>
 
     <div id="footer" class="bar">
-      
-        
+
+
             Created by <a href="/authors/monnand.html">Nan Deng</a>
-        
-      
-      Generated by <a href="http://webgen.rubyforge.org">webgen</a> on <b>2018-07-24 04:39:12</b>
+
+
+      Generated by <a href="http://webgen.rubyforge.org">webgen</a> on <b>2018-09-28 02:19:55</b>
 
       <br />
 
       <div id="license">
-          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
+        <a rel="license" href="https://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
         </div>
     </div>
   </body>
