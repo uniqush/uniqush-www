@@ -15,7 +15,7 @@ Reason: uniqush-push keeps a counter for each delivery points. When a user
 unsubscribes, its related delivery point's counter will be decreased by one.
 When the counter reaches zero, its corresponding delivery point information
 will be deleted. However, in old versions, uniqush-push will not delete the
-counter when it reaches zero. Hence there is a bug. This bug was found and
+counter when it reaches zero. Hence, there is a bug. This bug was found and
 reported by Ivan Yu.
 - *bugfix* Fixed a bug when subscribe with identical information. If a delivery
 point subscribe a service, its corresponding counter will be increased by

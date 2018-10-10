@@ -24,7 +24,7 @@ The latest release version is [2.6.1](release-notes/rn-uniqush-push-2-6-1.html).
 
 ## Features
 
-- Stand alone server program **dedicated** to push service, which means you can run
+- Standalone server program **dedicated** to push service, which means you can run
   it on your own server.
 - Multiple platforms supported for popular smart phone systems including
   android, iOS, etc. And we will support more in the future.

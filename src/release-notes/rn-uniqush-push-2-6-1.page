@@ -23,5 +23,5 @@ ChangeLog:
 
   Forbid using the backtick in service and subscription names (this was accidentally permitted by the invalid regex).
 
-  Continue allowing a small number of other invalid characters for now,
-  those may be deprecated in future releases.
+  Continue allowing a few other invalid characters for now.
+  Those may be deprecated in future releases.
