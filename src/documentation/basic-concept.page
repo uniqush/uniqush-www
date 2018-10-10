@@ -8,7 +8,7 @@ sort_info: 3
 
 # Basic Concept
 
-This document explain some basic concept in Uniqush's terminology. Understanding these terms is critical to use Uniqush. Fortunately, it won't be too hard to capture these ideas.
+This document explains some basic concept in Uniqush's terminology. Understanding these terms is critical to use Uniqush. Fortunately, it won't be too hard to capture these ideas.
 
 ## Sending Notifications Through Clouds
 
@@ -39,7 +39,7 @@ This document explain some basic concept in Uniqush's terminology. Understanding
 The server program first sends the data to the Uniqush process through HTTP,
 then Uniqush will send the data to each cloud using cloud-specific protocols.
 We call each cloud a **Push Service Provider**.
-Supporting more platforms is easy for the server side, because Uniqush did all of the dirty work.
+Supporting more platforms is easy for the server side, because Uniqush did all the dirty work.
 - **Definition** *Push Service Provider*: An entity which can push data to a device. Uniqush handles protocol to different Push Service Providers, hiding all communication details from the server.
 
 ![uniqushinvolved]
@@ -59,7 +59,7 @@ Supporting more platforms is easy for the server side, because Uniqush did all o
   We call each device a **Delivery Point**.
   Each subscriber may have several delivery points.
 - **Definition** *Delivery Point*: An entity which receives data from one or more Services.
-  It must have an subscriber as its Owner.
+  It must have a subscriber as its Owner.
   One subscriber may have more than one delivery point.
 - The server side program could simply tell 3 things to Uniqush: **who** --- the subscriber; **where** --- the service, i.e. where is the subscriber; and **what** --- the data. Uniqush will send data to each delivery point of that subscriber.
 
@@ -69,7 +69,7 @@ Supporting more platforms is easy for the server side, because Uniqush did all o
 
 ## Review
 
-Here are important concepts that we mentioned in this document. Understanding these concepts is critical and we listed them here for your convenience.
+Here are important concepts that we mentioned in this document. Understanding these concepts is critical, and we have listed them here for your convenience.
 
 ### Push Service Provider
 
@@ -91,7 +91,7 @@ Example: A person who installed Local News app on his / her cell phone.
 
 ### Delivery Point
 
-A Delivery Point receives data from one or more Services. It must have an subscriber as its Owner. One subscriber may have more than one delivery point.
+A Delivery Point receives data from one or more Services. It must have a subscriber as its Owner. One subscriber may have more than one delivery point.
 
 Examples: an Android device; an iOS device; a BlackBerry, etc.
 

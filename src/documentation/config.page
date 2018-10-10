@@ -44,7 +44,7 @@ The options in the *default* section lays outside of all other section. In this 
 
 *Section1* provides two options: *option1* and *option2*. Their values are *value1*, and *value2* respectively. Each option occupies one and only one line.
 
-The library we used to parse the configuration file is [goconf](https://code.google.com/archive/p/goconf/). Although it supports nested sections (a section inside another section). We do not use it in uniqush.
+The library we used to parse the configuration file is [goconf](https://code.google.com/archive/p/goconf/). Even though it supports nested sections (a section inside another section), we did not use that feature in uniqush.
 
 ******
 
@@ -64,7 +64,7 @@ missed, `uniqush-push` will use its default value instead. In other words, you c
  |  AddPushServiceProvider  |  Contains the options used when adding a push service provider request is being processed  |
  |  RemovePushServiceProvider  |  Contains the options used when removing a push service provider request is being processed  |
  |  Subscribe  |  Contains the options used when a subscribe request is being processed  |
- |  Unsubscribe  |  Contains the options used when when an unsubscribe request is being processed  |
+ |  Unsubscribe  |  Contains the options used when an unsubscribe request is being processed  |
  |  Push  |  Contains the options used when a push request is being processed  |
  |  Database  |  Contains the options specifying the database parameters  |
 

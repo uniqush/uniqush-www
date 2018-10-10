@@ -14,7 +14,7 @@ sort_info: 7
 
 Sure.
 
-The core part (and the only part right now) of uniqush is `uniqush-push`. It is a stand alone program. You can communicate with this program through HTTP connection. Asking uniqush to do some work can be done by sending an HTTP Post request to `uniqush-push`. In short, once you start `uniqush-push`, you can use it as a common web service according to its [APIs](usage.html). You may want to know which port it will use for the HTTP connection. Actually, you can [configure it and
+The core part (and the only part right now) of uniqush is `uniqush-push`. It is a standalone program. You can communicate with this program through HTTP connection. Asking uniqush to do some work can be done by sending an HTTP Post request to `uniqush-push`. In short, once you start `uniqush-push`, you can use it as a common web service according to its [APIs](usage.html). You may want to know which port it will use for the HTTP connection. Actually, you can [configure it and
 other parameters](config.html) by yourself.
 
 If you have any other questions, please feel free to send it on [mailing list].
@@ -26,7 +26,7 @@ Yes and no.
 If you just want to use [GCM] or [FCM] on Google App Engine, then `uniqush-push` has some code which you can directly use.
 
 However, because Google App Engine does not support socket connection, there is no way to use [APNs].
-In other words, if you want to setup a server on Google App Engine, you **cannot** push any notification to iOS devices no matter what software/library you are using.
+In other words, if you want to set up a server on Google App Engine, you **cannot** push any notification to iOS devices no matter what software/library you are using.
 
 I did consider porting uniqush to Google App Engine. But because of the lack of socket connection support, I think it may be better to port it until Google let us use client-side socket connections, or provide some way to connect to [APNs] server.
 
@@ -52,7 +52,7 @@ Thank you very much! You can send your idea to [mailing list] or to [uniqush.go 
 
 ### Why not provide an HTTPS connection inside `uniqush-push`? It's safe!
 
-Yes. It is safe. However, it is not `uniqush-push`'s responsibility to keep a safe connection to outside world. Why? Because many web-servers already provide proxy function. If you have an SSL certificate, you won't want to configure it on two programs. You can always keep an HTTPS function on web-server and forward the request to `uniqush-push`.
+Yes. It is safe. However, it is not `uniqush-push`'s responsibility to keep a safe connection to outside world. Why? It's because many web-servers already provide a proxy function. If you have an SSL certificate, you won't want to configure it on two programs. You can always keep an HTTPS function on web-server and forward the request to `uniqush-push`.
 
 We recommend the `uniqush-push` accept connections only from localhost and other programs do authentication/encryption jobs. We may provide another program which communicate with outside world used for subscribing/unsubscribing service. However, it is still a stand along program outside the `uniqush-push`.
 

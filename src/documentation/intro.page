@@ -8,7 +8,7 @@ sort_info: 1
 ---
 # A Story of an App Development
 
-This document helps you to understand the basic idea of **uniqush-push** by telling a imaginary story of a group of app developers.
+This document helps you to understand the basic idea of **uniqush-push** by telling an imaginary story of a group of app developers.
 
 - Once upon a time, there was a group of developers developing weather report app for mobile devices.
   They were from the open source community and hence preferred open platforms. Android was their choice.
@@ -22,7 +22,7 @@ This document helps you to understand the basic idea of **uniqush-push** by tell
 
 ![gcm-demo]
 
-- After several months, quite a few android users were using their weather report app. Our lucky developers were encouraged by this success and they decided to expand their business to other platforms.
+- After several months, quite a few android users were using their weather report app. Our lucky developers were encouraged by this success, and they decided to expand their business to other platforms.
 - They noticed that a lot of users were willing to use cell phones developed by a fruit company making this platform so popular that they could not refuse to support.
 - (To apple fans: Please forgive for not using their logo, I do not know if I can legally use their logo here. So I have to draw by myself and you can get the idea. Also, Forrest Gump told me it is OK to call it a fruit company.)
 

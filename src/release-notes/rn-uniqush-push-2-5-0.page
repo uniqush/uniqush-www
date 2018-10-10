@@ -22,4 +22,4 @@ ChangeLog:
   (Where the Cert is a VOIP cert and `uniqush.apns_voip=1` is part of
   the query params in the call to /push
 - Support more granular loglevel levels in uniqush config files:
-  alert, error, warn/warning, standard/verbose/info, and debug
+  alert, error, warn/warning, standard/verbose/info, and debug.

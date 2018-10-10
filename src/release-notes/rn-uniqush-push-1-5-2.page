@@ -22,7 +22,7 @@ ChangeLog:
 commit](https://github.com/uniqush/uniqush-push/commit/0ad26471bd0cba16b814fd43fa8723ffc2ca7fd0).
 - *bugfix* Fixed a bug in code related to APNS. In 1.5.1, uniqush-push
   calculates waiting time before retry by squaring previous waiting time. This
-method leads to integer overflow quickly because we represents time interval in
+method leads to integer overflow quickly because we represent time interval in
 nanoseconds. Right now, we will randomly increase the waiting time which solves
 the integer overflow problem and also reduces the probability of having message
 storm.

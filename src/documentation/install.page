@@ -14,7 +14,7 @@ lang: en
 
 `uniqush-push` is now the only component of Uniqush.
 
-It is highly recommended to install the **binary** package on a **64-bit** system.
+We highly recommend installing the **binary** package on a **64-bit** system.
 
 ### Install Redis
 

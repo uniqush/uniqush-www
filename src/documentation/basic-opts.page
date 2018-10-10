@@ -12,7 +12,7 @@ This document covers the basic operations provided by Uniqush. It won't cover th
 
 ## How to Communicate with Uniqush
 
-Uniqush runs as a stand alone service, which means you don't need to write any code to link against uniqush.
+Uniqush runs as a standalone service, which means you don't need to write any code to link against uniqush.
 Uniqush listens on a TCP port when it is running.
 You can change the port in its configuration file.
 To send a request to Uniqush, you simply need to connect to that port,
@@ -30,9 +30,9 @@ You can add more than one push service provider information to a service, so tha
 
 When a subscriber subscribes to a service, Uniqush need to know at least three things: the subscriber's id; the service name; and the delivery point information. The delivery point information including the identity of the device, its OS type and other push service provider specific information. For example, for android delivery points, they need to provide a registration id to Uniqush, which will be used to send data through [GCM] (or [FCM]) later.
 
-Sending such information to Uniqush could be done by a mobile app, which could connect to the Uniqush server via HTTP. However, this is not best practice since it's insecure. If your Uniqush server is publicly accessible, then anyone can perform malicious operations potentially. Allowing direct communication from the client to Uniqush is insecure. To prevent direct communication to Uniqush, it is recommended to put Uniqush behind a web server that does HTTPS and only allows specific operations.
+Sending such information to Uniqush could be done by a mobile app, which could connect to the Uniqush server via HTTP. However, this is not the best practice since it's insecure. If your Uniqush server is publicly accessible, then anyone can perform malicious operations potentially. Allowing direct communication from the client to Uniqush is insecure. To prevent direct communication to Uniqush, it is recommended to put Uniqush behind a web server that does HTTPS and only allows specific operations.
 
-Another possible way of sending this information to Uniqush: the app sends the information to some program on server side; this program processes the information, extracts the data that Uniqush wants, and then forwards the data to Uniqush through HTTP. Several pros for this approach exist. First, the server side has more flexibility of choosing authentication methods. Second, the server side is typically in the best position to handle sending notifications through Uniqush. Let's say you're have a chat application and Alice sends a message to Bob. Alice's message goes to your server application, which does whatever processing it needs, and then makes a request to Uniqush to send a push notification to Bob.
+Another possible way of sending this information to Uniqush: the app sends the information to some program on server side; this program processes the information, extracts the data that Uniqush wants, and then forwards the data to Uniqush through HTTP. Several pros for this approach exist. First, the server side has more flexibility of choosing authentication methods. Second, the server side is typically in the best position to handle sending notifications through Uniqush. Let's say you have a chat application and Alice sends a message to Bob. Alice's message goes to your server application, which does whatever processing it needs, and then makes a request to Uniqush to send a push notification to Bob.
 
 As mentioned in [basic concepts], a subscriber may have more than one delivery point subscriptions for a service.
 As a result, several delivery points could subscribe same service under the same subscriber.
