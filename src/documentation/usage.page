@@ -51,7 +51,7 @@ Before executing any command below, make sure you have already started *uniqush-
 
 Read [this](https://developers.google.com/cloud-messaging/gcm#senderid) link on
 how to get a Project ID and API key. Note: you need to make a **Server key** not
-an Android key.
+an Android key nor a "web API key".
 
 Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicetype=gcm -d projectid=123 -d apikey=somekey`
 
@@ -64,8 +64,8 @@ Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicet
  |  apikey  |  API Key  |
 
 Read [this](https://firebase.google.com/docs/android/setup#manually_add_firebase) link on
-how to get a Project ID and API key. Note: you need to make a **Server key** not
-an Android key.
+how to get a Project ID and API key. Note: you need to make add the **Server key** from Firebase,
+not an Android key nor a "web API key".
 
 Example: `curl http://127.0.0.1:9898/addpsp -d service=myservice -d pushservicetype=fcm -d projectid=123 -d apikey=somekey`
 
