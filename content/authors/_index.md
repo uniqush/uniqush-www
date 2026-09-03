@@ -4,6 +4,8 @@ menu:
   main:
     name: Authors
     weight: 100
+params:
+  hide_list: true
 ---
 
 The authors of Uniqush:

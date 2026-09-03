@@ -1,5 +1,5 @@
 ---
-title: "Release Note 1.3.1"
+title: "Release Note 1.3.0"
 weight: -10300
 params:
   author: "Nan Deng"
