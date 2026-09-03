@@ -1,0 +1,23 @@
+---
+title: "Release Note 2.5.0"
+weight: -20500
+params:
+  author: "Tyson Andre"
+---
+01-Apr-2018
+
+This release contains new APIs and improvements.
+
+Download:
+
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/2.5.0)
+
+ChangeLog:
+
+- Support "title", "title-loc-key", and "title-loc-args"
+- Support larger APNS payloads.
+  Support 5120 byte payloads for APNS voip pushes
+  (Where the Cert is a VOIP cert and `uniqush.apns_voip=1` is part of
+  the query params in the call to /push
+- Support more granular loglevel levels in uniqush config files:
+  alert, error, warn/warning, standard/verbose/info, and debug.

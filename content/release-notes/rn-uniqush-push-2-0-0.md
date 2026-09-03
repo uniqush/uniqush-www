@@ -1,0 +1,27 @@
+---
+title: "Release Note 2.0.0"
+weight: -20000
+params:
+  author: "Nan Deng"
+---
+15-Mar-2016
+
+This release contains a change to the response format, as well as bug fixes and improvements.
+
+Download:
+
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/2.0.0)
+
+ChangeLog:
+
+- *improvement* Changed the response format of most APIs from logs to JSON.
+  This allows clients to reliably parse results and errors from the API response.
+  **This will break clients that parse the old format**
+- *improvement* Allow 2048 byte APNS payloads
+- *bugfix* Fix various memory leaks.
+- *bugfix* Fix bugs in closing connections.
+- Remove support for C2DM, which was shut down by Google on October 2015.
+
+[issue 68]: https://github.com/uniqush/uniqush-push/issues/68
+[issue 70]: https://github.com/uniqush/uniqush-push/issues/70
+[issue 76]: https://github.com/uniqush/uniqush-push/issues/76

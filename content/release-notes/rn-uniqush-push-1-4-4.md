@@ -1,0 +1,43 @@
+---
+title: "Release Note 1.4.4"
+weight: -10404
+params:
+  author: "Nan Deng"
+---
+19-Jul-2013
+
+This version contains some minor bug fixes and a *huge* improvement for APNS. I
+would like to give special thanks to [cmabastar-gumi] for his detailed bug
+reports.
+
+Download:
+
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/1.4.4)
+
+ChangeLog:
+
+- *bugfix* Removed some unnecessary information in the
+  notification when call on ``/push``. In old versions, service
+and subscriber(s) names will be included in the notification.
+This may leak some information to the client (e.g. how you name
+the client internally.) Fixed [issue 19].
+- *bugfix* Fixed a potential memory leak bug affected APNS sandbox
+  environment. Fixed [issue 25].
+- *bugfix* For APNS, *uniqush-push* now checks the payload size before sending it. Fixed [issue 24].
+- *improvement* For APNS, *uniqush-push* now checks the feedback service less frequently so that the performance can be improved a lot. Fixed [issue 26].
+- *improvement* Added a [connection pool] support for APNS. Partially fixed [issue 27].
+- *improvement* For APNS, *uniqush-push* now does not wait for the error
+  response. This is a trade-off to improve the performance. However, for most
+errors, *uniqush-push* is able to check them before sending the notification to
+APNS. For others, *uniqush-push* is able to recover the error. More details
+will be discussed on the [blog]. Partially fixed [issue 27].
+
+
+[cmabastar-gumi]: https://github.com/cmabastar-gumi
+[blog]: http://blog.uniqush.org/uniqush-push-1-4-4.html
+[connection pool]: http://github.com/uniqush/connpool
+[issue 19]: https://github.com/uniqush/uniqush-push/issues/19
+[issue 24]: https://github.com/uniqush/uniqush-push/issues/24
+[issue 25]: https://github.com/uniqush/uniqush-push/issues/25
+[issue 26]: https://github.com/uniqush/uniqush-push/issues/26
+[issue 27]: https://github.com/uniqush/uniqush-push/issues/27

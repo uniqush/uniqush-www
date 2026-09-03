@@ -1,0 +1,25 @@
+---
+title: "Release Note 1.4.1"
+weight: -10401
+params:
+  author: "Nan Deng"
+---
+24-Feb-2013
+
+This version contains several bug fixes and a refactoring of the *main* package.
+
+Download:
+
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/1.4.1)
+
+ChangeLog:
+
+- *improvement* On (un)subscription, the log message now contains service and subscriber information. Fixed [issue 2].
+- *improvement* On adding an APNS push service provider, uniqush-push will report error immediately if the given certificate or key files do not exist. Fixed [issue 6].
+- *bugfix* Removed all code related memory pool. The dependency on the memory pool was removed. Fixed [issue 7].
+- *improvement* Rewrote the code in the *main* package. It is cleaner, simpler and less redundant. Fixed [issue 5].
+
+[issue 2]: https://github.com/uniqush/uniqush-push/issues/2
+[issue 6]: https://github.com/uniqush/uniqush-push/issues/6
+[issue 7]: https://github.com/uniqush/uniqush-push/issues/7
+[issue 5]: https://github.com/uniqush/uniqush-push/issues/5

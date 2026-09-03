@@ -1,0 +1,14 @@
+baseURL = "https://uniqush.org/"
+locale = "en-us"
+title = "Uniqush"
+uglyURLs = true # webgen produced /path/name.html; keep every existing URL working.
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
+
+[params]
+  description = "Uniqush is free, open source software providing a unified push notification service for iOS, Android, Kindle, and Web Push/UnifiedPush."
+  repo = "https://github.com/uniqush/uniqush-push"
+
+[markup.goldmark.extensions]
+  [markup.goldmark.extensions.typographer]
+    disable = true
