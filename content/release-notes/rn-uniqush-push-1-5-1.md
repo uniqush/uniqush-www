@@ -1,0 +1,28 @@
+---
+title: "Release Note 1.5.1"
+weight: -10501
+params:
+  author: "Nan Deng"
+---
+7-Nov-2013
+
+This release contains some minor bug fix and improvements.
+
+Download:
+
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/1.5.1)
+
+ChangeLog:
+
+- *bugfix* Correctly change from sandbox to production environment in APNS. This fixed [issue 33].
+- *bugfix* If a connection pool connecting with APNS closed, then any Close() operation on connections from the pool will cause a panic. This is a bug in [connpool], and fixed in [issue 37].
+- *improvement* APNS: add content-available support. Fixed [issue 36].
+- *improvement* Set Keepalive for all TCP connections. In this case, we can discover connection failures quickly. Fixed [issue 38].
+- *improvement* @ is a valid character in subscriber and service names. Fixed [issue 39].
+
+[connpool]: https://github.com/uniqush/connpool
+[issue 39]: https://github.com/uniqush/uniqush-push/issues/39
+[issue 38]: https://github.com/uniqush/uniqush-push/issues/38
+[issue 37]: https://github.com/uniqush/uniqush-push/issues/37
+[issue 36]: https://github.com/uniqush/uniqush-push/issues/36
+[issue 33]: https://github.com/uniqush/uniqush-push/issues/33

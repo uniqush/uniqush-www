@@ -1,0 +1,26 @@
+---
+title: "Release Note 1.5.2"
+weight: -10502
+params:
+  author: "Nan Deng"
+---
+29-Jun-2014
+
+This release contains some bug fix and improvements.
+
+Download:
+
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/1.5.2)
+
+ChangeLog:
+
+- Changed the code so that it could work with most recent Go's crypto/tls
+  package. The change is made in [this
+commit](https://github.com/uniqush/uniqush-push/commit/0ad26471bd0cba16b814fd43fa8723ffc2ca7fd0).
+- *bugfix* Fixed a bug in code related to APNS. In 1.5.1, uniqush-push
+  calculates waiting time before retry by squaring previous waiting time. This
+method leads to integer overflow quickly because we represent time interval in
+nanoseconds. Right now, we will randomly increase the waiting time which solves
+the integer overflow problem and also reduces the probability of having message
+storm.
+- *improvement* Report an error when a user tries to add an iOS device with the wrong device token.

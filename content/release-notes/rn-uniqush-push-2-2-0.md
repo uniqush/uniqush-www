@@ -1,0 +1,22 @@
+---
+title: "Release Note 2.2.0"
+weight: -20200
+params:
+  author: "Uniqush Maintainers"
+---
+09-Mar-2016
+
+This release contains bugfixes, new APIs and improvements.
+
+Download:
+
+- [GitHub Releases (rpm, deb, tar.gz)](https://github.com/uniqush/uniqush-push/releases/tag/2.2.0)
+
+ChangeLog:
+
+- Add API endpoints for querying subscriptions (/subscriptions), available services (/services), and a migration API for building the services set (/rebuildserviceset)
+- Allow for providing custom JSON payloads to ADM, APNS, and GCM
+- Add feedback to indicate whether a delivery point was modified on push (thanks Clemens Fischer)
+- Better connection pooling for the GCM implementation reduces memory footprint by about 90% for if(we)
+- Migrate Redis implementation to redis.v3
+- Automatically remove invalid PSPs if they are detected

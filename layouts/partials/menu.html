@@ -1,0 +1,8 @@
+<ul>
+{{ $current := .Page }}
+{{ range .Site.Menus.main }}
+  <li{{ if or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }} class="current"{{ end }}>
+    <a href="{{ .URL }}">{{ .Name }}</a>
+  </li>
+{{ end }}
+</ul>

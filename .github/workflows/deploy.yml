@@ -1,0 +1,100 @@
+name: Deploy site
+
+# Rebuilds uniqush.org (this repo, via Hugo) and the blog (uniqush-blog, via
+# Pelican, into public/blog) and publishes both with GitHub Pages.
+#
+# Runs on a push to this repo's master, on a repository_dispatch sent by
+# uniqush-push or uniqush-blog when THEY change (see their notify-www.yml
+# workflows -- that needs a WWW_DISPATCH_TOKEN secret set in each of those
+# repos; until it's set up, this workflow still runs weekly and on demand),
+# and manually.
+on:
+  push:
+    branches: [master]
+  repository_dispatch:
+    types: [docs-updated, blog-updated]
+  workflow_dispatch: {}
+  schedule:
+    # Mondays at 03:17 UTC -- a safety net in case a dispatch was missed.
+    - cron: "17 3 * * 1"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  PELICAN_THEME_VERSION: 8b244609f5f6fcce30c5324cfa8b1e5c4df0e199
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out uniqush-www
+        uses: actions/checkout@v4
+
+      - name: Check out uniqush-push (for docs/api.md, docs/upgrading.md, NEWS.md)
+        uses: actions/checkout@v4
+        with:
+          repository: uniqush/uniqush-push
+          path: uniqush-push
+
+      - name: Check out uniqush-blog
+        uses: actions/checkout@v4
+        with:
+          repository: uniqush/uniqush-blog
+          path: uniqush-blog
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Pelican and the pinned theme
+        run: |
+          pip install pelican markdown
+          git clone --filter=blob:none --no-checkout https://github.com/getpelican/pelican-themes.git /tmp/pelican-themes
+          cd /tmp/pelican-themes
+          git sparse-checkout set tuxlite_tbs
+          git checkout -q "$PELICAN_THEME_VERSION"
+          pelican-themes -i tuxlite_tbs
+
+      - name: Build the blog
+        run: pelican uniqush-blog/src -o /tmp/blog-output -s uniqush-blog/pelican.conf.py
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.165.0"
+          extended: false
+
+      - name: Import docs from uniqush-push
+        run: python3 scripts/import-docs.py uniqush-push
+
+      - name: Build the site
+        run: hugo --minify
+
+      - name: Fold the blog into the site
+        run: |
+          mkdir -p public/blog
+          cp -r /tmp/blog-output/. public/blog/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

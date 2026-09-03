@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{ partial "head.html" . }}
+</head>
+<body>
+  <div id="header">
+    <a href="/"><img id="frontphoto" src="/images/front.png" alt="Uniqush" /></a>
+  </div>
+
+  <div id="headerbar" class="bar">
+    <span class="left">
+      {{ range .Ancestors.Reverse }}<a href="{{ .RelPermalink }}">{{ .Title }}</a> &raquo; {{ end }}{{ .Title }}
+    </span>
+  </div>
+
+  <div id="menu">
+    {{ partial "menu.html" . }}
+  </div>
+
+  <div id="body">
+    {{ block "main" . }}{{ end }}
+  </div>
+
+  <div id="footer" class="bar">
+    Uniqush is free and open source software.
+    Source is <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> licensed;
+    this site's content is <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+    <a href="https://github.com/uniqush/uniqush-www">Improve this page</a>.
+  </div>
+</body>
+</html>
