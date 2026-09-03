@@ -15,6 +15,7 @@ body {
 
 #headerbar, #footer {
   clear: both;
+  display: flow-root; /* contain #headerbar's floated .left span, or its background/border collapse to zero height */
   padding: 3px 1em;
   text-align: center;
   font-size: 90%;
