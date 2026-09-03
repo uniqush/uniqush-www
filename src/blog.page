@@ -4,7 +4,7 @@ in_menu: true
 author: Nan Deng
 author_url: /authors/monnand.html
 routed_title: Uniqush Blog
-redir: http://blog.uniqush.org/
+redir: /blog/
 message: Redirect to our blog
 ---
 
