@@ -4,6 +4,8 @@ menu:
   main:
     name: Documentation
     weight: 20
+params:
+  hide_list: true
 ---
 
 ### Getting Started
