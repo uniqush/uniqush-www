@@ -8,11 +8,10 @@ menu:
     weight: 30
 ---
 
-**Every packaged release, 2.6.1 and earlier, predates the fixes to APNs and
-FCM described in the [upgrade notes](/documentation/upgrading.html) — their
-APNs and FCM support cannot deliver a notification any more, since both
-services shut down the APIs those releases spoke to.** Build from `master`
-until a new version is tagged; see [Install](/documentation/install.html).
+**Every packaged release through 2.6.1 predates the fixes to APNs and FCM
+described in the [upgrade notes](/documentation/upgrading.html) — their APNs
+and FCM support cannot deliver a notification any more, since both services
+shut down the APIs those releases spoke to. Upgrade to 2.8.0 or newer.**
 
 ## uniqush-push
 
