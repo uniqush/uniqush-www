@@ -14,10 +14,10 @@ helps explain the basic idea.
 
 The latest news about Uniqush is posted to our [blog](/blog/).
 
-The latest release is [2.7.0](/release-notes/rn-uniqush-push-2-7-0.html); an
-unreleased version in progress fixes APNs and FCM for both services' shut-down
-APIs and adds UnifiedPush/Web Push support — see the
-[upgrade notes](/documentation/upgrading.html).
+The latest release is
+[2.8.0](/release-notes/rn-uniqush-push-2-8-0.html), which fixes APNs and FCM
+for both services' shut-down APIs and adds UnifiedPush/Web Push support —
+see the [upgrade notes](/documentation/upgrading.html).
 
 ## Features
 

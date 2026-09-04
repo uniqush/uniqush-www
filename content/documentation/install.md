@@ -10,8 +10,10 @@ aliases:
 `uniqush-push` is the only component of Uniqush. Building it needs
 **Go 1.25 or newer**; running it needs a [Redis](https://redis.io) server.
 
-There are no prebuilt binaries for the current, unreleased version — build
-from source:
+Prebuilt packages (`.deb`, `.rpm`, `.tar.gz`) for the latest release, 2.8.0,
+are on
+[GitHub Releases](https://github.com/uniqush/uniqush-push/releases/tag/2.8.0).
+Or build from source:
 
 ```
 git clone https://github.com/uniqush/uniqush-push.git
@@ -19,7 +21,8 @@ cd uniqush-push
 go build          # produces ./uniqush-push
 ```
 
-or, without a checkout: `go install github.com/uniqush/uniqush-push@master`.
+or, without a checkout: `go install github.com/uniqush/uniqush-push@v2.8.0`
+(or `@master` for the latest unreleased changes).
 
 ### Install Redis
 
