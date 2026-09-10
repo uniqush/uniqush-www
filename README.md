@@ -20,11 +20,11 @@ The blog isn't built by this repo. To see it locally, build it separately from a
 Deployment
 ----------
 
-`.github/workflows/deploy.yml` builds and publishes the site with GitHub Actions (`actions/deploy-pages`), on a push to `master`, on a `repository_dispatch` from uniqush-push or uniqush-blog when their content changes, on a weekly schedule as a safety net, and on demand.
+`.github/workflows/deploy.yml` builds and publishes the site with GitHub Actions (`actions/deploy-pages`), on a push to `master`, on a `repository_dispatch` from uniqush-push when its docs change, on a weekly schedule as a safety net, and on demand.
 
 **One manual step is required in the GitHub repo settings and can't be done from here:** under Settings -> Pages, the source needs to be switched from "Deploy from a branch" (the old `gh-pages` branch) to "GitHub Actions". Until that's flipped, pushes to this branch won't actually publish.
 
-The `repository_dispatch` triggers also need a `WWW_DISPATCH_TOKEN` secret (a PAT with permission to dispatch to this repo) added to the uniqush-push and uniqush-blog repos' own settings -- the workflow files for that are prepared but need that secret before the dispatch step will work. Until it's set up, the weekly schedule and manual `workflow_dispatch` still cover it.
+The `repository_dispatch` from uniqush-push is sent by its `notify-www.yml` workflow, which needs a `WWW_DISPATCH_TOKEN` secret in uniqush-push's settings: a fine-grained PAT with access to this repo and "Contents: Read and write" (that workflow's header has the details). Without it, that workflow fails with an error saying so. uniqush-blog has no such workflow yet, so a new blog post reaches the site on the next push here, the weekly run, or a manual `workflow_dispatch`; the `blog-updated` dispatch type is accepted for when it does.
 
 URLs
 ----
