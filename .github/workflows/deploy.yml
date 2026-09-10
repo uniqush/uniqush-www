@@ -4,10 +4,10 @@ name: Deploy site
 # Pelican, into public/blog) and publishes both with GitHub Pages.
 #
 # Runs on a push to this repo's master, on a repository_dispatch sent by
-# uniqush-push or uniqush-blog when THEY change (see their notify-www.yml
-# workflows -- that needs a WWW_DISPATCH_TOKEN secret set in each of those
-# repos; until it's set up, this workflow still runs weekly and on demand),
-# and manually.
+# uniqush-push when its docs change (its notify-www.yml, which needs a
+# WWW_DISPATCH_TOKEN secret in uniqush-push), weekly, and manually.
+# uniqush-blog sends no dispatch yet, so blog posts arrive with the next of
+# those; blog-updated is accepted below for when it does.
 on:
   push:
     branches: [master]
