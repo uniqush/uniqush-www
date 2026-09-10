@@ -38,10 +38,23 @@ LINK_MAP = {
 LINK_RE = re.compile(r"\]\(([^)\s]+)\)")
 
 
+def map_link(target: str) -> str:
+    """Map a relative link to where it should point from this site.
+
+    An exact LINK_MAP entry wins. Otherwise a link with a #fragment is mapped
+    by its page and keeps the fragment, so "api.md#stats" needs no entry of its
+    own -- only a new page does. Anything still unknown is left as it is."""
+    if target in LINK_MAP:
+        return LINK_MAP[target]
+    page, sep, fragment = target.partition("#")
+    if sep and page in LINK_MAP:
+        return LINK_MAP[page] + "#" + fragment
+    return target
+
+
 def rewrite_links(text: str) -> str:
     def repl(m):
-        target = m.group(1)
-        return "](" + LINK_MAP.get(target, target) + ")"
+        return "](" + map_link(m.group(1)) + ")"
     return LINK_RE.sub(repl, text)
 
 
