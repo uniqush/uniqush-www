@@ -13,7 +13,7 @@ hugo server   # http://localhost:1313, or...
 hugo --minify # ...to build the static site into ./public
 ```
 
-The three generated pages (`content/documentation/usage.md`, `content/documentation/upgrading.md`, `content/release-notes/unreleased.md`) are gitignored -- never hand-edit them, they're overwritten on the next `import-docs.py` run. If uniqush-push's `docs/api.md` or `docs/upgrading.md` add a relative link the script doesn't know how to rewrite, `scripts/import-docs.py`'s `LINK_MAP` needs a new entry.
+The three generated pages (`content/documentation/usage.md`, `content/documentation/upgrading.md`, `content/release-notes/unreleased.md`) are gitignored -- never hand-edit them, they're overwritten on the next `import-docs.py` run. If uniqush-push's docs add a relative link to a page the script doesn't know how to rewrite, the script exits non-zero and names the link, so a deploy stops rather than publishing a dead link; add the page to `scripts/import-docs.py`'s `LINK_MAP`. A link to a section (`api.md#stats`) needs no entry of its own once its page has one.
 
 The blog isn't built by this repo. To see it locally, build it separately from a uniqush-blog checkout and copy its output into `public/blog/` after running `hugo`.
 

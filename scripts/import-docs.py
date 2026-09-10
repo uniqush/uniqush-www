@@ -6,9 +6,10 @@ does. Run before `hugo build`, locally and in CI:
     python3 scripts/import-docs.py /path/to/uniqush-push
 
 The three files this produces are .gitignored -- they're always regenerated,
-never hand-edited. If uniqush-push's docs/api.md or docs/upgrading.md add a
-relative link this script doesn't know about, LINK_MAP below needs a new
-entry, or the link will point at a dead .md file on the live site.
+never hand-edited. If uniqush-push's docs add a relative link to a page this
+script doesn't know about, it exits non-zero naming the link, so the deploy
+stops instead of publishing a link to a .md file that isn't on the site. Add
+the page to LINK_MAP below.
 """
 import re
 import sys
@@ -38,23 +39,38 @@ LINK_MAP = {
 LINK_RE = re.compile(r"\]\(([^)\s]+)\)")
 
 
-def map_link(target: str) -> str:
-    """Map a relative link to where it should point from this site.
+# Relative links no LINK_MAP entry covers, as "source: target", gathered
+# across every page and reported together at the end so one run names them all.
+UNMAPPED = []
+
+# Targets that already work from this site: absolute URLs, site-rooted paths,
+# anchors within the same page, and mail links.
+PASS_THROUGH = ("http://", "https://", "/", "#", "mailto:")
+
+
+def map_link(target: str):
+    """Map a relative link to where it should point from this site, or None.
 
     An exact LINK_MAP entry wins. Otherwise a link with a #fragment is mapped
     by its page and keeps the fragment, so "api.md#stats" needs no entry of its
-    own -- only a new page does. Anything still unknown is left as it is."""
+    own -- only a new page does."""
     if target in LINK_MAP:
         return LINK_MAP[target]
     page, sep, fragment = target.partition("#")
     if sep and page in LINK_MAP:
         return LINK_MAP[page] + "#" + fragment
-    return target
+    return None
 
 
-def rewrite_links(text: str) -> str:
+def rewrite_links(text: str, source: str) -> str:
     def repl(m):
-        return "](" + map_link(m.group(1)) + ")"
+        target = m.group(1)
+        mapped = map_link(target)
+        if mapped is None:
+            if not target.startswith(PASS_THROUGH):
+                UNMAPPED.append(f"{source}: {target}")
+            mapped = target
+        return "](" + mapped + ")"
     return LINK_RE.sub(repl, text)
 
 
@@ -94,7 +110,7 @@ def import_simple(src: Path, out_path: Path, title: str, extra_front_matter: str
     body = src.read_text()
     body = strip_leading_h1(body)
     body = demote_headings(body)
-    body = rewrite_links(body)
+    body = rewrite_links(body, src.name)
     front_matter = f'title: "{title}"\n{extra_front_matter}'
     write_page(out_path, front_matter, body)
 
@@ -114,7 +130,7 @@ def import_unreleased_news(src: Path, out_path: Path) -> None:
     while end < len(lines) and not re.match(r"^\d{1,2} \w+ \d{4}, uniqush-push", lines[end]):
         end += 1
     body = "\n".join(lines[start:end]).strip() + "\n"
-    body = demote_headings(rewrite_links(body))
+    body = demote_headings(rewrite_links(body, src.name))
     front_matter = (
         'title: "Unreleased"\n'
         "weight: -100000\n"
@@ -146,6 +162,16 @@ def main():
         push_dir / "NEWS.md",
         content / "release-notes" / "unreleased.md",
     )
+
+    # After writing, so the pages can still be inspected locally -- but a
+    # non-zero exit stops the deploy before anything is published, and the
+    # site keeps its last good build rather than gaining a dead link.
+    if UNMAPPED:
+        print("error: relative links with nowhere to point on this site:", file=sys.stderr)
+        for link in UNMAPPED:
+            print(f"  {link}", file=sys.stderr)
+        print("Add each page to LINK_MAP in scripts/import-docs.py.", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
