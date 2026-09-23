@@ -17,7 +17,7 @@ params:
 ### Configuration and Usage
 - [Configuration](/documentation/config.html): the configuration file, section by section.
 - [Using Uniqush](/documentation/usage.html): the full REST API reference.
-- [Upgrading](/documentation/upgrading.html): what changes if you're moving from 2.7.0 or earlier.
+- [Upgrading](/documentation/upgrading.html): what changes from one release to the next, and what needs action.
 
 ### Developer Guide
 - [Contribution Guidelines](/documentation/contribute.html): how to contribute to the project.
