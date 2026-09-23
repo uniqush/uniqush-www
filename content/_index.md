@@ -15,9 +15,11 @@ helps explain the basic idea.
 The latest news about Uniqush is posted to our [blog](/blog/).
 
 The latest release is
-[2.8.0](/release-notes/rn-uniqush-push-2-8-0.html), which fixes APNs and FCM
-for both services' shut-down APIs and adds UnifiedPush/Web Push support —
-see the [upgrade notes](/documentation/upgrading.html).
+[2.9.0](/release-notes/rn-uniqush-push-2-9-0.html), which makes wildcard
+pushes fast on large databases and adds `/stats`, `/health` and a systemd
+unit — see the [upgrade notes](/documentation/upgrading.html). 2.8.0 fixed
+APNs and FCM for both services' shut-down APIs and added UnifiedPush/Web Push
+support.
 
 ## Features
 

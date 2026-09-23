@@ -91,6 +91,16 @@ def demote_headings(text: str) -> str:
     return "\n".join(out) + "\n"
 
 
+def leading_h1(src: Path) -> str:
+    """The page's own title, so it follows the doc when the doc is retitled
+    (upgrading.md went from "Upgrading from 2.7.0" to one page per release)."""
+    first = src.read_text().splitlines()[0]
+    if not first.startswith("# "):
+        print(f"error: {src} does not start with a '# ' title", file=sys.stderr)
+        sys.exit(1)
+    return first[2:].strip().replace('"', '\\"')
+
+
 def strip_leading_h1(text: str) -> str:
     lines = text.splitlines()
     if lines and lines[0].startswith("# "):
@@ -124,7 +134,11 @@ def import_unreleased_news(src: Path, out_path: Path) -> None:
     try:
         start = next(i for i, l in enumerate(lines) if l.strip() == "Unreleased") + 2
     except StopIteration:
+        # Normal right after a release, until the next change lands. Remove
+        # the page a previous run wrote, or a local build keeps showing what
+        # has since become a numbered release as "Unreleased".
         print("NEWS.md has no 'Unreleased' section; skipping", file=sys.stderr)
+        out_path.unlink(missing_ok=True)
         return
     end = start
     while end < len(lines) and not re.match(r"^\d{1,2} \w+ \d{4}, uniqush-push", lines[end]):
@@ -156,7 +170,7 @@ def main():
     import_simple(
         push_dir / "docs" / "upgrading.md",
         content / "documentation" / "upgrading.md",
-        "Upgrading from 2.7.0",
+        leading_h1(push_dir / "docs" / "upgrading.md"),
     )
     import_unreleased_news(
         push_dir / "NEWS.md",
