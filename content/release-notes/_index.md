@@ -9,7 +9,7 @@ menu:
 Uniqush was dormant between 2019 and 2026, during which several upstream push
 APIs it depended on were shut down.
 [2.8.0](/release-notes/rn-uniqush-push-2-8-0.html) fixed that, and
-[2.9.0](/release-notes/rn-uniqush-push-2-9-0.html) is the latest release; the
+[2.9.1](/release-notes/rn-uniqush-push-2-9-1.html) is the latest release; the
 [upgrade notes](/documentation/upgrading.html) describe what changes, and the
 notes below cover every numbered release back to 1.3.0. The full commit-level
 history is in

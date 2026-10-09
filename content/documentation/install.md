@@ -8,12 +8,13 @@ aliases:
 ## Installing uniqush-push
 
 `uniqush-push` is the only component of Uniqush. Building it needs
-**Go 1.25 or newer**; running it needs a [Redis](https://redis.io) server.
+**Go 1.26 or newer**; running it needs a [Redis](https://redis.io) server.
 
-Prebuilt packages (`.deb`, `.rpm`, `.tar.gz`) for the latest release, 2.9.0,
+Prebuilt packages (`.deb`, `.rpm`, `.tar.gz`) for the latest release, 2.9.1,
 are on
-[GitHub Releases](https://github.com/uniqush/uniqush-push/releases/tag/2.9.0).
-Or build from source:
+[GitHub Releases](https://github.com/uniqush/uniqush-push/releases/tag/2.9.1),
+and a Docker image for linux/amd64 and linux/arm64 is
+`ghcr.io/uniqush/uniqush-push:2.9.1`. Or build from source:
 
 ```
 git clone https://github.com/uniqush/uniqush-push.git
@@ -21,9 +22,9 @@ cd uniqush-push
 go build          # produces ./uniqush-push
 ```
 
-or, without a checkout: `go install github.com/uniqush/uniqush-push@2.9.0`
+or, without a checkout: `go install github.com/uniqush/uniqush-push@2.9.1`
 (or `@master` for the latest unreleased changes). The tag has no `v`, and
-`@v2.9.0` will not resolve.
+`@v2.9.1` will not resolve.
 
 ### Install Redis
 
