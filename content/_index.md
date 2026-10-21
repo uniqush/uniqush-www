@@ -15,9 +15,11 @@ helps explain the basic idea.
 The latest news about Uniqush is posted to our [blog](/blog/).
 
 The latest release is
-[2.9.1](/release-notes/rn-uniqush-push-2-9-1.html), a security update that
-also adds a Docker image. 2.9.0 made wildcard pushes fast on large databases
-and added `/stats`, `/health` and a systemd unit — see the
+[2.11.0](/release-notes/rn-uniqush-push-2-11-0.html), which adds an optional
+bearer token for the REST API and RFC 8030 headers for Web Push, and is built
+with a Go that distrusts the compromised eMudhra CAs. 2.10.0 added `/metrics`.
+2.9.0 made wildcard pushes fast on large databases and added `/stats`,
+`/health` and a systemd unit — see the
 [upgrade notes](/documentation/upgrading.html). 2.8.0 fixed
 APNs and FCM for both services' shut-down APIs and added UnifiedPush/Web Push
 support.
